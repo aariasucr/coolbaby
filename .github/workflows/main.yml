@@ -19,7 +19,7 @@ jobs:
 
       - name: Ejecutar Pruebas de Unidad
         working-directory: cool-baby
-        run: npm run ci:test
+        run: ng test --code-coverage --progress false --watch false --browsers=ChromeHeadlessCustom
 
       - name: Crear Build
         working-directory: cool-baby
