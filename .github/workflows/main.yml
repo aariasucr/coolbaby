@@ -1,0 +1,42 @@
+name: Construir App
+on: [push]
+jobs:
+  construir:
+    name: Construir App con Angular y NPM
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Configurar Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Instalar Dependencias
+        working-directory: cool-baby
+        run: npm install
+
+      - name: Ejecutar Pruebas de Unidad
+        working-directory: cool-baby
+        run: npm run ci:test
+
+      - name: Crear Build
+        working-directory: cool-baby
+        run: npm run build
+
+      - name: Notificar exito en Slack
+        if: success()
+        uses: rtCamp/action-slack-notify@v2.0.2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_COLOR: good
+          SLACK_TITLE: Build Exitoso
+
+      - name: Notificar error en Slack
+        if: failure()
+        uses: rtCamp/action-slack-notify@v2.0.2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_COLOR: danger
+          SLACK_TITLE: Error en el build
