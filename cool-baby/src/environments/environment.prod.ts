@@ -1,13 +1,8 @@
-/////////////// Comentado hasta instalacion de firebase
-// import {firebase} from './firebase.environment';
+import {firebase} from './firebase.environment';
 
-// export const environment = {
-//   production: true,
-//   firebaseConfig: {
-//     ...firebase.config
-//   }
-// };
-///////////////
 export const environment = {
-  production: true
+  production: true,
+  firebaseConfig: {
+    ...firebase.config
+  }
 };
