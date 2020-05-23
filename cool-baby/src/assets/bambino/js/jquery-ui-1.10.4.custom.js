@@ -3,7 +3,7 @@
 * Includes: jquery.ui.core.js, jquery.ui.widget.js, jquery.ui.mouse.js, jquery.ui.position.js, jquery.ui.draggable.js, jquery.ui.droppable.js, jquery.ui.resizable.js, jquery.ui.selectable.js, jquery.ui.sortable.js, jquery.ui.tabs.js, jquery.ui.effect.js, jquery.ui.effect-blind.js, jquery.ui.effect-bounce.js, jquery.ui.effect-clip.js, jquery.ui.effect-drop.js, jquery.ui.effect-explode.js, jquery.ui.effect-fade.js, jquery.ui.effect-fold.js, jquery.ui.effect-highlight.js, jquery.ui.effect-pulsate.js, jquery.ui.effect-scale.js, jquery.ui.effect-shake.js, jquery.ui.effect-slide.js, jquery.ui.effect-transfer.js
 * Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
 
-(function( $, undefined ) {
+(function( $ ) {
 
 var uuid = 0,
 	runiqueId = /^ui-id-\d+$/;
@@ -313,7 +313,7 @@ $.extend( $.ui, {
 });
 
 })( jQuery );
-(function( $, undefined ) {
+(function( $ ) {
 
 var uuid = 0,
 	slice = Array.prototype.slice,
@@ -824,7 +824,7 @@ $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
 });
 
 })( jQuery );
-(function( $, undefined ) {
+(function( $ ) {
 
 var mouseHandled = false;
 $( document ).mouseup( function() {
@@ -980,7 +980,7 @@ $.widget("ui.mouse", {
 });
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.ui = $.ui || {};
 
@@ -1471,7 +1471,7 @@ $.ui.position = {
 })();
 
 }( jQuery ) );
-(function( $, undefined ) {
+(function( $ ) {
 
 $.widget("ui.draggable", $.ui.mouse, {
 	version: "1.10.4",
@@ -2414,7 +2414,7 @@ $.ui.plugin.add("draggable", "zIndex", {
 });
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 function isOverAxis( x, reference, size ) {
 	return ( x > reference ) && ( x < ( reference + size ) );
@@ -2787,7 +2787,7 @@ $.ui.ddmanager = {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 function num(v) {
 	return parseInt(v, 10) || 0;
@@ -3542,7 +3542,7 @@ $.ui.plugin.add("resizable", "containment", {
 		that.offset.left = that.parentData.left+that.position.left;
 		that.offset.top = that.parentData.top+that.position.top;
 
-		woset = Math.abs( (that._helper ? that.offset.left - cop.left : (that.offset.left - cop.left)) + that.sizeDiff.width );
+		woset = Math.abs( (that._helper ? that.offset.left - cop.left : (that.offset.left - co.left)) + that.sizeDiff.width );
 		hoset = Math.abs( (that._helper ? that.offset.top - cop.top : (that.offset.top - co.top)) + that.sizeDiff.height );
 
 		isParent = that.containerElement.get(0) === that.element.parent().get(0);
@@ -3750,7 +3750,7 @@ $.ui.plugin.add("resizable", "grid", {
 });
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.widget("ui.selectable", $.ui.mouse, {
 	version: "1.10.4",
@@ -4012,7 +4012,7 @@ $.widget("ui.selectable", $.ui.mouse, {
 });
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 function isOverAxis( x, reference, size ) {
 	return ( x > reference ) && ( x < ( reference + size ) );
@@ -5286,7 +5286,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 });
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 var tabId = 0,
 	rhash = /#.*$/;
@@ -6121,7 +6121,7 @@ $.widget( "ui.tabs", {
 });
 
 })( jQuery );
-(function($, undefined) {
+(function($) {
 
 var dataSpace = "ui-effects-";
 
@@ -6139,7 +6139,7 @@ $.effects = {
  *
  * Date: Wed Jan 16 08:47:09 2013 -0600
  */
-(function( jQuery, undefined ) {
+(function( jQuery ) {
 
 	var stepHooks = "backgroundColor borderBottomColor borderLeftColor borderRightColor borderTopColor color columnRuleColor outlineColor textDecorationColor textEmphasisColor",
 
@@ -7099,7 +7099,9 @@ $.extend( $.effects, {
 		// Firefox incorrectly exposes anonymous content
 		// https://bugzilla.mozilla.org/show_bug.cgi?id=561664
 		try {
-			active.id;
+      if(active.id){
+
+      };
 		} catch( e ) {
 			active = document.body;
 		}
@@ -7400,7 +7402,7 @@ $.each( baseEasings, function( name, easeIn ) {
 })();
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 var rvertical = /up|down|vertical/,
 	rpositivemotion = /up|left|vertical|horizontal/;
@@ -7469,7 +7471,7 @@ $.effects.effect.blind = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.bounce = function( o, done ) {
 	var el = $( this ),
@@ -7569,7 +7571,7 @@ $.effects.effect.bounce = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.clip = function( o, done ) {
 	// Create element
@@ -7623,7 +7625,7 @@ $.effects.effect.clip = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.drop = function( o, done ) {
 
@@ -7675,7 +7677,7 @@ $.effects.effect.drop = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.explode = function( o, done ) {
 
@@ -7759,7 +7761,7 @@ $.effects.effect.explode = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.fade = function( o, done ) {
 	var el = $( this ),
@@ -7776,7 +7778,7 @@ $.effects.effect.fade = function( o, done ) {
 };
 
 })( jQuery );
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.fold = function( o, done ) {
 
@@ -7839,7 +7841,7 @@ $.effects.effect.fold = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.highlight = function( o, done ) {
 	var elem = $( this ),
@@ -7876,7 +7878,7 @@ $.effects.effect.highlight = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.pulsate = function( o, done ) {
 	var elem = $( this ),
@@ -7926,7 +7928,7 @@ $.effects.effect.pulsate = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.puff = function( o, done ) {
 	var elem = $( this ),
@@ -8231,7 +8233,7 @@ $.effects.effect.size = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.shake = function( o, done ) {
 
@@ -8292,7 +8294,7 @@ $.effects.effect.shake = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.slide = function( o, done ) {
 
@@ -8343,7 +8345,7 @@ $.effects.effect.slide = function( o, done ) {
 };
 
 })(jQuery);
-(function( $, undefined ) {
+(function( $ ) {
 
 $.effects.effect.transfer = function( o, done ) {
 	var elem = $( this ),
