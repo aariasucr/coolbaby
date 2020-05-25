@@ -20,10 +20,25 @@
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css", "src/styles.css"],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/bambino/css/fancySelect.css",
+              "src/assets/bambino/css/uniform.css",
+              "src/assets/bambino/css/jquery.bxslider.css",
+              "src/assets/bambino/css/jquery-ui-1.10.4.custom.css",
+              "src/assets/bambino/css/all.css",
+              "src/assets/bambino/css/screen.css",
+              "src/styles.css"],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/bambino/js/jcarousellite.js",
+              "src/assets/bambino/js/jquery.placeholder.js",
+              "src/assets/bambino/js/jquery.uniform.min.js",
+              "src/assets/bambino/js/fancySelect.js",
+              "src/assets/bambino/js/jquery.bxslider.js",
+              "src/assets/bambino/js/jquery-ui-1.10.4.custom.js",
+              "src/assets/bambino/js/main.js"
             ]
           },
           "configurations": {
