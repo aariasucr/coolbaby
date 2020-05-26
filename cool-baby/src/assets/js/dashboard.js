@@ -6,9 +6,9 @@
     document.querySelector('#bannerClose').addEventListener('click',function() {
       document.querySelector('#proBanner').classList.add('d-none');
     });
-    
+
     Chart.defaults.global.legend.labels.usePointStyle = true;
-    
+
     if ($("#serviceSaleProgress").length) {
       var bar = new ProgressBar.Circle(serviceSaleProgress, {
         color: 'url(#gradient)',
@@ -69,7 +69,6 @@
                   backgroundColor: gradientStrokeViolet,
                   hoverBackgroundColor: gradientStrokeViolet,
                   pointRadius: 0,
-                  fill: false,
                   borderWidth: 1,
                   fill: 'origin',
                   data: [20, 40, 15, 35, 25, 50, 30, 20]
@@ -80,7 +79,6 @@
                   backgroundColor: '#e9eaee',
                   hoverBackgroundColor: '#e9eaee',
                   pointRadius: 0,
-                  fill: false,
                   borderWidth: 1,
                   fill: 'origin',
                   data: [40, 30, 20, 10, 50, 15, 35, 20]
@@ -144,7 +142,6 @@
                   backgroundColor: gradientStrokeBlue,
                   hoverBackgroundColor: gradientStrokeBlue,
                   pointRadius: 0,
-                  fill: false,
                   borderWidth: 1,
                   fill: 'origin',
                   data: [20, 40, 15, 35, 25, 50, 30, 20]
@@ -155,7 +152,6 @@
                   backgroundColor: '#e9eaee',
                   hoverBackgroundColor: '#e9eaee',
                   pointRadius: 0,
-                  fill: false,
                   borderWidth: 1,
                   fill: 'origin',
                   data: [40, 30, 20, 10, 50, 15, 35, 20]
@@ -209,7 +205,7 @@
       gradientStrokeViolet.addColorStop(0, 'rgba(218, 140, 255, 1)');
       gradientStrokeViolet.addColorStop(1, 'rgba(154, 85, 255, 1)');
       var gradientLegendViolet = 'linear-gradient(to right, rgba(218, 140, 255, 1), rgba(154, 85, 255, 1))';
-      
+
       var gradientStrokeBlue = ctx.createLinearGradient(0, 0, 0, 360);
       gradientStrokeBlue.addColorStop(0, 'rgba(54, 215, 232, 1)');
       gradientStrokeBlue.addColorStop(1, 'rgba(177, 148, 250, 1)');
@@ -232,7 +228,6 @@
                 hoverBackgroundColor: gradientStrokeViolet,
                 legendColor: gradientLegendViolet,
                 pointRadius: 0,
-                fill: false,
                 borderWidth: 1,
                 fill: 'origin',
                 data: [20, 40, 15, 35, 25, 50, 30, 20]
@@ -244,7 +239,6 @@
                 hoverBackgroundColor: gradientStrokeRed,
                 legendColor: gradientLegendRed,
                 pointRadius: 0,
-                fill: false,
                 borderWidth: 1,
                 fill: 'origin',
                 data: [40, 30, 20, 10, 50, 15, 35, 40]
@@ -256,7 +250,6 @@
                 hoverBackgroundColor: gradientStrokeBlue,
                 legendColor: gradientLegendBlue,
                 pointRadius: 0,
-                fill: false,
                 borderWidth: 1,
                 fill: 'origin',
                 data: [70, 10, 30, 40, 25, 50, 15, 30]
@@ -267,18 +260,18 @@
           responsive: true,
           legend: false,
           legendCallback: function(chart) {
-            var text = []; 
-            text.push('<ul>'); 
-            for (var i = 0; i < chart.data.datasets.length; i++) { 
-                text.push('<li><span class="legend-dots" style="background:' + 
-                           chart.data.datasets[i].legendColor + 
-                           '"></span>'); 
-                if (chart.data.datasets[i].label) { 
-                    text.push(chart.data.datasets[i].label); 
-                } 
-                text.push('</li>'); 
-            } 
-            text.push('</ul>'); 
+            var text = [];
+            text.push('<ul>');
+            for (var i = 0; i < chart.data.datasets.length; i++) {
+                text.push('<li><span class="legend-dots" style="background:' +
+                           chart.data.datasets[i].legendColor +
+                           '"></span>');
+                if (chart.data.datasets[i].label) {
+                    text.push(chart.data.datasets[i].label);
+                }
+                text.push('</li>');
+            }
+            text.push('</ul>');
             return text.join('');
           },
           scales: {
@@ -328,7 +321,7 @@
       gradientStrokeViolet.addColorStop(0, 'rgba(218, 140, 255, 1)');
       gradientStrokeViolet.addColorStop(1, 'rgba(154, 85, 255, 1)');
       var gradientLegendViolet = 'linear-gradient(to right, rgba(218, 140, 255, 1), rgba(154, 85, 255, 1))';
-      
+
       var gradientStrokeBlue = ctx.createLinearGradient(0, 0, 0, 360);
       gradientStrokeBlue.addColorStop(0, 'rgba(54, 215, 232, 1)');
       gradientStrokeBlue.addColorStop(1, 'rgba(177, 148, 250, 1)');
@@ -351,7 +344,6 @@
                 hoverBackgroundColor: gradientStrokeViolet,
                 legendColor: gradientLegendViolet,
                 pointRadius: 0,
-                fill: false,
                 borderWidth: 1,
                 fill: 'origin',
                 data: [20, 40, 15, 35, 25, 50, 30, 20]
@@ -363,7 +355,6 @@
                 hoverBackgroundColor: gradientStrokeRed,
                 legendColor: gradientLegendRed,
                 pointRadius: 0,
-                fill: false,
                 borderWidth: 1,
                 fill: 'origin',
                 data: [40, 30, 20, 10, 50, 15, 35, 40]
@@ -375,7 +366,6 @@
                 hoverBackgroundColor: gradientStrokeBlue,
                 legendColor: gradientLegendBlue,
                 pointRadius: 0,
-                fill: false,
                 borderWidth: 1,
                 fill: 'origin',
                 data: [70, 10, 30, 40, 25, 50, 15, 30]
@@ -386,18 +376,18 @@
           responsive: true,
           legend: false,
           legendCallback: function(chart) {
-            var text = []; 
-            text.push('<ul>'); 
-            for (var i = 0; i < chart.data.datasets.length; i++) { 
-                text.push('<li><span class="legend-dots" style="background:' + 
-                           chart.data.datasets[i].legendColor + 
-                           '"></span>'); 
-                if (chart.data.datasets[i].label) { 
-                    text.push(chart.data.datasets[i].label); 
-                } 
-                text.push('</li>'); 
-            } 
-            text.push('</ul>'); 
+            var text = [];
+            text.push('<ul>');
+            for (var i = 0; i < chart.data.datasets.length; i++) {
+                text.push('<li><span class="legend-dots" style="background:' +
+                           chart.data.datasets[i].legendColor +
+                           '"></span>');
+                if (chart.data.datasets[i].label) {
+                    text.push(chart.data.datasets[i].label);
+                }
+                text.push('</li>');
+            }
+            text.push('</ul>');
             return text.join('');
           },
           scales: {
@@ -440,6 +430,8 @@
       $("#visit-sale-chart-legend-dark").html(myChart.generateLegend());
     }
     if ($("#traffic-chart").length) {
+      var ctx = document.getElementById('visit-sale-chart-dark').getContext("2d");
+
       var gradientStrokeBlue = ctx.createLinearGradient(0, 0, 0, 181);
       gradientStrokeBlue.addColorStop(0, 'rgba(54, 215, 232, 1)');
       gradientStrokeBlue.addColorStop(1, 'rgba(177, 148, 250, 1)');
@@ -453,7 +445,7 @@
       var gradientStrokeGreen = ctx.createLinearGradient(0, 0, 0, 300);
       gradientStrokeGreen.addColorStop(0, 'rgba(6, 185, 157, 1)');
       gradientStrokeGreen.addColorStop(1, 'rgba(132, 217, 210, 1)');
-      var gradientLegendGreen = 'linear-gradient(to right, rgba(6, 185, 157, 1), rgba(132, 217, 210, 1))';      
+      var gradientLegendGreen = 'linear-gradient(to right, rgba(6, 185, 157, 1), rgba(132, 217, 210, 1))';
 
       var trafficChartData = {
         datasets: [{
@@ -479,7 +471,7 @@
             gradientLegendRed
           ]
         }],
-    
+
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
           'Search Engines',
@@ -495,19 +487,19 @@
         },
         legend: false,
         legendCallback: function(chart) {
-          var text = []; 
-          text.push('<ul>'); 
-          for (var i = 0; i < trafficChartData.datasets[0].data.length; i++) { 
-              text.push('<li><span class="legend-dots" style="background:' + 
-              trafficChartData.datasets[0].legendColor[i] + 
-                          '"></span>'); 
-              if (trafficChartData.labels[i]) { 
-                  text.push(trafficChartData.labels[i]); 
+          var text = [];
+          text.push('<ul>');
+          for (var i = 0; i < trafficChartData.datasets[0].data.length; i++) {
+              text.push('<li><span class="legend-dots" style="background:' +
+              trafficChartData.datasets[0].legendColor[i] +
+                          '"></span>');
+              if (trafficChartData.labels[i]) {
+                  text.push(trafficChartData.labels[i]);
               }
               text.push('<span class="float-right">'+trafficChartData.datasets[0].data[i]+"%"+'</span>')
-              text.push('</li>'); 
-          } 
-          text.push('</ul>'); 
+              text.push('</li>');
+          }
+          text.push('</ul>');
           return text.join('');
         }
       };
@@ -517,7 +509,7 @@
         data: trafficChartData,
         options: trafficChartOptions
       });
-      $("#traffic-chart-legend").html(trafficChart.generateLegend());      
+      $("#traffic-chart-legend").html(trafficChart.generateLegend());
     }
     if ($("#inline-datepicker").length) {
       $('#inline-datepicker').datepicker({

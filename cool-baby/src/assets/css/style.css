@@ -1820,7 +1820,6 @@ p {
 
 abbr[title],
 abbr[data-original-title] {
-  text-decoration: underline;
   -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
   cursor: help;
@@ -9760,7 +9759,7 @@ a.text-dark:hover, a.text-dark:focus {
   color: rgba(255, 255, 255, 0.5) !important; }
 
 .text-hide {
-  font: 0/0 a;
+  font: inherit;
   color: transparent;
   text-shadow: none;
   background-color: transparent;
@@ -9858,7 +9857,6 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translate3d(0, -30px, 0); }
   to {
     opacity: 1;
-    -webkit-transform: none;
     transform: none;
     -webkit-transform: translate3d(0, 0px, 0);
     transform: translate3d(0, 0px, 0); } }
@@ -9869,8 +9867,6 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translate3d(0, -30px, 0); }
   to {
     opacity: 1;
-    -webkit-transform: none;
-    transform: none;
     -webkit-transform: translate3d(0, 0px, 0);
     transform: translate3d(0, 0px, 0); } }
 
@@ -10812,7 +10808,7 @@ code {
       border: 1px solid #d7d7d7; }
     .purchase-popup .btn.purchase-button {
       background-color: rgba(172, 50, 228, 0.9);
-      background-image: -owg-linear-gradient(to right, #da8cff, #9a55ff);
+      background-image: -owg-linear-gradient(right, #da8cff, #9a55ff);
       background-image: -webkit-gradient(linear, left top, right top, from(#da8cff), to(#9a55ff));
       background-image: linear-gradient(to right, #da8cff, #9a55ff);
       color: #ffffff;
@@ -12029,16 +12025,14 @@ code {
       border-width: 2px;
       -webkit-transition: all;
       transition: all;
-      transition-duration: 0s;
       -webkit-transition-duration: 250ms;
       transition-duration: 250ms; }
     .form-check .form-check-label input[type="checkbox"] + .input-helper:after {
       -webkit-transition: all;
       transition: all;
-      transition-duration: 0s;
       -webkit-transition-duration: 250ms;
       transition-duration: 250ms;
-      font-family: Material Design Icons;
+      font-family: Material Design Icons, sans-serif;
       opacity: 0;
       filter: alpha(opacity=0);
       -webkit-transform: scale(0);
@@ -12075,7 +12069,6 @@ code {
       border-radius: 50%;
       -webkit-transition: all;
       transition: all;
-      transition-duration: 0s;
       -webkit-transition-duration: 250ms;
       transition-duration: 250ms; }
       .rtl .form-check .form-check-label input[type="radio"] + .input-helper:before {
@@ -12091,7 +12084,6 @@ code {
       left: 6px;
       -webkit-transition: all;
       transition: all;
-      transition-duration: 0s;
       -webkit-transition-duration: 250ms;
       transition-duration: 250ms;
       opacity: 0;
@@ -12196,7 +12188,7 @@ code {
   border-right: 0;
   border-left: 0;
   border-bottom: 0;
-  font: normal normal normal 24px/1 "Material Design Icons";
+  font: normal normal normal 24px/1 "Material Design Icons" inherit;
   content: "\f140";
   width: auto;
   height: auto;
@@ -12343,7 +12335,7 @@ dl {
     .list-ticked li:before,
     .list-arrow li:before,
     .list-star li:before {
-      font-family: "Material Design Icons";
+      font-family: "Material Design Icons", inherit;
       margin-left: -1.5rem;
       width: 1.5rem;
       margin-right: .5rem; }
@@ -13089,7 +13081,7 @@ dl {
             .sidebar .nav .nav-item .nav-link i.menu-icon:before {
               vertical-align: middle; }
           .sidebar .nav .nav-item .nav-link i.menu-arrow {
-            font: normal normal normal 24px/1 "Material Design Icons";
+            font: normal normal normal 24px/1 "Material Design Icons", inherit;
             line-height: 1;
             font-size: 1.125rem;
             margin-left: auto;
@@ -13177,7 +13169,7 @@ dl {
           border-top: 0; }
           .sidebar .nav.sub-menu .nav-item .nav-link:before {
             content: "\F054";
-            font-family: "Material Design Icons";
+            font-family: "Material Design Icons", inherit;
             display: block;
             position: absolute;
             left: 0px;
