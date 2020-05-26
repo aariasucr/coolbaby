@@ -23,6 +23,8 @@ h6,
 }
 p {
   font-size: $default-font-size;
+  font-size: .9375rem;
+  line-height: 1.5;
 }
 h1,
 .h1 {
@@ -47,10 +49,6 @@ h5,
 h6,
 .h6 {
   font-size: .9375rem;
-}
-p {
-  font-size: .9375rem;
-  line-height: 1.5;
 }
 .display-1 {
   font-size: 3.75rem;

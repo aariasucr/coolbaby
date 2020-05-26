@@ -60,7 +60,7 @@
           @include transition(all);
           -webkit-transition-duration: 250ms;
           transition-duration: 250ms;
-          font-family: "Material Design Icons", inherit;
+          font-family: "Material Design Icons", sans-serif;
           opacity: 0;
           filter: alpha(opacity=0);
           -webkit-transform: scale(0);
@@ -223,8 +223,8 @@
   }
 }
 
-@media (min-width: 576px) {
+/*@media (min-width: 576px) {
   .form-inline .form-check {
 
   }
-}
+}*/

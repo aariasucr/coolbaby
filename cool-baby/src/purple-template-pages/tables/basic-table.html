@@ -21,7 +21,7 @@
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_navbar.html -->
-      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" aria-label="Main menu">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
           <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../assets/images/logo.svg" alt="logo" /></a>
           <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
@@ -171,7 +171,7 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <nav class="sidebar sidebar-offcanvas" id="sidebar" aria-label="Sidebar menu">
           <ul class="nav">
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link">
@@ -285,12 +285,13 @@
                     <p class="card-description"> Add class <code>.table</code>
                     </p>
                     <table class="table">
+                      <caption>Basic Table - Example</caption>
                       <thead>
                         <tr>
-                          <th>Profile</th>
-                          <th>VatNo.</th>
-                          <th>Created</th>
-                          <th>Status</th>
+                          <th id="profile">Profile</th>
+                          <th id="vatno">VatNo.</th>
+                          <th id="created">Created</th>
+                          <th id="status1">Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -336,12 +337,13 @@
                     <p class="card-description"> Add class <code>.table-hover</code>
                     </p>
                     <table class="table table-hover">
+                      <caption>Hoverable Table - Example</caption>
                       <thead>
                         <tr>
-                          <th>User</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
+                          <th id="user">User</th>
+                          <th id="product">Product</th>
+                          <th id="sale">Sale</th>
+                          <th id="status2">Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -387,13 +389,14 @@
                     <p class="card-description"> Add class <code>.table-striped</code>
                     </p>
                     <table class="table table-striped">
+                      <caption>Striped Table - Example</caption>
                       <thead>
                         <tr>
-                          <th> User </th>
-                          <th> First name </th>
-                          <th> Progress </th>
-                          <th> Amount </th>
-                          <th> Deadline </th>
+                          <th id="user-st"> User </th>
+                          <th id="first-name-st"> First name </th>
+                          <th id="progress-st"> Progress </th>
+                          <th id="amount-st"> Amount </th>
+                          <th id="deadline-st"> Deadline </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -500,13 +503,14 @@
                     <p class="card-description"> Add class <code>.table-bordered</code>
                     </p>
                     <table class="table table-bordered">
+                      <caption>Bordered Table - Example</caption>
                       <thead>
                         <tr>
-                          <th> # </th>
-                          <th> First name </th>
-                          <th> Progress </th>
-                          <th> Amount </th>
-                          <th> Deadline </th>
+                          <th id="row0-bt"> # </th>
+                          <th id="first-name-bt"> First name </th>
+                          <th id="progress-bt"> Progress </th>
+                          <th id="amount-bt"> Amount </th>
+                          <th id="deadline-bt"> Deadline </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -599,12 +603,13 @@
                     <p class="card-description"> Add class <code>.table-dark</code>
                     </p>
                     <table class="table table-dark">
+                      <caption>Inverse Table - Example</caption>
                       <thead>
                         <tr>
-                          <th> # </th>
-                          <th> First name </th>
-                          <th> Amount </th>
-                          <th> Deadline </th>
+                          <th id="row0-it"> # </th>
+                          <th id="first-name-it"> First name </th>
+                          <th id="amount-it"> Amount </th>
+                          <th id="deadline-it"> Deadline </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -662,13 +667,14 @@
                     <p class="card-description"> Add class <code>.table-{color}</code>
                     </p>
                     <table class="table table-bordered">
+                      <caption>Table with contextual classes - Example</caption>
                       <thead>
                         <tr>
-                          <th> # </th>
-                          <th> First name </th>
-                          <th> Product </th>
-                          <th> Amount </th>
-                          <th> Deadline </th>
+                          <th id="row0-cct"> # </th>
+                          <th id="first-name-cct"> First name </th>
+                          <th id="progress-cct"> Product </th>
+                          <th id="amount-cct"> Amount </th>
+                          <th id="deadline-cct"> Deadline </th>
                         </tr>
                       </thead>
                       <tbody>

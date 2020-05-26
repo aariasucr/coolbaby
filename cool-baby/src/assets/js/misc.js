@@ -12,9 +12,6 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
   'use strict';
   $(function() {
     var body = $('body');
-    var contentWrapper = $('.content-wrapper');
-    var scroller = $('.container-scroller');
-    var footer = $('.footer');
     var sidebar = $('.sidebar');
 
     //Add active class to nav-link based on url dynamically
@@ -70,7 +67,6 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
       //Applying perfect scrollbar
       if (!body.hasClass("rtl")) {
         if (body.hasClass("sidebar-fixed")) {
-          var fixedSidebarScroll = new PerfectScrollbar('#sidebar .nav');
         }
       }
     }

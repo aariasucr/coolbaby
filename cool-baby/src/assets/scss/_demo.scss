@@ -27,6 +27,7 @@
 
   .circle-progress {
     @extend .mt-2;
+    padding: 15px;
   }
 
   > h2,
@@ -73,10 +74,6 @@
       padding-bottom: 0.8rem;
       margin-bottom: 0.8rem;
     }
-  }
-
-  .circle-progress {
-    padding: 15px;
   }
 
   .circle-progress-block {

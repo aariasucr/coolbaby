@@ -1,8 +1,8 @@
 /* Forms */
 
-.form-group {
+/*.form-group {
   margin-bottom: 1.5rem;
-}
+}*/
 .input-group-append,
 .input-group-prepend {
   color: $input-placeholder-color;
@@ -46,6 +46,7 @@ select {
   }
 }
 .form-group {
+  margin-bottom: 1.5rem;
   label {
     font-size: $default-font-size;
     line-height: 1;

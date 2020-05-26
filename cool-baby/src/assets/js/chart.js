@@ -455,27 +455,16 @@ $(function () {
   // Get context with jQuery - using jQuery's .get() method.
   if ($("#barChart").length) {
     var barChartCanvas = $("#barChart").get(0).getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var barChart = new Chart(barChartCanvas, {
-      type: 'bar',
-      data: data,
-      options: options
-    });
   }
 
   if ($("#barChartDark").length) {
     var barChartCanvasDark = $("#barChartDark").get(0).getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var barChartDark = new Chart(barChartCanvasDark, {
-      type: 'bar',
-      data: dataDark,
-      options: optionsDark
-    });
   }
 
+  var lineChart = null;
   if ($("#lineChart").length) {
     var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
-    var lineChart = new Chart(lineChartCanvas, {
+    lineChart = new Chart(lineChartCanvas, {
       type: 'line',
       data: data,
       options: options
@@ -484,16 +473,11 @@ $(function () {
 
   if ($("#lineChartDark").length) {
     var lineChartCanvasDark = $("#lineChartDark").get(0).getContext("2d");
-    var lineChartDark = new Chart(lineChartCanvasDark, {
-      type: 'line',
-      data: dataDark,
-      options: optionsDark
-    });
   }
 
   if ($("#linechart-multi").length) {
     var multiLineCanvas = $("#linechart-multi").get(0).getContext("2d");
-    var lineChart = new Chart(multiLineCanvas, {
+    lineChart = new Chart(multiLineCanvas, {
       type: 'line',
       data: multiLineData,
       options: options
@@ -502,16 +486,13 @@ $(function () {
 
   if ($("#areachart-multi").length) {
     var multiAreaCanvas = $("#areachart-multi").get(0).getContext("2d");
-    var multiAreaChart = new Chart(multiAreaCanvas, {
-      type: 'line',
-      data: multiAreaData,
-      options: multiAreaOptions
-    });
   }
 
+  var doughnutChartCanvas = null;
+  var doughnutChart = null;
   if ($("#doughnutChart").length) {
-    var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
-    var doughnutChart = new Chart(doughnutChartCanvas, {
+    doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
+    doughnutChart = new Chart(doughnutChartCanvas, {
       type: 'doughnut',
       data: doughnutPieData,
       options: doughnutPieOptions
@@ -520,52 +501,29 @@ $(function () {
 
   if ($("#pieChart").length) {
     var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-    var pieChart = new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: doughnutPieData,
-      options: doughnutPieOptions
-    });
   }
 
+  var areaChartCanvas = null;
   if ($("#areaChart").length) {
-    var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
-    var areaChart = new Chart(areaChartCanvas, {
-      type: 'line',
-      data: areaData,
-      options: areaOptions
-    });
+    areaChartCanvas = $("#areaChart").get(0).getContext("2d");
   }
 
   if ($("#areaChartDark").length) {
-    var areaChartCanvas = $("#areaChartDark").get(0).getContext("2d");
-    var areaChart = new Chart(areaChartCanvas, {
-      type: 'line',
-      data: areaDataDark,
-      options: areaOptionsDark
-    });
+    areaChartCanvas = $("#areaChartDark").get(0).getContext("2d");
   }
 
+  var scatterChartCanvas = null;
   if ($("#scatterChart").length) {
-    var scatterChartCanvas = $("#scatterChart").get(0).getContext("2d");
-    var scatterChart = new Chart(scatterChartCanvas, {
-      type: 'scatter',
-      data: scatterChartData,
-      options: scatterChartOptions
-    });
+    scatterChartCanvas = $("#scatterChart").get(0).getContext("2d");
   }
 
   if ($("#scatterChartDark").length) {
-    var scatterChartCanvas = $("#scatterChartDark").get(0).getContext("2d");
-    var scatterChart = new Chart(scatterChartCanvas, {
-      type: 'scatter',
-      data: scatterChartDataDark,
-      options: scatterChartOptionsDark
-    });
+    scatterChartCanvas = $("#scatterChartDark").get(0).getContext("2d");
   }
 
   if ($("#browserTrafficChart").length) {
-    var doughnutChartCanvas = $("#browserTrafficChart").get(0).getContext("2d");
-    var doughnutChart = new Chart(doughnutChartCanvas, {
+    doughnutChartCanvas = $("#browserTrafficChart").get(0).getContext("2d");
+    doughnutChart = new Chart(doughnutChartCanvas, {
       type: 'doughnut',
       data: browserTrafficData,
       options: doughnutPieOptions
