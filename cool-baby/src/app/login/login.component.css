@@ -1,3 +1,7 @@
 body {
   margin: auto;
 }
+
+.login-body {
+  background: url('../../assets/images/login/bg_body.gif') !important;
+}

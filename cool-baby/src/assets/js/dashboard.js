@@ -3,8 +3,10 @@
   $(function() {
 
     // Remove pro banner on close
-    document.querySelector('#bannerClose').addEventListener('click',function() {
-      document.querySelector('#proBanner').classList.add('d-none');
+    let bCSelector = document.querySelector('#bannerClose');
+    bCSelector && bCSelector.addEventListener('click',function() {
+	  let pBSelector = document.querySelector('#proBanner');
+      pBSelector && pBSelector.classList.add('d-none');
     });
 
     Chart.defaults.global.legend.labels.usePointStyle = true;
