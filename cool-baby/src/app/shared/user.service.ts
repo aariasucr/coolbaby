@@ -22,6 +22,20 @@ export class UserService {
       });
   }
 
+  //Hay una buena probabilidad de que necesitemos ese uid en el futuro
+  performAnonimousLogin(/*uid: string*/) {
+    this.isLoggedIn = true;
+    const userData: UserData = {
+      created: null,
+      lastUpdate: null,
+      email: null,
+      userName: 'Anon',
+      fullName: 'AnonimousUser',
+      img: null
+    };
+    this.statusChange.emit(userData);
+  }
+
   isUserLoggedIn() {
     return this.isLoggedIn;
   }

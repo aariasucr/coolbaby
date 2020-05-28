@@ -15,4 +15,5 @@ export interface UserData {
   userName: string;
   fullName: string;
   img: string;
+  //Necesitamos el uid?
 }
