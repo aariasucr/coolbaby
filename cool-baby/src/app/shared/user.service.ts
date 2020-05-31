@@ -1,5 +1,5 @@
 import {Injectable, EventEmitter} from '@angular/core';
-import {UserData} from './models';
+import {UserData, RegisterData} from './models';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
 
@@ -36,6 +36,16 @@ export class UserService {
     this.statusChange.emit(userData);
   }
 
+  addRegisterData(registerData: RegisterData, uid: any) {
+    this.addRegisterDataToFireBase(registerData, uid)
+      .then(result => {
+        console.log('Registro completado:', registerData);
+      })
+      .catch(error => {
+        console.log('Error registrando usuario:', error);
+      });
+  }
+
   isUserLoggedIn() {
     return this.isLoggedIn;
   }
@@ -52,5 +62,9 @@ export class UserService {
       .ref('users')
       .child(uid)
       .once('value');
+  }
+
+  addRegisterDataToFireBase(registerData: RegisterData, uid: any) {
+    return this.firebaseDB.database.ref(`users/${uid}`).update(registerData);
   }
 }

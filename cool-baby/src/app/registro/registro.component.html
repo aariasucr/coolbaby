@@ -3,7 +3,8 @@
 <div *ngIf="!this.isLoggedIn">No estoy loggeado</div> -->
 
 <div class="container-fluid page-body-wrapper full-page-wrapper">
-  <div class="content-wrapper d-flex align-items-center auth login-body">
+  <div class="content-wrapper d-flex align-items-center auth">
+    <!--login-body-->
     <div class="row flex-grow">
       <div class="col-lg-4 mx-auto">
         <div class="auth-form-light text-center p-5">
@@ -29,29 +30,32 @@
                 ngModel
               />
             </div>
+            <div class="form-group">
+              <input
+                class="form-control form-control-lg"
+                id="userName"
+                name="userName"
+                placeholder="Nombre de usuario"
+                ngModel
+              />
+            </div>
+            <div class="form-group">
+              <input
+                class="form-control form-control-lg"
+                id="fullName"
+                name="fullName"
+                placeholder="Nombre Completo"
+                ngModel
+              />
+            </div>
             <div class="mb-2">
               <!--En este anchor hay que movernos hacia la pagina de inicio-->
               <button
                 type="submit"
                 class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn text-light"
               >
-                Ingresar
+                Registrarse
               </button>
-            </div>
-            <!-- <div class="my-2 d-flex justify-content-between align-items-center float-right">
-              <a href="#" class="auth-link text-black">Forgot password?</a>
-            </div> Estaria interesante implementar esto -->
-            <div class="mb-2">
-              <button
-                (click)="AnonimousLogin()"
-                type="button"
-                class="btn btn-block btn-secondary auth-form-btn "
-              >
-                Anónimo
-              </button>
-            </div>
-            <div class="text-center mt-4 font-weight-light">
-              <a href="/register" class="text-primary">Crear cuenta </a>
             </div>
           </form>
         </div>

@@ -1,41 +1,38 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {LoginComponent} from './login.component';
+import {RegistroComponent} from './registro.component';
+
 import {FormsModule, NgForm} from '@angular/forms';
 import {AppRoutingModule} from '../app-routing.module';
+import {LoginComponent} from '../login/login.component';
 
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 
 import {environment} from '../../environments/environment';
 
-import {RegistroComponent} from '../registro/registro.component';
+describe('RegistroComponent', () => {
+  let component: RegistroComponent;
+  let fixture: ComponentFixture<RegistroComponent>;
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
-
-  const datosUsuario = {
+  const datosRegistroUsuario = {
     user: {
-      created: 123,
-      lastUpdate: 456,
-      email: 'emailMock',
-      userName: 'userNameMock',
-      fullName: 'fullNameMock',
-      img: 'imgMock',
       uid: 'userUidMock'
     }
   };
 
   const formData = {
     email: 'emailMock',
-    password: '123'
+    password: '123',
+    userName: 'testUserName',
+    fullName: 'testFullName'
   };
 
   const mockAngularFireAuth: any = {
-    signInWithEmailAndPassword(email, password) {
-      return Promise.resolve(datosUsuario);
+    createUserWithEmailAndPassword(email, password) {
+      return Promise.resolve(datosRegistroUsuario);
     }
   };
 
@@ -48,12 +45,12 @@ describe('LoginComponent', () => {
         AngularFireAuthModule,
         AngularFireDatabaseModule
       ],
-      declarations: [LoginComponent, RegistroComponent]
+      declarations: [RegistroComponent, LoginComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(RegistroComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -70,11 +67,11 @@ describe('LoginComponent', () => {
         password: formData.password
       }
     } as NgForm;
-    let userServiceSpy = jasmine.createSpyObj('UserService', ['performLogin']);
-    userServiceSpy.performLogin.and.returnValue(datosUsuario.user);
+    let userServiceSpy = jasmine.createSpyObj('UserService', ['addRegisterData']);
+    userServiceSpy.addRegisterData.and.returnValue(datosRegistroUsuario.user);
     let routerSpy = jasmine.createSpyObj('Router', ['navigate']); //this.router.navigate
 
-    let serv = new LoginComponent(mockAngularFireAuth, routerSpy, userServiceSpy);
+    let serv = new RegistroComponent(mockAngularFireAuth, routerSpy, userServiceSpy);
 
     serv.onSubmit(testForm);
   });
