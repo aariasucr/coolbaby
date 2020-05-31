@@ -48,3 +48,4 @@ testem.log
 Thumbs.db
 
 src/environments/firebase.environment.ts
+.firebase/
