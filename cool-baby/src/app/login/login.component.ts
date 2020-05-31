@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const email = form.value.userName;
+    const email = form.value.email;
     const password = form.value.password;
     this.firebaseAuth
       .signInWithEmailAndPassword(email, password)
@@ -45,5 +45,11 @@ export class LoginComponent implements OnInit {
         //Algun tipo de notificacion
         console.log('Error en la autenticacion:', error);
       });
+  }
+
+  AnonimousLogin() {
+    this.firebaseAuth.signInAnonymously().then(userData => {
+      this.userService.performAnonimousLogin(/*userData.user.uid*/);
+    });
   }
 }

@@ -13,11 +13,16 @@ export class AppComponent implements OnInit {
   constructor(private firebaseAuth: AngularFireAuth, private userService: UserService) {}
 
   ngOnInit(): void {
+    this.userService.performLogout();
     // Revise en firebase si el usuario cambio su estado de autenticacion
     // paso de logout a logged in o inverso
     this.firebaseAuth.onAuthStateChanged(user => {
       if (user) {
-        this.userService.performLogin(user.uid);
+        if (user.email != null) {
+          this.userService.performLogin(user.uid);
+        } else {
+          this.userService.performAnonimousLogin();
+        }
       } else {
         this.userService.performLogout();
       }
