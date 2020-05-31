@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Esto probablemente se va despues de que tengamos la pagina de inicio
     this.userService.statusChange.subscribe(userData => {
       if (userData) {
         this.userData = userData;
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
       .signInWithEmailAndPassword(email, password)
       .then(userData => {
         this.userService.performLogin(userData.user.uid);
+        //Este navigate debe ir a la pagina de inicio
         this.router.navigate(['/login']);
       })
       .catch(error => {

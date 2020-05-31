@@ -17,3 +17,10 @@ export interface UserData {
   img: string;
   //Necesitamos el uid?
 }
+
+export interface RegisterData {
+  created: number;
+  lastUpdate: number;
+  userName: string;
+  fullName: string;
+}
