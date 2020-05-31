@@ -14,6 +14,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {environment} from '../environments/environment';
 import {RegistroComponent} from './registro/registro.component';
+import {RouteGuard} from './shared/route-guard';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegistroComponent],
@@ -26,7 +27,7 @@ import {RegistroComponent} from './registro/registro.component';
     AngularFireStorageModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, RouteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
