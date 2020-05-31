@@ -29,6 +29,15 @@ jobs:
         working-directory: cool-baby
         run: npm run build
 
+      - name: Deploy a firebase
+        if: github.ref == 'refs/heads/master'
+        uses: w9jds/firebase-action@v1.3.1
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
+          PROJECT_PATH: cool-baby
+
       - name: Notificar exito en Slack
         if: success()
         uses: rtCamp/action-slack-notify@v2.0.2
