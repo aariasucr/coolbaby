@@ -21,14 +21,14 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit() {
     //Esto probablemente se va despues de que tengamos la pagina de inicio
-    this.userService.statusChange.subscribe(userData => {
-      if (userData) {
-        // this.userData = userData;
-        // this.isLoggedIn = true;
-      } else {
-        // this.isLoggedIn = false;
-      }
-    });
+    // this.userService.statusChange.subscribe(userData => {
+    //   if (userData) {
+    //     // this.userData = userData;
+    //     // this.isLoggedIn = true;
+    //   } else {
+    //     // this.isLoggedIn = false;
+    //   }
+    // });
   }
 
   onSubmit(form: NgForm) {
