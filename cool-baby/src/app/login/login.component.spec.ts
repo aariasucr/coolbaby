@@ -1,13 +1,16 @@
-import {async, fakeAsync, ComponentFixture, TestBed, tick} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {LoginComponent} from './login.component';
 import {FormsModule, NgForm} from '@angular/forms';
 import {AppRoutingModule} from '../app-routing.module';
 
-//import {AngularFireModule} from '@angular/fire';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFireDatabase} from '@angular/fire/database';
-import {AngularFireStorage} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+
+import {environment} from '../../environments/environment';
+
+import {RegistroComponent} from '../registro/registro.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -30,35 +33,22 @@ describe('LoginComponent', () => {
     password: '123'
   };
 
-  // const mockAngularFireAuth: any = {
-  //   signInWithEmailAndPassword: Promise.resolve(datosUsuario)
-  // };
-
   const mockAngularFireAuth: any = {
     signInWithEmailAndPassword(email, password) {
       return Promise.resolve(datosUsuario);
     }
   };
 
-  const mockDatabase: any = {
-    list() {
-      return {
-        snapshotChanges() {
-          return {subscribe() {}};
-        }
-      };
-    }
-  };
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, AppRoutingModule],
-      providers: [
-        {provide: AngularFireAuth, useValue: mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: mockDatabase},
-        {provide: AngularFireStorage, useValue: null}
+      imports: [
+        FormsModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        AngularFireDatabaseModule
       ],
-      declarations: [LoginComponent]
+      declarations: [LoginComponent, RegistroComponent]
     }).compileComponents();
   }));
 
