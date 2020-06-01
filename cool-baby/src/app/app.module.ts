@@ -15,9 +15,11 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {environment} from '../environments/environment';
 import {RegistroComponent} from './registro/registro.component';
 import {RouteGuard} from './shared/route-guard';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegistroComponent],
+  declarations: [AppComponent, LoginComponent, RegistroComponent, HomeComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

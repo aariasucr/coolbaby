@@ -1,0 +1,19 @@
+.body-background {
+  background: url('../../assets/images/login/bg_body.gif') !important;
+}
+
+.btn-main-panel{
+  width: 50% !important;
+}
+
+.page-body-wrapper {
+  padding-top: 70px !important;
+}
+
+.sidebar .nav .nav-item.active > .nav-link .menu-title {
+  color: #000000 !important;
+}
+
+.sidebar .nav .nav-item.active > .nav-link i {
+  color: #bba8bff5 !important;
+}

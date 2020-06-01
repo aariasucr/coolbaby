@@ -21,6 +21,7 @@ export interface UserData {
 export interface RegisterData {
   created: number;
   lastUpdate: number;
+  email: string;
   userName: string;
   fullName: string;
 }

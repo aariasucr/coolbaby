@@ -1,6 +1,7 @@
 import {TestBed, async} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
 
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
@@ -16,7 +17,7 @@ describe('AppComponent', () => {
         AngularFireAuthModule,
         AngularFireDatabaseModule
       ],
-      declarations: [AppComponent]
+      declarations: [AppComponent, HeaderComponent]
     }).compileComponents();
   }));
 
@@ -37,6 +38,13 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('main').textContent).toBeDefined();
+  });
+
+  it('should render app-header tag', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('app-header').textContent).toBeDefined();
   });
 
   it('should render router-outlet tag', () => {

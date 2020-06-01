@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../shared/user.service';
-import {UserData} from '../shared/models';
-
 import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
@@ -12,8 +10,8 @@ import {AngularFireAuth} from '@angular/fire/auth';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userData: UserData;
-  isLoggedIn: boolean;
+  /*userData: UserData;
+  isLoggedIn: boolean;*/
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -23,14 +21,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     // Esto probablemente se va despues de que tengamos la pagina de inicio
-    this.userService.statusChange.subscribe(userData => {
+    /*this.userService.statusChange.subscribe(userData => {
       if (userData) {
         this.userData = userData;
         this.isLoggedIn = true;
       } else {
         this.isLoggedIn = false;
       }
-    });
+    });*/
   }
 
   onSubmit(form: NgForm) {
@@ -41,11 +39,12 @@ export class LoginComponent implements OnInit {
       .then(userData => {
         this.userService.performLogin(userData.user.uid);
         //Este navigate debe ir a la pagina de inicio
-        this.router.navigate(['/login']);
+        /*this.router.navigate(['/login']);*/
+        this.router.navigate(['/home']);
       })
       .catch(error => {
         //Algun tipo de notificacion
-        console.log('Error en la autenticacion:', error);
+        console.log('Error en la autenticacion:', error.message);
       });
   }
 
