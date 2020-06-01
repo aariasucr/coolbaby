@@ -11,8 +11,7 @@ export class UserService {
   public statusChange: any = new EventEmitter<any>();
   constructor(private firebaseAuth: AngularFireAuth, private firebaseDB: AngularFireDatabase) {}
   performLogin(uid: string) {
-    this.getUserDataFromFirebase(uid)
-      .then(result => {
+    this.getUserDataFromFirebase(uid).then(result => {
         this.isLoggedIn = true;
         const userData: UserData = result.val();
         this.statusChange.emit(userData);

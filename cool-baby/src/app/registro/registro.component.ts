@@ -49,12 +49,14 @@ export class RegistroComponent implements OnInit {
         let datosDeRegistro: RegisterData = {
           created: 0,
           lastUpdate: 0,
+          email: email,
           userName: userName,
           fullName: fullName
         };
         this.userService.addRegisterData(datosDeRegistro, result.user.uid);
         //Este navigate debe ir a la pagina de inicio
-        this.router.navigate(['/login']);
+        /*this.router.navigate(['/login']);*/
+        this.router.navigate(['./home']);
       })
       .catch(error => {
         console.log('Error al agregar a auth:', error);

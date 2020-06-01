@@ -10,10 +10,10 @@ import {UserService} from './shared/user.service';
 export class AppComponent implements OnInit {
   title = 'cool-baby';
 
-  constructor(private firebaseAuth: AngularFireAuth, private userService: UserService) {}
+  constructor(private userService: UserService, private firebaseAuth: AngularFireAuth) {}
 
   ngOnInit(): void {
-    this.userService.performLogout();
+    //this.userService.performLogout();
     // Revise en firebase si el usuario cambio su estado de autenticacion
     // paso de logout a logged in o inverso
     this.firebaseAuth.onAuthStateChanged(user => {

@@ -12,6 +12,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 
 import {environment} from '../../environments/environment';
+import { HomeComponent } from '../home/home.component';
 
 describe('RegistroComponent', () => {
   let component: RegistroComponent;
@@ -45,7 +46,7 @@ describe('RegistroComponent', () => {
         AngularFireAuthModule,
         AngularFireDatabaseModule
       ],
-      declarations: [RegistroComponent, LoginComponent]
+      declarations: [RegistroComponent, LoginComponent, HomeComponent]
     }).compileComponents();
   }));
 
