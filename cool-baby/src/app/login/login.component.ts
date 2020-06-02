@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
   AnonimousLogin() {
     this.firebaseAuth.signInAnonymously().then(userData => {
       this.userService.performAnonimousLogin(/*userData.user.uid*/);
+      this.router.navigate(['/home']);
     });
   }
 }
