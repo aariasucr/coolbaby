@@ -12,6 +12,7 @@ import {environment} from '../../environments/environment';
 
 import {RegistroComponent} from '../registro/registro.component';
 import { HomeComponent } from '../home/home.component';
+import {ToastrModule} from 'ngx-toastr';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -45,6 +46,7 @@ describe('LoginComponent', () => {
       imports: [
         FormsModule,
         AppRoutingModule,
+        ToastrModule.forRoot(),
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
         AngularFireDatabaseModule
@@ -74,8 +76,9 @@ describe('LoginComponent', () => {
     let userServiceSpy = jasmine.createSpyObj('UserService', ['performLogin']);
     userServiceSpy.performLogin.and.returnValue(datosUsuario.user);
     let routerSpy = jasmine.createSpyObj('Router', ['navigate']); //this.router.navigate
+    let notificationServiceSpy = jasmine.createSpyObj('NotificacionService', ['showSuccessMessage','showErrorMessage'])
 
-    let serv = new LoginComponent(mockAngularFireAuth, routerSpy, userServiceSpy);
+    let serv = new LoginComponent(mockAngularFireAuth, routerSpy, userServiceSpy, notificationServiceSpy);
 
     serv.onSubmit(testForm);
   });

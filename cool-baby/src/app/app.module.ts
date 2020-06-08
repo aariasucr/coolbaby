@@ -15,8 +15,11 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {environment} from '../environments/environment';
 import {RegistroComponent} from './registro/registro.component';
 import {RouteGuard} from './shared/route-guard';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
+import {HomeComponent} from './home/home.component';
+import {HeaderComponent} from './header/header.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
+import { NotificationService } from './shared/notification.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegistroComponent, HomeComponent, HeaderComponent],
@@ -27,9 +30,11 @@ import { HeaderComponent } from './header/header.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [UserService, RouteGuard],
+  providers: [UserService, RouteGuard, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

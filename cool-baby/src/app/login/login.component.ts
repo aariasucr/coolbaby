@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../shared/user.service';
 import {AngularFireAuth} from '@angular/fire/auth';
+import { NotificationService } from '../shared/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private firebaseAuth: AngularFireAuth,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
@@ -41,10 +43,12 @@ export class LoginComponent implements OnInit {
         //Este navigate debe ir a la pagina de inicio
         /*this.router.navigate(['/login']);*/
         this.router.navigate(['/home']);
+        this.notificationService.showSuccessMessage('Bienvenido a Cool Baby', 'Ha iniciado sesión exitosamente');
       })
       .catch(error => {
         //Algun tipo de notificacion
         console.log('Error en la autenticacion:', error.message);
+        this.notificationService.showErrorMessage('Error en la autenticación', error.message);
       });
   }
 

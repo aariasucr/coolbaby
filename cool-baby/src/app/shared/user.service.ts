@@ -9,11 +9,14 @@ import {AngularFireDatabase} from '@angular/fire/database';
 export class UserService {
   private isLoggedIn = false;
   public statusChange: any = new EventEmitter<any>();
+
   constructor(private firebaseAuth: AngularFireAuth, private firebaseDB: AngularFireDatabase) {}
+
   performLogin(uid: string) {
     this.getUserDataFromFirebase(uid).then(result => {
         this.isLoggedIn = true;
         const userData: UserData = result.val();
+
         this.statusChange.emit(userData);
       })
       .catch(error => {

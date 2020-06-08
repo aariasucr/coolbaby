@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
   //userData: UserData;
 
   constructor(
-    private firebaseDatabase: AngularFireDatabase,
-    private firebaseAuth: AngularFireAuth,
+    //private firebaseDatabase: AngularFireDatabase,
+    //private firebaseAuth: AngularFireAuth,
     private userService: UserService,
     private configService: ConfigService
   ) { }
