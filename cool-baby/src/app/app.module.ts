@@ -18,6 +18,9 @@ import {RouteGuard} from './shared/route-guard';
 import {HomeComponent} from './home/home.component';
 import {HeaderComponent} from './header/header.component';
 import {NavegacionComponent} from './navegacion/navegacion.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
+import {NotificationService} from './shared/notification.service';
 
 @NgModule({
   declarations: [
@@ -35,10 +38,11 @@ import {NavegacionComponent} from './navegacion/navegacion.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  // exports: [NavegacionComponent],
-  providers: [UserService, RouteGuard],
+  providers: [UserService, RouteGuard, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

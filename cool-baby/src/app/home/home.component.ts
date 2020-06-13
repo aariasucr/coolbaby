@@ -3,6 +3,7 @@ import {UserService} from '../shared/user.service';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {ConfigService} from '../shared/config.service';
+import { NotificationService } from '../shared/notification.service';
 //import {UserData} from '../shared/models';
 
 @Component({
@@ -15,9 +16,10 @@ export class HomeComponent implements OnInit {
   //userData: UserData;
 
   constructor(
-    private firebaseDatabase: AngularFireDatabase,
-    private firebaseAuth: AngularFireAuth,
+    //private firebaseDatabase: AngularFireDatabase,
+    //private firebaseAuth: AngularFireAuth,
     private userService: UserService,
+    private notificationService: NotificationService,
     private configService: ConfigService
   ) {}
 
@@ -68,5 +70,6 @@ export class HomeComponent implements OnInit {
 
   logout() {
     this.userService.performLogout();
+    this.notificationService.showSuccessMessage('Sesión finalizada', 'La sesión se ha cerrado correctamente');
   }
 }
