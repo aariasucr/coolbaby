@@ -3,7 +3,7 @@ import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../shared/user.service';
 import {AngularFireAuth} from '@angular/fire/auth';
-import { NotificationService } from '../shared/notification.service';
+import {NotificationService} from '../shared/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -43,7 +43,10 @@ export class LoginComponent implements OnInit {
         //Este navigate debe ir a la pagina de inicio
         /*this.router.navigate(['/login']);*/
         this.router.navigate(['/home']);
-        this.notificationService.showSuccessMessage('Bienvenido a Cool Baby', 'Ha iniciado sesión exitosamente');
+        this.notificationService.showSuccessMessage(
+          'Bienvenido a Cool Baby',
+          'Ha iniciado sesión exitosamente'
+        );
       })
       .catch(error => {
         //Algun tipo de notificacion

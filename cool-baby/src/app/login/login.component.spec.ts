@@ -11,7 +11,9 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../../environments/environment';
 
 import {RegistroComponent} from '../registro/registro.component';
-import { HomeComponent } from '../home/home.component';
+
+import {NavegacionComponent} from '../navegacion/navegacion.component';
+import {HomeComponent} from '../home/home.component';
 import {ToastrModule} from 'ngx-toastr';
 
 describe('LoginComponent', () => {
@@ -51,7 +53,7 @@ describe('LoginComponent', () => {
         AngularFireAuthModule,
         AngularFireDatabaseModule
       ],
-      declarations: [LoginComponent, RegistroComponent, HomeComponent]
+      declarations: [LoginComponent, RegistroComponent, HomeComponent, NavegacionComponent]
     }).compileComponents();
   }));
 
@@ -76,9 +78,17 @@ describe('LoginComponent', () => {
     let userServiceSpy = jasmine.createSpyObj('UserService', ['performLogin']);
     userServiceSpy.performLogin.and.returnValue(datosUsuario.user);
     let routerSpy = jasmine.createSpyObj('Router', ['navigate']); //this.router.navigate
-    let notificationServiceSpy = jasmine.createSpyObj('NotificacionService', ['showSuccessMessage','showErrorMessage'])
+    let notificationServiceSpy = jasmine.createSpyObj('NotificacionService', [
+      'showSuccessMessage',
+      'showErrorMessage'
+    ]);
 
-    let serv = new LoginComponent(mockAngularFireAuth, routerSpy, userServiceSpy, notificationServiceSpy);
+    let serv = new LoginComponent(
+      mockAngularFireAuth,
+      routerSpy,
+      userServiceSpy,
+      notificationServiceSpy
+    );
 
     serv.onSubmit(testForm);
   });

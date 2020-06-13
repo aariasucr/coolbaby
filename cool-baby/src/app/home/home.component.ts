@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     private notificationService: NotificationService,
     private configService: ConfigService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.configService.getConfig('isAwesomeFeatureEnabled').then(value => {
