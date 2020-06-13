@@ -11,6 +11,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ConfigService} from '../shared/config.service';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -46,7 +47,8 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        RouterTestingModule.withRoutes(routes)
+        RouterTestingModule.withRoutes(routes),
+        ToastrModule.forRoot()
       ],
       declarations: [ HomeComponent, LoginComponent, RegistroComponent ],
       providers: [

@@ -8,16 +8,16 @@ import {UserData} from '../shared/models';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isLoggedIn = false;        /**CAMBIAR ESTE VALOR A FALSE */
+  isLoggedIn = false;
   userData: UserData;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.statusChange.subscribe(userData =>{
-      console.log('userData', this.userData);
+    this.userService.statusChange.subscribe(userData => {
+      console.log('userData: ', userData);
       console.log('isLoggedIn: ', this.isLoggedIn);
-      if(userData) {
+      if (userData) {
         this.userData = userData;
         this.isLoggedIn = true;
       } else {
