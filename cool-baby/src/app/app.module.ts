@@ -17,9 +17,10 @@ import {RegistroComponent} from './registro/registro.component';
 import {RouteGuard} from './shared/route-guard';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
+import { NavegacionComponent } from './navegacion/navegacion.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegistroComponent, HomeComponent, HeaderComponent],
+  declarations: [AppComponent, LoginComponent, RegistroComponent, HomeComponent, HeaderComponent, NavegacionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
