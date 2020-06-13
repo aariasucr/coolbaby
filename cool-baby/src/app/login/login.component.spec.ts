@@ -11,7 +11,9 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../../environments/environment';
 
 import {RegistroComponent} from '../registro/registro.component';
-import { HomeComponent } from '../home/home.component';
+import {HomeComponent} from '../home/home.component';
+
+import {NavegacionComponent} from '../navegacion/navegacion.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -49,7 +51,7 @@ describe('LoginComponent', () => {
         AngularFireAuthModule,
         AngularFireDatabaseModule
       ],
-      declarations: [LoginComponent, RegistroComponent, HomeComponent]
+      declarations: [LoginComponent, RegistroComponent, HomeComponent, NavegacionComponent]
     }).compileComponents();
   }));
 

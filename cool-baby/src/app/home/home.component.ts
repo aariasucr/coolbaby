@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     private firebaseAuth: AngularFireAuth,
     private userService: UserService,
     private configService: ConfigService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.configService.getConfig('isAwesomeFeatureEnabled').then(value => {

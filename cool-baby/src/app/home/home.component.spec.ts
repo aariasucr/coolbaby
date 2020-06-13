@@ -1,11 +1,12 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
+import {HomeComponent} from './home.component';
 import {routes} from '../app-routing.module';
 import {RouterTestingModule} from '@angular/router/testing';
 import {LoginComponent} from '../login/login.component';
 import {RegistroComponent} from '../registro/registro.component';
 import {FormsModule, NgForm} from '@angular/forms';
+import {NavegacionComponent} from '../navegacion/navegacion.component';
 
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
@@ -44,19 +45,15 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        RouterTestingModule.withRoutes(routes)
-      ],
-      declarations: [ HomeComponent, LoginComponent, RegistroComponent ],
+      imports: [FormsModule, RouterTestingModule.withRoutes(routes)],
+      declarations: [HomeComponent, LoginComponent, RegistroComponent, NavegacionComponent],
       providers: [
         {provide: AngularFireAuth, useValue: mockAngularFireAuth},
         {provide: AngularFireDatabase, useValue: mockDatabase},
         {provide: AngularFireStorage, useValue: null},
         {provide: ConfigService, useValue: mockConfig}
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

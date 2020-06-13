@@ -15,12 +15,19 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {environment} from '../environments/environment';
 import {RegistroComponent} from './registro/registro.component';
 import {RouteGuard} from './shared/route-guard';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { NavegacionComponent } from './navegacion/navegacion.component';
+import {HomeComponent} from './home/home.component';
+import {HeaderComponent} from './header/header.component';
+import {NavegacionComponent} from './navegacion/navegacion.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegistroComponent, HomeComponent, HeaderComponent, NavegacionComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegistroComponent,
+    HomeComponent,
+    HeaderComponent,
+    NavegacionComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +37,7 @@ import { NavegacionComponent } from './navegacion/navegacion.component';
     AngularFireStorageModule,
     FormsModule
   ],
+  // exports: [NavegacionComponent],
   providers: [UserService, RouteGuard],
   bootstrap: [AppComponent]
 })

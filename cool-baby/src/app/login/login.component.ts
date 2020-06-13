@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../shared/user.service';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {NavegacionComponent} from '../navegacion/navegacion.component';
 
 @Component({
   selector: 'app-login',
