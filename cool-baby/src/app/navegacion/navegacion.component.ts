@@ -14,4 +14,8 @@ export class NavegacionComponent implements OnInit {
   logout() {
     this.userService.performLogout();
   }
+
+  irCatalogo() {
+    //this.router.navigate(['/catalogo']);
+  }
 }

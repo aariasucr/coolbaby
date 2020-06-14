@@ -26,7 +26,8 @@
               "src/assets/vendors/mdi/css/materialdesignicons.min.css",
               "src/assets/css/style.css",
               "src/styles.css",
-              "node_modules/ngx-toastr/toastr.css"],
+              "node_modules/ngx-toastr/toastr.css"
+            ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
@@ -39,7 +40,10 @@
               "src/assets/js/misc.js",
               "src/assets/js/off-canvas.js",
               "src/assets/js/todo.js",
-              "src/assets/js/todolist.js"
+              "src/assets/js/todolist.js",
+              "src/assets/js/util.js",
+              "src/assets/js/carousel.js",
+              "src/assets/js/owl-carousel.js"
             ]
           },
           "configurations": {

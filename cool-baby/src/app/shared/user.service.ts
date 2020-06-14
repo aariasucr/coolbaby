@@ -13,7 +13,8 @@ export class UserService {
   constructor(private firebaseAuth: AngularFireAuth, private firebaseDB: AngularFireDatabase) {}
 
   performLogin(uid: string) {
-    this.getUserDataFromFirebase(uid).then(result => {
+    this.getUserDataFromFirebase(uid)
+      .then(result => {
         this.isLoggedIn = true;
         const userData: UserData = result.val();
 
@@ -49,10 +50,12 @@ export class UserService {
   }
 
   isUserLoggedIn() {
+    console.log('IsUserLoggedIn', this.isLoggedIn);
     return this.isLoggedIn;
   }
 
   performLogout() {
+    console.log('Estoy entrando aca?');
     this.firebaseAuth.signOut().then(() => {
       this.isLoggedIn = false;
       this.statusChange.emit(null);

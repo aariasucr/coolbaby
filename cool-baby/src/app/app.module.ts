@@ -21,6 +21,7 @@ import {NavegacionComponent} from './navegacion/navegacion.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {NotificationService} from './shared/notification.service';
+import { CatalogoComponent } from './catalogo/catalogo.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {NotificationService} from './shared/notification.service';
     RegistroComponent,
     HomeComponent,
     HeaderComponent,
-    NavegacionComponent
+    NavegacionComponent,
+    CatalogoComponent
   ],
   imports: [
     BrowserModule,
