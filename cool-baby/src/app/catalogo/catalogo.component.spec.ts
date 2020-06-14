@@ -1,29 +1,29 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from '../app-routing.module';
-import {NavegacionComponent} from './navegacion.component';
+import {CatalogoComponent} from './catalogo.component';
 import {HomeComponent} from '../home/home.component';
 import {LoginComponent} from '../login/login.component';
 import {RegistroComponent} from '../registro/registro.component';
-import {CatalogoComponent} from '../catalogo/catalogo.component';
+import {NavegacionComponent} from '../navegacion/navegacion.component';
 
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../../environments/environment';
 
-describe('NavegacionComponent', () => {
-  let component: NavegacionComponent;
-  let fixture: ComponentFixture<NavegacionComponent>;
+describe('CatalogoComponent', () => {
+  let component: CatalogoComponent;
+  let fixture: ComponentFixture<CatalogoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        CatalogoComponent,
         NavegacionComponent,
         HomeComponent,
         LoginComponent,
-        RegistroComponent,
-        CatalogoComponent
+        RegistroComponent
       ],
       imports: [
         FormsModule,
@@ -36,7 +36,7 @@ describe('NavegacionComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavegacionComponent);
+    fixture = TestBed.createComponent(CatalogoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

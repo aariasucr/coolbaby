@@ -13,7 +13,8 @@ export class UserService {
   constructor(private firebaseAuth: AngularFireAuth, private firebaseDB: AngularFireDatabase) {}
 
   performLogin(uid: string) {
-    this.getUserDataFromFirebase(uid).then(result => {
+    this.getUserDataFromFirebase(uid)
+      .then(result => {
         this.isLoggedIn = true;
         const userData: UserData = result.val();
 

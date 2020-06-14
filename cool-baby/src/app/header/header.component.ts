@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {UserService} from '../shared/user.service';
 import {UserData} from '../shared/models';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-header',
@@ -9,25 +10,29 @@ import {UserData} from '../shared/models';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
+  showUserName = false;
   userData: UserData;
-
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private firebaseAuth: AngularFireAuth,
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.userService.statusChange.subscribe(userData => {
-      console.log('userData: ', userData);
-      console.log('isLoggedIn: ', this.isLoggedIn);
       if (userData) {
         this.userData = userData;
         this.isLoggedIn = true;
+        this.showUserName = true;
       } else {
         this.isLoggedIn = false;
+        this.showUserName = false;
       }
+      this.changeDetector.detectChanges();
     });
   }
 
   logout() {
     this.userService.performLogout();
   }
-
 }

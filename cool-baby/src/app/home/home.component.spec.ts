@@ -7,6 +7,7 @@ import {LoginComponent} from '../login/login.component';
 import {RegistroComponent} from '../registro/registro.component';
 import {FormsModule, NgForm} from '@angular/forms';
 import {NavegacionComponent} from '../navegacion/navegacion.component';
+import {CatalogoComponent} from '../catalogo/catalogo.component';
 
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
@@ -46,7 +47,13 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent, LoginComponent, RegistroComponent, NavegacionComponent],
+      declarations: [
+        HomeComponent,
+        LoginComponent,
+        RegistroComponent,
+        NavegacionComponent,
+        CatalogoComponent
+      ],
       imports: [FormsModule, RouterTestingModule.withRoutes(routes), ToastrModule.forRoot()],
       providers: [
         {provide: AngularFireAuth, useValue: mockAngularFireAuth},
@@ -66,13 +73,4 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  /*it('should initialize', fakeAsync(() => {
-    component.ngOnInit();
-    tick(100);
-    // console.log('component.author: ', component.author);
-    expect(component.userData.userName).toBeTruthy();
-    expect(component.userData.userName.length).toBeGreaterThan(0);
-    expect(component.userData.userName).not.toBe('');
-  }));*/
 });

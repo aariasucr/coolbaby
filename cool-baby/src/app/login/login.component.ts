@@ -49,8 +49,6 @@ export class LoginComponent implements OnInit {
         );
       })
       .catch(error => {
-        //Algun tipo de notificacion
-        console.log('Error en la autenticacion:', error.message);
         this.notificationService.showErrorMessage('Error en la autenticación', error.message);
       });
   }

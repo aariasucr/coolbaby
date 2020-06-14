@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {LoginComponent} from './login.component';
+import {CatalogoComponent} from '../catalogo/catalogo.component';
 import {FormsModule, NgForm} from '@angular/forms';
 import {AppRoutingModule} from '../app-routing.module';
 
@@ -53,7 +54,13 @@ describe('LoginComponent', () => {
         AngularFireAuthModule,
         AngularFireDatabaseModule
       ],
-      declarations: [LoginComponent, RegistroComponent, HomeComponent, NavegacionComponent]
+      declarations: [
+        LoginComponent,
+        RegistroComponent,
+        HomeComponent,
+        NavegacionComponent,
+        CatalogoComponent
+      ]
     }).compileComponents();
   }));
 
