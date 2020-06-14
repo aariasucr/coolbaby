@@ -6,7 +6,7 @@ import {UserService} from '../shared/user.service';
 import {RegisterData} from '../shared/models';
 
 import {AngularFireAuth} from '@angular/fire/auth';
-import { NotificationService } from '../shared/notification.service';
+import {NotificationService} from '../shared/notification.service';
 
 @Component({
   selector: 'app-registro',
@@ -47,7 +47,6 @@ export class RegistroComponent implements OnInit {
     this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then(result => {
-        console.log('Agregado a auth:', result);
         let datosDeRegistro: RegisterData = {
           created: 0,
           lastUpdate: 0,
@@ -59,10 +58,12 @@ export class RegistroComponent implements OnInit {
         //Este navigate debe ir a la pagina de inicio
         /*this.router.navigate(['/login']);*/
         this.router.navigate(['./home']);
-        this.notificationService.showSuccessMessage('Registro completo', 'Se ha creado el usuario correctamente');
+        this.notificationService.showSuccessMessage(
+          'Registro completo',
+          'Se ha creado el usuario correctamente'
+        );
       })
       .catch(error => {
-        console.log('Error al agregar a auth:', error);
         this.notificationService.showErrorMessage('Error al registrarse', error.message);
       });
   }

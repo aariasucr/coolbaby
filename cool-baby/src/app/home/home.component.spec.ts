@@ -66,13 +66,4 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  /*it('should initialize', fakeAsync(() => {
-    component.ngOnInit();
-    tick(100);
-    // console.log('component.author: ', component.author);
-    expect(component.userData.userName).toBeTruthy();
-    expect(component.userData.userName.length).toBeGreaterThan(0);
-    expect(component.userData.userName).not.toBe('');
-  }));*/
 });

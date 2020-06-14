@@ -10,43 +10,28 @@ import {UserData} from '../shared/models';
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   userData: UserData;
-  constructor(private userService: UserService) {
-    // console.log('why is this first');
-    // console.log('isLoggedIn en constructor:', this.isLoggedIn);
-    // console.log('userData en constructor:', this.userData);
-    // this.userData = {
-    //   userName: 'non',
-    //   created: 0,
-    //   lastUpdate: 0,
-    //   email: 'nope',
-    //   fullName: 'nope',
-    //   img: 'nopeimg'
-    // };
-    console.log('isuserlooged in en const:', this.userService.isUserLoggedIn());
-    this.userService.statusChange.subscribe(userData => {
-      if (userData) {
-        console.log('deberia estar entrando aca');
-        this.userData = userData;
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-      }
-      console.log('userData: ', userData);
-      console.log('isLoggedIn: ', this.isLoggedIn);
-    });
-  }
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
+    if (!this.userData) {
+      this.userData = {
+        userName: '',
+        created: 0,
+        lastUpdate: 0,
+        email: '',
+        fullName: '',
+        img: ''
+      };
+    }
     this.userService.statusChange.subscribe(userData => {
+      console.log('Status change:', userData);
       if (userData) {
-        console.log('deberia estar entrando aca');
+        console.log('There was actually user data');
         this.userData = userData;
         this.isLoggedIn = true;
       } else {
         this.isLoggedIn = false;
       }
-      console.log('userData: ', userData);
-      console.log('isLoggedIn: ', this.isLoggedIn);
     });
   }
 

@@ -50,12 +50,10 @@ export class UserService {
   }
 
   isUserLoggedIn() {
-    console.log('IsUserLoggedIn', this.isLoggedIn);
     return this.isLoggedIn;
   }
 
   performLogout() {
-    console.log('Estoy entrando aca?');
     this.firebaseAuth.signOut().then(() => {
       this.isLoggedIn = false;
       this.statusChange.emit(null);

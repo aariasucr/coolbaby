@@ -40,10 +40,7 @@
               "src/assets/js/misc.js",
               "src/assets/js/off-canvas.js",
               "src/assets/js/todo.js",
-              "src/assets/js/todolist.js",
-              "src/assets/js/util.js",
-              "src/assets/js/carousel.js",
-              "src/assets/js/owl-carousel.js"
+              "src/assets/js/todolist.js"
             ]
           },
           "configurations": {
