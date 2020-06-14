@@ -15,6 +15,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {environment} from '../../environments/environment';
 import {HomeComponent} from '../home/home.component';
 import {NavegacionComponent} from '../navegacion/navegacion.component';
+import {CatalogoComponent} from '../catalogo/catalogo.component';
 
 describe('RegistroComponent', () => {
   let component: RegistroComponent;
@@ -49,7 +50,13 @@ describe('RegistroComponent', () => {
         AngularFireAuthModule,
         AngularFireDatabaseModule
       ],
-      declarations: [RegistroComponent, LoginComponent, HomeComponent, NavegacionComponent]
+      declarations: [
+        RegistroComponent,
+        LoginComponent,
+        HomeComponent,
+        NavegacionComponent,
+        CatalogoComponent
+      ]
     }).compileComponents();
   }));
 
@@ -74,9 +81,17 @@ describe('RegistroComponent', () => {
     let userServiceSpy = jasmine.createSpyObj('UserService', ['addRegisterData']);
     userServiceSpy.addRegisterData.and.returnValue(datosRegistroUsuario.user);
     let routerSpy = jasmine.createSpyObj('Router', ['navigate']); //this.router.navigate
-    let notificacionServiceSpy = jasmine.createSpyObj('NotificacionServcie', ['showSuccessMessage', 'showErrorMessage']);
+    let notificacionServiceSpy = jasmine.createSpyObj('NotificacionServcie', [
+      'showSuccessMessage',
+      'showErrorMessage'
+    ]);
 
-    let serv = new RegistroComponent(mockAngularFireAuth, routerSpy, userServiceSpy, notificacionServiceSpy);
+    let serv = new RegistroComponent(
+      mockAngularFireAuth,
+      routerSpy,
+      userServiceSpy,
+      notificacionServiceSpy
+    );
 
     serv.onSubmit(testForm);
   });

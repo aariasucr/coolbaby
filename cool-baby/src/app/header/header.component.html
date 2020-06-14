@@ -1,6 +1,6 @@
 <nav
   class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row"
-  [hidden]="!this.isLoggedIn"
+  *ngIf="this.isLoggedIn"
 >
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
     <a class="navbar-brand brand-logo" routerLink="/home"
@@ -46,7 +46,7 @@
             <!--<img [src]="this.userData.img" alt="Avatar"> -->
             <span class="availability-status online"></span>
           </div>
-          <div class="nav-profile-text">
+          <div class="nav-profile-text" *ngIf="this.showUserName">
             <a routerLink="/home"
               ><p class="mb-1 text-black">{{ this.userData.userName }}</p></a
             >

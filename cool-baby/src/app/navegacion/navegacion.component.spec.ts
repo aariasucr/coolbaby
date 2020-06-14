@@ -5,6 +5,7 @@ import {NavegacionComponent} from './navegacion.component';
 import {HomeComponent} from '../home/home.component';
 import {LoginComponent} from '../login/login.component';
 import {RegistroComponent} from '../registro/registro.component';
+import {CatalogoComponent} from '../catalogo/catalogo.component';
 
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
@@ -17,7 +18,13 @@ describe('NavegacionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NavegacionComponent, HomeComponent, LoginComponent, RegistroComponent],
+      declarations: [
+        NavegacionComponent,
+        HomeComponent,
+        LoginComponent,
+        RegistroComponent,
+        CatalogoComponent
+      ],
       imports: [
         FormsModule,
         AppRoutingModule,
