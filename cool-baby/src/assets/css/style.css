@@ -17657,8 +17657,8 @@ dl li {
   background: transparent;
   color: #ffffff;
 }
-.owl-carousel.full-width .owl-nav .owl-prev i:before,
-.owl-carousel.full-width .owl-nav .owl-next i:before {
+.owl-carousel.full-width .owl-nav .owl-prev em:before,
+.owl-carousel.full-width .owl-nav .owl-next em:before {
   width: 60px;
   height: 60px;
   background: rgba(0, 0, 0, 0.5);
