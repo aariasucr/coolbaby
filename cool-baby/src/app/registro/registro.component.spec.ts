@@ -16,6 +16,8 @@ import {environment} from '../../environments/environment';
 import {HomeComponent} from '../home/home.component';
 import {NavegacionComponent} from '../navegacion/navegacion.component';
 import {CatalogoComponent} from '../catalogo/catalogo.component';
+import { SalesComponent } from '../sales/sales.component';
+import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 
 describe('RegistroComponent', () => {
   let component: RegistroComponent;
@@ -55,7 +57,9 @@ describe('RegistroComponent', () => {
         LoginComponent,
         HomeComponent,
         NavegacionComponent,
-        CatalogoComponent
+        CatalogoComponent,
+        SalesComponent,
+        FileUploaderComponent
       ]
     }).compileComponents();
   }));
