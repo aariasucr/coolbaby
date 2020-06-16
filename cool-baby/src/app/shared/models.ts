@@ -1,4 +1,4 @@
-export interface PostData {
+/*export interface PostData {
   key: string;
   creationDate: string;
   title: string;
@@ -6,7 +6,7 @@ export interface PostData {
   author: string;
   img: string;
   created: number;
-}
+}*/
 
 export interface UserData {
   created: number;
@@ -24,4 +24,18 @@ export interface RegisterData {
   email: string;
   userName: string;
   fullName: string;
+}
+
+export interface ProductData {
+  key: string;
+  created: number;
+  nombre: string;
+  precio: number;
+  talla: string;
+  cantidad: number,
+  cantidadVentas: number,
+  precioTotal: number,
+  totalVentas: number,
+  img: string;
+  owner: string;
 }

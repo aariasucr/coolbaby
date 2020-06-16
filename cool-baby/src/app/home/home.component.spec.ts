@@ -12,8 +12,9 @@ import {CatalogoComponent} from '../catalogo/catalogo.component';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {ConfigService} from '../shared/config.service';
 import {ToastrModule} from 'ngx-toastr';
+import { SalesComponent } from '../sales/sales.component';
+import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -39,12 +40,6 @@ describe('HomeComponent', () => {
     }
   };
 
-  const mockConfig: any = {
-    getConfig() {
-      return Promise.resolve(true);
-    }
-  };
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -52,14 +47,15 @@ describe('HomeComponent', () => {
         LoginComponent,
         RegistroComponent,
         NavegacionComponent,
-        CatalogoComponent
+        CatalogoComponent,
+        SalesComponent,
+        FileUploaderComponent
       ],
       imports: [FormsModule, RouterTestingModule.withRoutes(routes), ToastrModule.forRoot()],
       providers: [
         {provide: AngularFireAuth, useValue: mockAngularFireAuth},
         {provide: AngularFireDatabase, useValue: mockDatabase},
-        {provide: AngularFireStorage, useValue: null},
-        {provide: ConfigService, useValue: mockConfig}
+        {provide: AngularFireStorage, useValue: null}
       ]
     }).compileComponents();
   }));
