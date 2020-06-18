@@ -10,8 +10,8 @@
               <div class="owl-carousel owl-theme full-width owl-loaded owl-drag">
                 <div class="owl-stage-outer">
                   <div class="owl-item">
-                    <div class="item">
-                      <img src="assets/images/carousel/banner_1.jpg" alt="Imagen articulo" />
+                    <div class="item" *ngIf="this.productoActual">
+                      <img [src]="this.productoActual.img" alt="Imagen articulo" />
                     </div>
                   </div>
                   <!-- </div> -->

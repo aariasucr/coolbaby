@@ -63,9 +63,11 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
       .split('/')
       .slice(-1)[0]
       .replace(/^\/|\/$/g, '');
-    $('.nav li a', sidebar).each(function() {
-      var $this = $(this);
-      addActiveClass($this);
+    $(document).ready(function() {
+      $('.nav li a', sidebar).each(function() {
+        var $this = $(this);
+        addActiveClass($this);
+      });
     });
 
     $('.horizontal-menu .nav li a').each(function() {

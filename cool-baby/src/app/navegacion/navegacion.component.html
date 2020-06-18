@@ -25,10 +25,22 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/catalogo">
+      <a class="nav-link" (click)="toggleCatalogoNav()">
         <span class="menu-title">Catálogo</span>
+        <i class="menu-arrow"></i>
         <em class="mdi mdi-image-multiple menu-icon"></em>
       </a>
+      <div class="collapse show" id="catalogo" *ngIf="mostrarOpcionesCatalogo">
+        <ul class="nav flex-column sub-menu">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="">Boxed</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="">RTL</a></li> -->
+          <li *ngFor="let categoria of this.categorias" class="nav-item">
+            <a class="nav-link" href="">{{ categoria }}</a>
+          </li>
+        </ul>
+      </div>
     </li>
     <li class="nav-item sidebar-actions">
       <span class="nav-link">

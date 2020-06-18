@@ -25,3 +25,13 @@ export interface RegisterData {
   userName: string;
   fullName: string;
 }
+
+export interface Producto {
+  created: number;
+  img: string;
+  nombre: string;
+  owner: string;
+  precio: number;
+  talla: string;
+  categoria: number;
+}
