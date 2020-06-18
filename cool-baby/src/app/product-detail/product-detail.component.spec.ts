@@ -31,6 +31,10 @@ describe('ProductDetailComponent', () => {
     uid: 'usuarioPrueba'
   };
 
+  const datosProducto = {
+    id: 'idPrueba'
+  }
+
   const mockParam = {
     paramMap: of(
       convertToParamMap({
@@ -47,22 +51,14 @@ describe('ProductDetailComponent', () => {
 
   // Mock de la base de datos
   const mockDatabase: any = {
-    list() {
+    object() {
       return {
         snapshotChanges() {
           return {subscribe() {}};
         }
-      };
+      }
     }
   };
-
-  /*const mockActivatedRoute: any = {
-    snapshot: {
-      paramMap: convertToParamMap({
-        productId: 'idProducto'
-      })
-    }
-  };*/
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -101,33 +97,31 @@ describe('ProductDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('should initialize', fakeAsync(() => {
+  it('should initialize', fakeAsync(() => {
     component.ngOnInit();
     tick(100);
     expect(component.productId).toBeTruthy();
-    expect(component.product).toBeTruthy();
     expect(component.camposForm).toBeTruthy();
     expect(component.ownerId).toBeTruthy();
     expect(component.ownerId.length).toBeGreaterThan(0);
     expect(component.productId.length).toBeGreaterThan(0);
     expect(component.camposForm.length).toBeGreaterThan(0);
-    expect(component.product).not.toBe(null);
     expect(component.productId).not.toBe('');
     expect(component.camposForm).not.toBe(null);
     expect(component.ownerId).not.toBe('');
   }));
 
-  xit('should upload', () => {
+  it('should upload', () => {
     const dummyUrl = 'url de prueba';
     component.onImagePicked(dummyUrl);
     expect(component.uploadedFileUrl).toBe(dummyUrl);
   });
 
-  xit('should submit form', async() => {
+  it('should submit form', async() => {
     const testForm = {
       reset() {},
       value: {

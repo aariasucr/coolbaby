@@ -16,6 +16,7 @@ import { UserService } from '../shared/user.service';
 export class ProductDetailComponent implements OnInit {
   public ownerName = null;
   public productId = null;
+  public products: ProductData[] = [];
   public product: ProductData;
   camposForm: boolean[] = [true, true, true, true, true];
   uploadedFileUrl = '';
@@ -37,8 +38,8 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
-      console.log(params);
-      if (!params.has('productId')) {
+      //console.log(params);
+      if (!params.has('productId') && !params.has('onwerName')) {
         this.router.navigate(['/home']);
         return;
       }
@@ -50,29 +51,25 @@ export class ProductDetailComponent implements OnInit {
 
           this.ownerName = params.get('ownerName');
           this.productId = params.get('productId');
-          this.productService.getProductById(this.ownerId, this.productId)
-          .then(result => {
-            this.product = result.val();
-            this.nombreProducto = this.product.nombre;
-            this.precioProducto = this.product.precio;
-            this.uploadedFileUrl = this.product.img;
-            this.talla = this.product.talla;
-            this.categoria = this.product.categoria;
-          })
-          .catch(error => {
-            console.log('Se ha producido un error: ' + error.messsage);
-          });
+          this.firebaseDatabase
+            .object(`products/${this.ownerId}/${this.productId}`)
+            .snapshotChanges()
+            .subscribe(data => {
+              this.product = data.payload.val() as ProductData;
+              this.nombreProducto = this.product.nombre;
+              this.precioProducto = this.product.precio;
+              this.uploadedFileUrl = this.product.img;
+              this.talla = this.product.talla;
+              this.categoria = this.product.categoria;
+            });
         }
       });
-      // this.posts = this.postService.getPostsByAuthor(this.authorName);
     });
   }
 
   onSubmit(form: NgForm) {
     const nombre = form.value.nombreProducto;
     const precio = parseInt(form.value.precioProducto);
-    //console.log('nombre: ' + nombre + ' precio: ' + precio + ' this.product.precio: ' + this.product.precio);
-    //console.log('nombre producto: ' + (nombre === undefined ? this.product.nombre : nombre) + ' precio: ' + (precio === undefined ? this.product.precio : precio) + ' talla: ' + (this.talla === '' ? this.product.talla : this.talla) + ' categoria: ' + (this.categoria === 0 ? this.product.categoria : this.categoria) + ' url: ' + (this.uploadedFileUrl === '' ? this.product.img : this.uploadedFileUrl) + ' propietario: ' + this.ownerName);
 
     this.firebaseAuth.currentUser
       .then(authData => {

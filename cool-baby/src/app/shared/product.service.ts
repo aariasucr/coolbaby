@@ -62,19 +62,6 @@ export class ProductService {
       updates[`products/${firebaseUserId}/${productID}`] = product;
 
       return this.firebaseDatabase.database.ref().update(updates);
-      //return this.firebaseDatabase.database.ref(`products/${firebaseUserId}/${newProductKey}`).update(newProduct);
     });
-  }
-
-  getProductById(owner: string, id: string){
-    return this.firebaseDatabase.database
-      .ref()
-      .child(`products/${owner}/${id}`)
-      .once('value');
-    /*return this.firebaseDatabase.database
-      .ref('products')
-      .child(owner)
-      .child(id)
-      .once('value');*/
   }
 }
