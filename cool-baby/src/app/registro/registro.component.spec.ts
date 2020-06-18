@@ -18,6 +18,8 @@ import {NavegacionComponent} from '../navegacion/navegacion.component';
 import {CatalogoComponent} from '../catalogo/catalogo.component';
 import { SalesComponent } from '../sales/sales.component';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { ProductsComponent } from '../products/products.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 describe('RegistroComponent', () => {
   let component: RegistroComponent;
@@ -59,7 +61,9 @@ describe('RegistroComponent', () => {
         NavegacionComponent,
         CatalogoComponent,
         SalesComponent,
-        FileUploaderComponent
+        FileUploaderComponent,
+        ProductsComponent,
+        ProductDetailComponent
       ]
     }).compileComponents();
   }));

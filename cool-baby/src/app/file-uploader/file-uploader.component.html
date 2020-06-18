@@ -1,4 +1,4 @@
-<img class="preview-img" [src]="fileUrl" alt="Previsualización del producto" />
+<img class="preview-img" [src]="fileUrl" *ngIf="!this.hidePreview" />
 <button class="btn btn-info" (click)="onUploadImage()">
   Subir Archivo {{ this.uploadStatus }}
 </button>

@@ -30,12 +30,9 @@ export interface ProductData {
   key: string;
   created: number;
   nombre: string;
-  precio: number;
   talla: string;
-  cantidad: number,
-  cantidadVentas: number,
-  precioTotal: number,
-  totalVentas: number,
+  precio: number;
+  categoria: number;
   img: string;
   owner: string;
 }

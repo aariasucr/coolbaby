@@ -1,0 +1,61 @@
+.body-background {
+  background: url('../../assets/images/login/bg_body.gif') !important;
+}
+
+.page-body-wrapper {
+  padding-top: 70px !important;
+}
+
+.grid-margin, .div-form {
+  padding-left: 0 !important;
+}
+
+.oculto {
+  display: none;
+}
+
+.card-title {
+  text-transform: none !important;
+}
+
+.row {
+  background-color: #ffffff !important;
+  margin: auto !important;
+}
+
+.input-detail, .btn {
+  display: inline-block;
+}
+
+.input-detail:disabled {
+  color: #c9c8c8 !important;
+}
+
+.btn {
+  margin-left: 1rem;
+  background-color: #808080;
+}
+
+.btn i {
+  padding-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-save {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.button-save button {
+  margin-left: 0 !important;
+}
+
+.product-img {
+  padding-left: 0 !important;
+}
+
+.img-articulo {
+  margin-bottom: 1rem !important;
+}

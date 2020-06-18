@@ -3,10 +3,8 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core
 import { SalesComponent } from './sales.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
-import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from '../home/home.component';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 import { NavegacionComponent } from '../navegacion/navegacion.component';
 import { HeaderComponent } from '../header/header.component';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -15,6 +13,10 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { LoginComponent } from '../login/login.component';
 import { RegistroComponent } from '../registro/registro.component';
 import { CatalogoComponent } from '../catalogo/catalogo.component';
+import { ProductsComponent } from '../products/products.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { FormsModule } from '@angular/forms';
+import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 
 
 describe('SalesComponent', () => {
@@ -22,7 +24,7 @@ describe('SalesComponent', () => {
   let fixture: ComponentFixture<SalesComponent>;
 
   const datosUsuario = {
-    uid: 'patito'
+    uid: 'usuarioPrueba'
   };
 
   const mockAngularFireAuth: any = {
@@ -49,12 +51,14 @@ describe('SalesComponent', () => {
       declarations: [
         SalesComponent,
         HomeComponent,
-        FileUploaderComponent,
         NavegacionComponent,
         HeaderComponent,
         LoginComponent,
         RegistroComponent,
-        CatalogoComponent
+        CatalogoComponent,
+        ProductsComponent,
+        ProductDetailComponent,
+        FileUploaderComponent
       ],
       providers: [
         {provide: AngularFireAuth, useValue: mockAngularFireAuth},
@@ -85,26 +89,10 @@ describe('SalesComponent', () => {
     expect(component.owner).not.toBe('');
   }));
 
-  it('should upload', () => {
-    const dummyUrl = 'url de prueba';
-    component.onImagePicked(dummyUrl);
-    expect(component.uploadedFileUrl).toBe(dummyUrl);
-  });
-
-  it('should submit form', () => {
-    const testForm = {
-      reset() {},
-      value: {
-        title: 'blah',
-        content: 'lorem ipsum'
-      }
-    } as NgForm;
-
-    const resetSpy: jasmine.Spy = spyOn(testForm, 'reset');
-
-    component.onSubmit(testForm);
-
-    expect(resetSpy).toHaveBeenCalled();
-    expect(resetSpy.calls.all().length).toEqual(1);
+  it('should render app-navegacion tag', () => {
+    const fixture = TestBed.createComponent(SalesComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('app-navegacion').textContent).toBeDefined();
   });
 });

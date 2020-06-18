@@ -18,6 +18,8 @@ import {HomeComponent} from '../home/home.component';
 import {ToastrModule} from 'ngx-toastr';
 import { SalesComponent } from '../sales/sales.component';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { ProductsComponent } from '../products/products.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -63,7 +65,9 @@ describe('LoginComponent', () => {
         NavegacionComponent,
         CatalogoComponent,
         SalesComponent,
-        FileUploaderComponent
+        FileUploaderComponent,
+        ProductsComponent,
+        ProductDetailComponent
       ]
     }).compileComponents();
   }));

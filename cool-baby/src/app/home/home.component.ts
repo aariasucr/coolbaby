@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.firebaseAuth.currentUser.then(userData => {
+    /*this.firebaseAuth.currentUser.then(userData => {
       // console.log('userData en el componente', userData);
       if (!!userData && 'uid' in userData && !!userData.uid) {
         //this.userID = userData.uid;
@@ -41,11 +41,11 @@ export class HomeComponent implements OnInit {
             const productos: ProductData[] = Object.values(result.val());
             console.log(productos);
             productos.forEach(element => {
-              this.ventasTotales += element.totalVentas;
+              //this.ventasTotales += element.totalVentas;
             });
           });
       }
-    });
+    });*/
   }
 
   logout() {

@@ -1,0 +1,38 @@
+.body-background {
+  background: url('../../assets/images/login/bg_body.gif') !important;
+}
+
+.page-body-wrapper {
+  padding-top: 70px !important;
+}
+
+.grid-margin, .button-add {
+  padding-left: 0 !important;
+}
+
+.form-container, .product-img {
+  display: inline-block;
+}
+
+.product-img {
+  padding-top: 35px;
+  vertical-align: top;
+}
+
+.oculto {
+  display: none;
+}
+
+.badge-info a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.badge-info a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.button-add {
+  padding-left: 0 !important;
+}
