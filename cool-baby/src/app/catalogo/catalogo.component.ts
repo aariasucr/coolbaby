@@ -1,8 +1,7 @@
 import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
-import {UserService} from '../shared/user.service';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {Producto} from '../shared/models';
-import {ElementSchemaRegistry} from '@angular/compiler';
+import {CatalogoService} from '../shared/catalogo.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -11,19 +10,22 @@ import {ElementSchemaRegistry} from '@angular/compiler';
 })
 export class CatalogoComponent implements OnInit {
   constructor(
-    private userService: UserService,
     private firebaseDB: AngularFireDatabase,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    private catalogoService: CatalogoService
   ) {}
-  public productos: Producto[] = [];
+  public todosProductos: Producto[] = [];
   public indiceProducto: number;
   public productoActual: Producto;
+  public productosActuales: Producto[] = [];
+  public;
   ngOnInit() {
-    this.cargarImagenes();
+    this.cargarProductos();
     this.indiceProducto = 0;
+    this.catalogoService.catalogoSeleccionado.subscribe(categoria => {});
   }
 
-  cargarImagenes() {
+  cargarProductos() {
     let _this = this;
     this.firebaseDB
       .list(`products`)
@@ -34,18 +36,39 @@ export class CatalogoComponent implements OnInit {
             .list(`products/${e.key}`, ref => ref.limitToLast(100))
             .snapshotChanges()
             .subscribe(data => {
-              this.productos = data.map(e => {
+              this.todosProductos = data.map(e => {
                 return {
                   ...(e.payload.val() as Producto)
                 };
               });
-              this.productoActual = this.productos[this.indiceProducto];
-              console.log('merda:', this.productos);
-              //this.changeDetector.detectChanges();
             });
         });
       });
   }
 
-  cargarImagenesPorCategoria() {}
+  productosPorCategoria(categoria: number) {
+    this.productosActuales = this.todosProductos.filter(prod => {
+      return prod.categoria == categoria;
+    });
+  }
+
+  siguienteImagen() {
+    if (this.todosProductos.length - 1 == this.indiceProducto) {
+      this.indiceProducto = 0;
+    } else {
+      this.indiceProducto++;
+    }
+    this.productoActual = this.todosProductos[this.indiceProducto];
+  }
+
+  // cargarCategorias() {
+  //   this.firebaseDB.database
+  //     .ref('categories')
+  //     .once('value')
+  //     .then(result => {
+  //       this.categorias = result.val();
+  //       console.log('Categorias:', this.categorias);
+  //       this.changeDetector.detectChanges();
+  //     });
+  // }
 }
