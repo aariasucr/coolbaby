@@ -16,6 +16,10 @@ import {RegistroComponent} from '../registro/registro.component';
 import {NavegacionComponent} from '../navegacion/navegacion.component';
 import {HomeComponent} from '../home/home.component';
 import {ToastrModule} from 'ngx-toastr';
+import { SalesComponent } from '../sales/sales.component';
+import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { ProductsComponent } from '../products/products.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -59,7 +63,11 @@ describe('LoginComponent', () => {
         RegistroComponent,
         HomeComponent,
         NavegacionComponent,
-        CatalogoComponent
+        CatalogoComponent,
+        SalesComponent,
+        FileUploaderComponent,
+        ProductsComponent,
+        ProductDetailComponent
       ]
     }).compileComponents();
   }));

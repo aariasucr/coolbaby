@@ -22,6 +22,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {NotificationService} from './shared/notification.service';
 import { CatalogoComponent } from './catalogo/catalogo.component';
+import { SalesComponent } from './sales/sales.component';
+import { FileUploaderComponent } from './file-uploader/file-uploader.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
     HomeComponent,
     HeaderComponent,
     NavegacionComponent,
-    CatalogoComponent
+    CatalogoComponent,
+    SalesComponent,
+    FileUploaderComponent,
+    ProductsComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

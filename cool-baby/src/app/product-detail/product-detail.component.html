@@ -1,0 +1,102 @@
+<div class="container-fluid page-body-wrapper body-background">
+  <app-navegacion></app-navegacion>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title">
+          <span class="page-title-icon bg-gradient-primary text-white mr-2">
+            <i class="mdi mdi-cash-multiple"></i>
+          </span> Detalle del artículo </h3>
+      </div>
+      <div class="row grid-margin stretch-card">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Imagen del artículo</h4>
+              <img [src]="this.uploadedFileUrl" class="img-articulo" alt="Imagen del artículo" width="100%"/>
+              <div class="col-lg-4 product-img">
+                <app-file-uploader
+                  [owner]="this.ownerId"
+                  [hidePreview]="true"
+                  (imagePick)="onImagePicked($event)"
+                ></app-file-uploader>
+              </div>
+              <br /><br />
+              <h4 class="card-title">Detalles del artículo</h4>
+              <div class="col-lg-6 div-form">
+                <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="pt-3">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control col-sm-9 input-detail"
+                      id="nombreProducto"
+                      name="nombreProducto"
+                      [value]="this.nombreProducto"
+                      [disabled]="this.camposForm[0]"
+                      ngModel
+                    />
+                    <button type="button" (click)="this.habilitarCampo(0)" class="btn col-sm-1"><i class="mdi mdi-pencil"></i></button>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="number"
+                      class="form-control col-sm-9 input-detail"
+                      id="precioProducto"
+                      name="precioProducto"
+                      [value]="this.precioProducto"
+                      [disabled]="this.camposForm[1]"
+                      ngModel
+                    />
+                    <button type="button" (click)="this.habilitarCampo(1)" class="btn col-sm-1"><i class="mdi mdi-pencil"></i></button>
+                  </div>
+                  <div class="form-group">
+                    <label for="tallaProducto" class="text">Talla:</label><br />
+                    <select
+                      class="form-control col-sm-9 input-detail"
+                      id="tallaProducto"
+                      name="tallaProducto"
+                      (change)="selectChangeHandlerTalla($event)"
+                      [disabled]="this.camposForm[2]">
+                      <option value="XS" [selected]="this.seleccionarTalla('XS')">Muy pequeño</option>
+                      <option value="S" [selected]="this.seleccionarTalla('S')">Pequeño</option>
+                      <option value="M" [selected]="this.seleccionarTalla('M')">Mediano</option>
+                      <option value="L" [selected]="this.seleccionarTalla('L')">Grande</option>
+                      <option value="XL" [selected]="this.seleccionarTalla('XL')">Muy Grande</option>
+                    </select>
+                    <button type="button" (click)="this.habilitarCampo(2)" class="btn col-sm-1"><i class="mdi mdi-pencil"></i></button>
+                  </div>
+                  <div class="form-group">
+                    <label for="categoriaProducto" class="text">Categoría:</label><br />
+                    <select
+                      class="form-control col-sm-9 input-detail select-form-control"
+                      id="categoriaProducto"
+                      name="categoriaProducto"
+                      (change)="selectChangeHandlerCategoria($event)"
+                      [disabled]="this.camposForm[3]">
+                      <option value="0" [selected]="this.seleccionarCategoria(0)">Pantalones</option>
+                      <option value="1" [selected]="this.seleccionarCategoria(1)">Jackets</option>
+                      <option value="2" [selected]="this.seleccionarCategoria(2)">Pijamas</option>
+                      <option value="3" [selected]="this.seleccionarCategoria(3)">Todo</option>
+                    </select>
+                    <button type="button" (click)="this.habilitarCampo(3)" class="btn col-sm-1"><i class="mdi mdi-pencil"></i></button>
+                  </div>
+                  <div class="mb-2 col-lg-6 button-save">
+                    <button
+                      type="submit"
+                      class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn text-light"
+                      [disabled]="this.camposForm[4]"
+                    >
+                      Guardar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+  </div>
+</div>

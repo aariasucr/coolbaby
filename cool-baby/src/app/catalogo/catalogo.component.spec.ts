@@ -11,6 +11,10 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../../environments/environment';
+import { SalesComponent } from '../sales/sales.component';
+import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { ProductsComponent } from '../products/products.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 describe('CatalogoComponent', () => {
   let component: CatalogoComponent;
@@ -23,7 +27,11 @@ describe('CatalogoComponent', () => {
         NavegacionComponent,
         HomeComponent,
         LoginComponent,
-        RegistroComponent
+        RegistroComponent,
+        SalesComponent,
+        FileUploaderComponent,
+        ProductsComponent,
+        ProductDetailComponent
       ],
       imports: [
         FormsModule,
@@ -43,5 +51,12 @@ describe('CatalogoComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render app-navegacion tag', () => {
+    const fixture = TestBed.createComponent(CatalogoComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('app-navegacion').textContent).toBeDefined();
   });
 });
