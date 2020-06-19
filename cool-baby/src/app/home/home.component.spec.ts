@@ -15,6 +15,8 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrModule} from 'ngx-toastr';
 import { SalesComponent } from '../sales/sales.component';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { ProductsComponent } from '../products/products.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -49,7 +51,9 @@ describe('HomeComponent', () => {
         NavegacionComponent,
         CatalogoComponent,
         SalesComponent,
-        FileUploaderComponent
+        FileUploaderComponent,
+        ProductsComponent,
+        ProductDetailComponent
       ],
       imports: [FormsModule, RouterTestingModule.withRoutes(routes), ToastrModule.forRoot()],
       providers: [
@@ -68,5 +72,12 @@ describe('HomeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render app-navegacion tag', () => {
+    const fixture = TestBed.createComponent(HomeComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('app-navegacion').textContent).toBeDefined();
   });
 });

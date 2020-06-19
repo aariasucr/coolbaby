@@ -11,7 +11,7 @@ export class ProductService {
     private firebaseDatabase: AngularFireDatabase,
     private firebaseAuth: AngularFireAuth) { }
 
-  addNewProduct(nombre: string, precio: number, talla: string, cantidad: number, cantidadVentas: number, precioTotal: number, totalVentas, imgUrl: string, owner: string) {
+  addNewProduct(nombre: string, talla: string, categoria: number, precio: number, imgUrl: string, owner: string) {
     return this.firebaseAuth.currentUser.then(userData => {
       const firebaseUserId = userData.uid;
       const newProductKey = this.firebaseDatabase.database
@@ -26,12 +26,9 @@ export class ProductService {
       const newProduct = {
         created: new Date().getTime(),
         nombre: nombre,
-        precio: precio,
         talla: talla,
-        cantidad: cantidad,
-        cantidadVentas: cantidadVentas,
-        precioTotal: precioTotal,
-        totalVentas: totalVentas,
+        categoria: categoria,
+        precio: precio,
         img: imgUrl,
         owner: owner
       };
@@ -44,14 +41,27 @@ export class ProductService {
     });
   }
 
-  getProducts(owner: string){
-    /*this.firebaseDatabase.database
-      .ref(`products`).child(owner).once('value').then(result => {
-        console.log('cosa rara: ' + result.val());
-      });*/
-    return this.firebaseDatabase.database
-      .ref('products')
-      .child(owner)
-      .once('value');
+  updateProduct(productID: string, nombre: string, talla: string, categoria: number, precio: number, imgUrl: string, owner: string){
+    return this.firebaseAuth.currentUser.then(userData => {
+      const firebaseUserId = userData.uid;
+
+      const product = {
+        created: new Date().getTime(),
+        nombre: nombre,
+        talla: talla,
+        categoria: categoria,
+        precio: precio,
+        img: imgUrl,
+        owner: owner
+      };
+
+      console.log('producto en productService:');
+      console.log(product);
+
+      const updates = {};
+      updates[`products/${firebaseUserId}/${productID}`] = product;
+
+      return this.firebaseDatabase.database.ref().update(updates);
+    });
   }
 }

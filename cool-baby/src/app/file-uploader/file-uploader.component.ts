@@ -12,6 +12,7 @@ export class FileUploaderComponent implements OnInit {
   @ViewChild('filePicker', {static: false}) filePickerRef: ElementRef<HTMLInputElement>;
   @Output() imagePick = new EventEmitter<string>();
   @Input() owner = '';
+  @Input() hidePreview = false;
   uploadTask: firebase.storage.UploadTask;
   fileUrl = '';
   uploadStatus = '';
