@@ -17,6 +17,7 @@ export class RouteGuard implements CanActivate {
         if (user) {
           resolve(true);
         } else {
+          console.log('no deberia entrar aca');
           this.router.navigate(['/login']);
           resolve(false);
         }

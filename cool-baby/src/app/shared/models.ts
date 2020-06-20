@@ -45,3 +45,8 @@ export interface ProductData {
   img: string;
   owner: string;
 }
+
+export interface Categoria {
+  key: number;
+  name: string;
+}

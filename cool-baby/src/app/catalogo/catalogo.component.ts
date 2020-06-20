@@ -1,7 +1,7 @@
 import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
-import {Producto} from '../shared/models';
-import {CatalogoService} from '../shared/catalogo.service';
+import {ProductData} from '../shared/models';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-catalogo',
@@ -12,20 +12,29 @@ export class CatalogoComponent implements OnInit {
   constructor(
     private firebaseDB: AngularFireDatabase,
     private changeDetector: ChangeDetectorRef,
-    private catalogoService: CatalogoService
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
-  public todosProductos: Producto[] = [];
+  private todo = 3;
+  public todosProductos: ProductData[] = [];
   public indiceProducto: number;
-  public productoActual: Producto;
-  public productosActuales: Producto[] = [];
+  public productoActual: ProductData;
+  public productosActuales: ProductData[] = [];
   public;
   ngOnInit() {
-    this.cargarProductos();
-    this.indiceProducto = 0;
-    this.catalogoService.catalogoSeleccionado.subscribe(categoria => {});
+    this.activatedRoute.paramMap.subscribe(params => {
+      console.log(params);
+      if (!params.has('categoria')) {
+        this.router.navigate(['/home']);
+        return;
+      }
+      let paramCat = parseInt(params.get('categoria'));
+      this.indiceProducto = 0;
+      this.cargarProductos(paramCat);
+    });
   }
 
-  cargarProductos() {
+  cargarProductos(categoria: number) {
     let _this = this;
     this.firebaseDB
       .list(`products`)
@@ -33,32 +42,47 @@ export class CatalogoComponent implements OnInit {
       .subscribe(data => {
         data.map(e => {
           this.firebaseDB
-            .list(`products/${e.key}`, ref => ref.limitToLast(100))
+            .list(`products/${e.key}`, ref => ref.limitToLast(100).orderByChild('nombre'))
             .snapshotChanges()
             .subscribe(data => {
-              this.todosProductos = data.map(e => {
+              let productosPorUsuario = data.map(e => {
                 return {
-                  ...(e.payload.val() as Producto)
+                  ...(e.payload.val() as ProductData)
                 };
               });
+
+              this.todosProductos.push(...productosPorUsuario);
+              data.forEach((element, contador) => {
+                this.todosProductos[contador].key = element.key;
+              });
+              _this.productosPorCategoria(categoria);
+              _this.productoActual = this.productosActuales[this.indiceProducto];
             });
         });
       });
   }
 
   productosPorCategoria(categoria: number) {
-    this.productosActuales = this.todosProductos.filter(prod => {
-      return prod.categoria == categoria;
-    });
+    if (categoria != this.todo) {
+      this.productosActuales = this.todosProductos.filter(prod => {
+        return prod.categoria == categoria;
+      });
+    } else {
+      this.productosActuales = this.todosProductos;
+    }
   }
 
   siguienteImagen() {
-    if (this.todosProductos.length - 1 == this.indiceProducto) {
+    // console.log('Cuantos productos actuales hay?:', this.productosActuales.length);
+    // console.log('indice:', this.indiceProducto);
+    // console.log('todos los productos actuales:', this.productosActuales);
+    // console.log('todos los productos:', this.todosProductos);
+    if (this.productosActuales.length - 1 == this.indiceProducto) {
       this.indiceProducto = 0;
     } else {
       this.indiceProducto++;
     }
-    this.productoActual = this.todosProductos[this.indiceProducto];
+    this.productoActual = this.productosActuales[this.indiceProducto];
   }
 
   // cargarCategorias() {

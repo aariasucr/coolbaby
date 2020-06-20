@@ -36,8 +36,8 @@
             <a class="nav-link" href="">Boxed</a>
           </li>
           <li class="nav-item"><a class="nav-link" href="">RTL</a></li> -->
-          <li *ngFor="let categoria of this.categorias" class="nav-item">
-            <a class="nav-link" href="">{{ categoria }}</a>
+          <li *ngFor="let categoria of this.categorias; let i = index" class="nav-item">
+            <a class="nav-link" routerLink="/catalogo/{{ i }}">{{ categoria }}</a>
           </li>
         </ul>
       </div>

@@ -6,7 +6,9 @@
         <div class="col-lg-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">#Nombre del articulo#</h4>
+              <h4 class="card-title" *ngIf="this.productoActual">
+                {{ this.productoActual.nombre }}
+              </h4>
               <div class="owl-carousel owl-theme full-width owl-loaded owl-drag">
                 <div class="owl-stage-outer">
                   <div class="owl-item">

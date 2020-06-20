@@ -1,6 +1,7 @@
 import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {UserService} from '../shared/user.service';
 import {AngularFireDatabase} from '@angular/fire/database';
+import {Categoria} from '../shared/models';
 
 @Component({
   selector: 'app-navegacion',
@@ -13,7 +14,7 @@ export class NavegacionComponent implements OnInit {
     private firebaseDB: AngularFireDatabase,
     private changeDetector: ChangeDetectorRef
   ) {}
-  categorias: any;
+  categorias: Categoria;
   mostrarOpcionesCatalogo = false;
   categoriaSeleccionada: string;
 
@@ -30,18 +31,14 @@ export class NavegacionComponent implements OnInit {
       .ref('categories')
       .once('value')
       .then(result => {
+        console.log('Que hay en result:', result);
         this.categorias = result.val();
         console.log('Categorias:', this.categorias);
         this.changeDetector.detectChanges();
       });
   }
 
-  irCatalogo() {
-    //this.router.navigate(['/catalogo']);
-  }
-
   toggleCatalogoNav() {
-    console.log('aaa');
     this.mostrarOpcionesCatalogo = !this.mostrarOpcionesCatalogo;
   }
 }
