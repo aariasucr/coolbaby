@@ -18,47 +18,11 @@ import {AngularFireDatabaseModule, AngularFireDatabase} from '@angular/fire/data
 import {AngularFireStorageModule, AngularFireStorage} from '@angular/fire/storage';
 import {RouteGuard} from '../shared/route-guard';
 
+import * as Mocks from '../shared/mocks';
+
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
   let fixture: ComponentFixture<ProductsComponent>;
-
-  const datosUsuario = {
-    uid: 'usuarioPrueba'
-  };
-
-  // Mock del objeto AngularFireAuth
-  const mockAngularFireAuth: any = {
-    currentUser: Promise.resolve(datosUsuario)
-  };
-
-  let mockCategoria = {
-    val() {
-      return {
-        key: 0,
-        name: 'CategoriaTest'
-      };
-    }
-  };
-
-  // Mock de la base de datos
-  const mockDatabase: any = {
-    list() {
-      return {
-        snapshotChanges() {
-          return {subscribe() {}};
-        }
-      };
-    },
-    database: {
-      ref() {
-        return {
-          once() {
-            return Promise.resolve(mockCategoria);
-          }
-        };
-      }
-    }
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -75,8 +39,8 @@ describe('ProductsComponent', () => {
         FileUploaderComponent
       ],
       providers: [
-        {provide: AngularFireAuth, useValue: mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: mockDatabase},
+        {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},
+        {provide: AngularFireDatabase, useValue: Mocks.mockDatabase},
         {provide: AngularFireStorage, useValue: null},
         RouteGuard
       ]
@@ -130,8 +94,8 @@ describe('ProductsComponent', () => {
 
     let serv = new ProductsComponent(
       userServiceSpy,
-      mockAngularFireAuth,
-      mockDatabase,
+      Mocks.mockAngularFireAuth,
+      Mocks.mockDatabase,
       notificacionServiceSpy,
       productServiceSpy
     );

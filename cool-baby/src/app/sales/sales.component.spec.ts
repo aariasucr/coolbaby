@@ -18,45 +18,11 @@ import {ProductDetailComponent} from '../product-detail/product-detail.component
 import {FormsModule} from '@angular/forms';
 import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
 
+import * as Mocks from '../shared/mocks';
+
 describe('SalesComponent', () => {
   let component: SalesComponent;
   let fixture: ComponentFixture<SalesComponent>;
-
-  const datosUsuario = {
-    uid: 'usuarioPrueba'
-  };
-
-  const mockAngularFireAuth: any = {
-    currentUser: Promise.resolve(datosUsuario)
-  };
-
-  let mockCategoria = {
-    val() {
-      return {
-        key: 0,
-        name: 'CategoriaTest'
-      };
-    }
-  };
-
-  const mockDatabase: any = {
-    list() {
-      return {
-        snapshotChanges() {
-          return {subscribe() {}};
-        }
-      };
-    },
-    database: {
-      ref() {
-        return {
-          once() {
-            return Promise.resolve(mockCategoria);
-          }
-        };
-      }
-    }
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -74,8 +40,8 @@ describe('SalesComponent', () => {
         FileUploaderComponent
       ],
       providers: [
-        {provide: AngularFireAuth, useValue: mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: mockDatabase},
+        {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},
+        {provide: AngularFireDatabase, useValue: Mocks.mockDatabase},
         {provide: AngularFireStorage, useValue: null}
       ]
     }).compileComponents();

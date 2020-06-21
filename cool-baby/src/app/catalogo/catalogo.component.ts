@@ -37,20 +37,20 @@ export class CatalogoComponent implements OnInit {
     this.firebaseDB
       .list(`products`)
       .snapshotChanges()
-      .subscribe(data => {
-        data.map(e => {
+      .subscribe(productos => {
+        productos.map(usuario => {
           this.firebaseDB
-            .list(`products/${e.key}`, ref => ref.limitToLast(100).orderByChild('nombre'))
+            .list(`products/${usuario.key}`, ref => ref.limitToLast(100).orderByChild('nombre'))
             .snapshotChanges()
-            .subscribe(data => {
-              let productosPorUsuario = data.map(e => {
+            .subscribe(prodPorUsuario => {
+              let productosPorUsuario = prodPorUsuario.map(e => {
                 return {
                   ...(e.payload.val() as ProductData)
                 };
               });
 
               this.todosProductos.push(...productosPorUsuario);
-              data.forEach((element, contador) => {
+              prodPorUsuario.forEach((element, contador) => {
                 this.todosProductos[contador].key = element.key;
               });
               _this.productosPorCategoria(categoria);
