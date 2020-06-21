@@ -26,6 +26,7 @@ import { SalesComponent } from './sales/sales.component';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { AngularFirePerformanceModule } from '@angular/fire/performance';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    AngularFirePerformanceModule,
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()

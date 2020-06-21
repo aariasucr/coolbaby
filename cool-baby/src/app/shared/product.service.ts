@@ -12,6 +12,9 @@ export class ProductService {
     private firebaseAuth: AngularFireAuth) { }
 
   addNewProduct(nombre: string, talla: string, categoria: number, precio: number, imgUrl: string, owner: string) {
+
+    console.log('talla : ' + talla + ', categoria: ' + categoria);
+
     return this.firebaseAuth.currentUser.then(userData => {
       const firebaseUserId = userData.uid;
       const newProductKey = this.firebaseDatabase.database
@@ -20,14 +23,14 @@ export class ProductService {
         .push().key;
 
       if (imgUrl === '') {
-        imgUrl = 'https://placeimg.com/320/240/any/sepia';
+        imgUrl = 'https://naibuzz.com/wp-content/uploads/2015/06/are-you-serious-wtf-meme-baby-face.jpg';
       }
 
       const newProduct = {
         created: new Date().getTime(),
         nombre: nombre,
-        talla: talla,
-        categoria: categoria,
+        talla: (talla === '' ? 'XS' : talla),
+        categoria: (categoria < 0 ? 0 : categoria),
         precio: precio,
         img: imgUrl,
         owner: owner
@@ -48,8 +51,8 @@ export class ProductService {
       const product = {
         created: new Date().getTime(),
         nombre: nombre,
-        talla: talla,
-        categoria: categoria,
+        talla: (talla === '' ? 'XS' : talla),
+        categoria: (categoria < 0 ? 0 : categoria),
         precio: precio,
         img: imgUrl,
         owner: owner

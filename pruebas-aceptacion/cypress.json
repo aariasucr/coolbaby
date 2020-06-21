@@ -1,0 +1,7 @@
+{
+  "projectId": "f1fjgb",
+  "baseUrl": "http://localhost:4200/",
+  "viewportHeight": 1024,
+  "viewportWidth": 1280,
+  "defaultCommandTimeout": 20000
+}

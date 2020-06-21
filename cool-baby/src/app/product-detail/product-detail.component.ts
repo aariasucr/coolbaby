@@ -84,7 +84,7 @@ export class ProductDetailComponent implements OnInit {
               (this.uploadedFileUrl === '' ? this.product.img : this.uploadedFileUrl),
               userData.val().userName)
             .then(results => {
-              this.notificationService.showSuccessMessage('Transacción exitosa', 'El artîculo se ha actualizado');
+              this.notificationService.showSuccessMessage('Transacción exitosa', 'El artículo se ha actualizado');
             })
             .catch(error => {
               this.notificationService.showErrorMessage('Error!!!', 'Se ha producido el siguiente error al actualizar el artículo: ' + error.message);
@@ -109,7 +109,7 @@ export class ProductDetailComponent implements OnInit {
 
   selectChangeHandlerCategoria(event: any){
     this.categoria = parseInt(event.target.value);
-    console.log('categoria: ' +parseInt(event.target.value));
+    console.log('categoria: ' + parseInt(event.target.value));
   }
 
   habilitarCampo(campo: number){
