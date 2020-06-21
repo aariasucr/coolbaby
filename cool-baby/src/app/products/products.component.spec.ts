@@ -1,22 +1,22 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/testing';
 
-import { ProductsComponent } from './products.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { routes } from '../app-routing.module';
-import { FormsModule, NgForm } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
-import { HomeComponent } from '../home/home.component';
-import { NavegacionComponent } from '../navegacion/navegacion.component';
-import { SalesComponent } from '../sales/sales.component';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
-import { LoginComponent } from '../login/login.component';
-import { RegistroComponent } from '../registro/registro.component';
-import { CatalogoComponent } from '../catalogo/catalogo.component';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
-import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
-import { RouteGuard } from '../shared/route-guard';
+import {ProductsComponent} from './products.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {routes} from '../app-routing.module';
+import {FormsModule, NgForm} from '@angular/forms';
+import {ToastrModule} from 'ngx-toastr';
+import {HomeComponent} from '../home/home.component';
+import {NavegacionComponent} from '../navegacion/navegacion.component';
+import {SalesComponent} from '../sales/sales.component';
+import {ProductDetailComponent} from '../product-detail/product-detail.component';
+import {LoginComponent} from '../login/login.component';
+import {RegistroComponent} from '../registro/registro.component';
+import {CatalogoComponent} from '../catalogo/catalogo.component';
+import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
+import {AngularFireAuthModule, AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireDatabaseModule, AngularFireDatabase} from '@angular/fire/database';
+import {AngularFireStorageModule, AngularFireStorage} from '@angular/fire/storage';
+import {RouteGuard} from '../shared/route-guard';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -31,6 +31,15 @@ describe('ProductsComponent', () => {
     currentUser: Promise.resolve(datosUsuario)
   };
 
+  let mockCategoria = {
+    val() {
+      return {
+        key: 0,
+        name: 'CategoriaTest'
+      };
+    }
+  };
+
   // Mock de la base de datos
   const mockDatabase: any = {
     list() {
@@ -39,16 +48,21 @@ describe('ProductsComponent', () => {
           return {subscribe() {}};
         }
       };
+    },
+    database: {
+      ref() {
+        return {
+          once() {
+            return Promise.resolve(mockCategoria);
+          }
+        };
+      }
     }
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule.withRoutes(routes),
-        FormsModule,
-        ToastrModule.forRoot()
-      ],
+      imports: [RouterTestingModule.withRoutes(routes), FormsModule, ToastrModule.forRoot()],
       declarations: [
         ProductsComponent,
         HomeComponent,
@@ -66,8 +80,7 @@ describe('ProductsComponent', () => {
         {provide: AngularFireStorage, useValue: null},
         RouteGuard
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

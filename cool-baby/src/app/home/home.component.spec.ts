@@ -13,10 +13,10 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrModule} from 'ngx-toastr';
-import { SalesComponent } from '../sales/sales.component';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
-import { ProductsComponent } from '../products/products.component';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import {SalesComponent} from '../sales/sales.component';
+import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
+import {ProductsComponent} from '../products/products.component';
+import {ProductDetailComponent} from '../product-detail/product-detail.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -32,6 +32,15 @@ describe('HomeComponent', () => {
     currentUser: Promise.resolve(datosUsuario)
   };
 
+  let mockCategoria = {
+    val() {
+      return {
+        key: 0,
+        name: 'CategoriaTest'
+      };
+    }
+  };
+
   const mockDatabase: any = {
     list() {
       return {
@@ -39,6 +48,15 @@ describe('HomeComponent', () => {
           return {subscribe() {}};
         }
       };
+    },
+    database: {
+      ref() {
+        return {
+          once() {
+            return Promise.resolve(mockCategoria);
+          }
+        };
+      }
     }
   };
 

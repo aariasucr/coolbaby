@@ -6,18 +6,22 @@
         <div class="col-lg-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">#Nombre del articulo#</h4>
+              <h4 class="card-title" *ngIf="this.productoActual">
+                {{ this.productoActual.nombre }}
+              </h4>
               <div class="owl-carousel owl-theme full-width owl-loaded owl-drag">
                 <div class="owl-stage-outer">
                   <div class="owl-item">
-                    <div class="item">
-                      <img src="assets/images/carousel/banner_1.jpg" alt="Imagen articulo" />
+                    <div class="item" *ngIf="this.productoActual">
+                      <img [src]="this.productoActual.img" alt="Imagen articulo" />
                     </div>
                   </div>
                   <!-- </div> -->
                 </div>
                 <div class="owl-nav">
-                  <div class="owl-prev"><em class="mdi mdi-chevron-left"></em></div>
+                  <div class="owl-prev" (click)="this.siguienteImagen()">
+                    <em class="mdi mdi-chevron-left"></em>
+                  </div>
                   <div class="owl-next"><em class="mdi mdi-chevron-right"></em></div>
                 </div>
                 <div class="owl-dots">

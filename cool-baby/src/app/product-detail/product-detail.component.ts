@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductData } from '../shared/models';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../shared/product.service';
-import { NgForm } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { NotificationService } from '../shared/notification.service';
-import { UserService } from '../shared/user.service';
+import {Component, OnInit} from '@angular/core';
+import {ProductData} from '../shared/models';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ProductService} from '../shared/product.service';
+import {NgForm} from '@angular/forms';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {NotificationService} from '../shared/notification.service';
+import {UserService} from '../shared/user.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -38,14 +38,12 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
-      //console.log(params);
       if (!params.has('productId') && !params.has('onwerName')) {
         this.router.navigate(['/home']);
         return;
       }
 
       this.firebaseAuth.currentUser.then(userData => {
-        // console.log('userData en el componente', userData);
         if (!!userData && 'uid' in userData && !!userData.uid) {
           this.ownerId = userData.uid;
 
@@ -77,17 +75,24 @@ export class ProductDetailComponent implements OnInit {
           this.productService
             .updateProduct(
               this.productId,
-              (nombre === undefined || nombre === '' ? this.product.nombre : nombre),
-              (this.talla === '' ? this.product.talla : this.talla),
-              (this.categoria < -1 ? this.product.categoria : this.categoria),
-              (precio === undefined || precio < 0 || isNaN(precio) ? this.product.precio : precio),
-              (this.uploadedFileUrl === '' ? this.product.img : this.uploadedFileUrl),
-              userData.val().userName)
+              nombre === undefined || nombre === '' ? this.product.nombre : nombre,
+              this.talla === '' ? this.product.talla : this.talla,
+              this.categoria < -1 ? this.product.categoria : this.categoria,
+              precio === undefined || precio < 0 || isNaN(precio) ? this.product.precio : precio,
+              this.uploadedFileUrl === '' ? this.product.img : this.uploadedFileUrl,
+              userData.val().userName
+            )
             .then(results => {
-              this.notificationService.showSuccessMessage('Transacción exitosa', 'El artîculo se ha actualizado');
+              this.notificationService.showSuccessMessage(
+                'Transacción exitosa',
+                'El artîculo se ha actualizado'
+              );
             })
             .catch(error => {
-              this.notificationService.showErrorMessage('Error!!!', 'Se ha producido el siguiente error al actualizar el artículo: ' + error.message);
+              this.notificationService.showErrorMessage(
+                'Error!!!',
+                'Se ha producido el siguiente error al actualizar el artículo: ' + error.message
+              );
               console.log(error.message);
             });
         });
@@ -98,30 +103,28 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onImagePicked(imageUrl: string) {
-    console.log('url en firebase listo para guardar en la base de datos', imageUrl);
     this.uploadedFileUrl = imageUrl;
     this.camposForm[4] = false;
   }
 
-  selectChangeHandlerTalla(event: any){
+  selectChangeHandlerTalla(event: any) {
     this.talla = event.target.value;
   }
 
-  selectChangeHandlerCategoria(event: any){
+  selectChangeHandlerCategoria(event: any) {
     this.categoria = parseInt(event.target.value);
-    console.log('categoria: ' +parseInt(event.target.value));
   }
 
-  habilitarCampo(campo: number){
+  habilitarCampo(campo: number) {
     this.camposForm[campo] = false;
     this.camposForm[4] = false;
   }
 
-  seleccionarTalla(talla: string){
-    return (this.talla === talla ? true : false);
+  seleccionarTalla(talla: string) {
+    return this.talla === talla ? true : false;
   }
 
-  seleccionarCategoria(categoria: number){
-    return (this.categoria === categoria ? true : false);
+  seleccionarCategoria(categoria: number) {
+    return this.categoria === categoria ? true : false;
   }
 }

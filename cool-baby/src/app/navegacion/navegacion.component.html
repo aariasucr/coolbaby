@@ -25,21 +25,19 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/catalogo">
+      <a class="nav-link" (click)="toggleCatalogoNav()">
         <span class="menu-title">Catálogo</span>
+        <i class="menu-arrow"></i>
         <em class="mdi mdi-image-multiple menu-icon"></em>
       </a>
     </li>
-    <!--<li class="nav-item sidebar-actions">
-      <span class="nav-link nav-link-title">
-        <div class="border-bottom">
-          <h6 class="font-weight-normal mb-3">Productos</h6>
-        </div>
-        <div class="border-bottom">
-          <button class="btn btn-block btn-lg btn-gradient-primary mt-3" routerLink='/sales'>+ Agregar producto</button>
-        </div>
-      </span>
-    </li>-->
+    <div class="collapse show" id="catalogo" *ngIf="mostrarOpcionesCatalogo">
+      <ul class="nav flex-column sub-menu">
+        <li *ngFor="let categoria of this.categorias; let i = index" class="nav-item">
+          <a class="nav-link" routerLink="/catalogo/{{ i }}">{{ categoria }}</a>
+        </li>
+      </ul>
+    </div>
     <li class="nav-item">
       <a class="nav-link" (click)="logout()">
         <span class="menu-title">Cerrar sesión</span>

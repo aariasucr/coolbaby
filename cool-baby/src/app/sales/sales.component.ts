@@ -7,7 +7,7 @@ import {NgForm} from '@angular/forms';
 
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
-import { ProductService } from '../shared/product.service';
+import {ProductService} from '../shared/product.service';
 
 @Component({
   selector: 'app-sales',
@@ -25,7 +25,7 @@ export class SalesComponent implements OnInit {
     private firebaseDatabase: AngularFireDatabase,
     private notificationService: NotificationService,
     private productService: ProductService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.firebaseAuth.currentUser.then(userData => {
@@ -33,19 +33,15 @@ export class SalesComponent implements OnInit {
       if (!!userData && 'uid' in userData && !!userData.uid) {
         this.owner = userData.uid;
 
-        console.log('userID: ' + userData.uid);
-
         this.firebaseDatabase
           .list(`products/${this.owner}`, ref => ref.limitToLast(100).orderByChild('nombre'))
           .snapshotChanges()
           .subscribe(data => {
-            console.log(data);
             this.products = data.map(e => {
               return {
                 ...(e.payload.val() as ProductData)
               };
             });
-            //this.products = this.products.reverse();
             console.log(this.products[0]);
           });
       }
