@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 context('Formulario de Registro', () => {
-  beforeEach(() => {
+  /*beforeEach(() => {
     cy.visit('')
   })
 
@@ -54,5 +54,5 @@ context('Formulario de Registro', () => {
 
     cy.wait(7000)
     cy.get('li.nav-logout > a.nav-link').click()
-  })
+  })*/
 })

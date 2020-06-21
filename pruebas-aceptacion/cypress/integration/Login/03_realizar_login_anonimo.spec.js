@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 context('Login y Logout anonimo', () => {
-  beforeEach(() => {
+  /*beforeEach(() => {
     cy.visit('')
   })
 
@@ -23,5 +23,5 @@ context('Login y Logout anonimo', () => {
 
     cy.wait(7000)
     cy.get('li.nav-logout > a.nav-link').click()
-  })
+  })*/
 })

@@ -1,10 +1,10 @@
 /// <reference types="Cypress" />
 
-import Chance from 'chance'
-const chance = new Chance()
+/*import Chance from 'chance'
+const chance = new Chance()*/
 
 context('Modificar producto', () => {
-  beforeEach(() => {
+  /*beforeEach(() => {
     cy.visit('')
   })
 
@@ -104,5 +104,5 @@ context('Modificar producto', () => {
 
     cy.wait(7000)
     cy.get('li.nav-logout > a.nav-link').click()
-  })
+  })*/
 })
