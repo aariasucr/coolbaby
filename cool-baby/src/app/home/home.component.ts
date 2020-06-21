@@ -1,13 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../shared/user.service';
-import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {NotificationService} from '../shared/notification.service';
 import {ProductService} from '../shared/product.service';
-import {ProductData} from '../shared/models';
-import {element} from 'protractor';
-//import { UserData, ProductData } from '../shared/models';
-//import {UserData} from '../shared/models';
 
 @Component({
   selector: 'app-home',
@@ -18,12 +13,8 @@ export class HomeComponent implements OnInit {
   userID = '';
   pageTitle = '';
   ventasTotales = 0;
-  //productos: Number[];
-  //userData: UserData;
 
   constructor(
-    //private firebaseDatabase: AngularFireDatabase,
-    //private firebaseAuth: AngularFireAuth,
     private userService: UserService,
     private firebaseAuth: AngularFireAuth,
     private notificationService: NotificationService,
