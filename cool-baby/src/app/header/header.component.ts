@@ -28,7 +28,9 @@ export class HeaderComponent implements OnInit {
         this.isLoggedIn = false;
         this.showUserName = false;
       }
-      this.changeDetector.detectChanges();
+      if (!this.changeDetector['destroyed']) {
+        this.changeDetector.detectChanges();
+      }
     });
   }
 

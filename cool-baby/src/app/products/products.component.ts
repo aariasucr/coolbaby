@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/user.service';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { NotificationService } from '../shared/notification.service';
-import { ProductService } from '../shared/product.service';
-import { ProductData } from '../shared/models';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../shared/user.service';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {NotificationService} from '../shared/notification.service';
+import {ProductService} from '../shared/product.service';
+import {ProductData} from '../shared/models';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -25,11 +25,10 @@ export class ProductsComponent implements OnInit {
     private firebaseDatabase: AngularFireDatabase,
     private notificationService: NotificationService,
     private productService: ProductService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.firebaseAuth.currentUser.then(userData => {
-      // console.log('userData en el componente', userData);
       if (!!userData && 'uid' in userData && !!userData.uid) {
         this.ownerId = userData.uid;
 
@@ -37,18 +36,15 @@ export class ProductsComponent implements OnInit {
           .list(`products/${this.ownerId}`, ref => ref.limitToLast(100).orderByChild('nombre'))
           .snapshotChanges()
           .subscribe(data => {
-            //console.log(data.keys);
             this.products = data.map(e => {
               return {
                 ...(e.payload.val() as ProductData)
               };
             });
-            //this.products = this.products.reverse();
 
             data.forEach((element, contador) => {
               this.products[contador].key = element.key;
             });
-            console.log(this.products);
           });
       }
     });
@@ -57,18 +53,31 @@ export class ProductsComponent implements OnInit {
   onSubmit(form: NgForm) {
     const nombre = form.value.nombreProducto;
     const precio = parseInt(form.value.precioProducto);
-    if(precio > 0){
+    if (precio > 0) {
       this.firebaseAuth.currentUser
         .then(authData => {
           this.userService.getUserDataFromFirebase(authData.uid).then(userData => {
             this.productService
-              .addNewProduct(nombre, this.talla, this.categoria, precio, this.uploadedFileUrl, userData.val().userName)
+              .addNewProduct(
+                nombre,
+                this.talla,
+                this.categoria,
+                precio,
+                this.uploadedFileUrl,
+                userData.val().userName
+              )
               .then(results => {
-                this.notificationService.showSuccessMessage('Transacción exitosa', 'El producto se ha agregado exitosamente');
+                this.notificationService.showSuccessMessage(
+                  'Transacción exitosa',
+                  'El producto se ha agregado exitosamente'
+                );
                 // this.posts = this.postService.getAllPosts();
               })
               .catch(error => {
-                this.notificationService.showErrorMessage('Error!!!', 'Se ha producido el siguiente error al agregar el producto: ' + error.message);
+                this.notificationService.showErrorMessage(
+                  'Error!!!',
+                  'Se ha producido el siguiente error al agregar el producto: ' + error.message
+                );
                 console.log(error.message);
               });
           });
@@ -78,37 +87,38 @@ export class ProductsComponent implements OnInit {
         });
       form.reset();
     } else {
-      this.notificationService.showErrorMessage('Error en el precio', 'El precio debe ser mayor o igual a 0');
+      this.notificationService.showErrorMessage(
+        'Error en el precio',
+        'El precio debe ser mayor o igual a 0'
+      );
     }
   }
 
   onImagePicked(imageUrl: string) {
-    console.log('url en firebase listo para guardar en la base de datos', imageUrl);
     this.uploadedFileUrl = imageUrl;
   }
 
-  selectChangeHandlerTalla(event: any){
+  selectChangeHandlerTalla(event: any) {
     this.talla = event.target.value;
   }
-
-  selectChangeHandlerCategoria(event: any){
+  
+  selectChangeHandlerCategoria(event: any) {
     this.categoria = parseInt(event.target.value);
   }
 
-  getCategoria(categoria: number){
-    switch (categoria){
+  getCategoria(categoria: number) {
+    switch (categoria) {
       case 0:
-        return "Pantalones";
+        return 'Pantalones';
       case 1:
-        return "Jackets";
+        return 'Jackets';
       case 2:
-        return "Pijamas";
+        return 'Pijamas';
       case 3:
-        return "Todo";
+        return 'Todo';
       default:
         //this.notificationService.showErrorMessage("Error al mostrar la categoría", "No existe una categoría asociada a este artículo");
-        return "Sin categoría";
+        return 'Sin categoría';
     }
   }
-
 }

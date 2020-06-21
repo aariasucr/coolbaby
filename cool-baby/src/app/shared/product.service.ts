@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
 
@@ -6,15 +6,19 @@ import {AngularFireAuth} from '@angular/fire/auth';
   providedIn: 'root'
 })
 export class ProductService {
-
   constructor(
     private firebaseDatabase: AngularFireDatabase,
-    private firebaseAuth: AngularFireAuth) { }
-
-  addNewProduct(nombre: string, talla: string, categoria: number, precio: number, imgUrl: string, owner: string) {
-
-    console.log('talla : ' + talla + ', categoria: ' + categoria);
-
+    private firebaseAuth: AngularFireAuth
+  ) {}
+  
+  addNewProduct(
+    nombre: string,
+    talla: string,
+    categoria: number,
+    precio: number,
+    imgUrl: string,
+    owner: string
+  ) {
     return this.firebaseAuth.currentUser.then(userData => {
       const firebaseUserId = userData.uid;
       const newProductKey = this.firebaseDatabase.database
@@ -44,7 +48,15 @@ export class ProductService {
     });
   }
 
-  updateProduct(productID: string, nombre: string, talla: string, categoria: number, precio: number, imgUrl: string, owner: string){
+  updateProduct(
+    productID: string,
+    nombre: string,
+    talla: string,
+    categoria: number,
+    precio: number,
+    imgUrl: string,
+    owner: string
+  ) {
     return this.firebaseAuth.currentUser.then(userData => {
       const firebaseUserId = userData.uid;
 
@@ -57,9 +69,6 @@ export class ProductService {
         img: imgUrl,
         owner: owner
       };
-
-      console.log('producto en productService:');
-      console.log(product);
 
       const updates = {};
       updates[`products/${firebaseUserId}/${productID}`] = product;

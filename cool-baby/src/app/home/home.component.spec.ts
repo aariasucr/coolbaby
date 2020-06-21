@@ -13,34 +13,16 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrModule} from 'ngx-toastr';
-import { SalesComponent } from '../sales/sales.component';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
-import { ProductsComponent } from '../products/products.component';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import {SalesComponent} from '../sales/sales.component';
+import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
+import {ProductsComponent} from '../products/products.component';
+import {ProductDetailComponent} from '../product-detail/product-detail.component';
+
+import * as Mocks from '../shared/mocks';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-
-  // Mock de datos de usuario
-  const datosUsuario = {
-    uid: 'usuarioPrueba'
-  };
-
-  // Mock del objeto AngularFireAuth
-  const mockAngularFireAuth: any = {
-    currentUser: Promise.resolve(datosUsuario)
-  };
-
-  const mockDatabase: any = {
-    list() {
-      return {
-        snapshotChanges() {
-          return {subscribe() {}};
-        }
-      };
-    }
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -57,8 +39,8 @@ describe('HomeComponent', () => {
       ],
       imports: [FormsModule, RouterTestingModule.withRoutes(routes), ToastrModule.forRoot()],
       providers: [
-        {provide: AngularFireAuth, useValue: mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: mockDatabase},
+        {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},
+        {provide: AngularFireDatabase, useValue: Mocks.mockDatabase},
         {provide: AngularFireStorage, useValue: null}
       ]
     }).compileComponents();

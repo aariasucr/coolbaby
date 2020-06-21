@@ -1,4 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {routes} from '../app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from '../app-routing.module';
 import {CatalogoComponent} from './catalogo.component';
@@ -11,10 +13,11 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../../environments/environment';
-import { SalesComponent } from '../sales/sales.component';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
-import { ProductsComponent } from '../products/products.component';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import {SalesComponent} from '../sales/sales.component';
+import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
+import {ProductsComponent} from '../products/products.component';
+import {ProductDetailComponent} from '../product-detail/product-detail.component';
+import {RouteGuard} from '../shared/route-guard';
 
 describe('CatalogoComponent', () => {
   let component: CatalogoComponent;
@@ -34,12 +37,14 @@ describe('CatalogoComponent', () => {
         ProductDetailComponent
       ],
       imports: [
+        RouterTestingModule.withRoutes(routes),
         FormsModule,
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
         AngularFireDatabaseModule
-      ]
+      ],
+      providers: [RouteGuard]
     }).compileComponents();
   }));
 
