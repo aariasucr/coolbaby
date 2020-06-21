@@ -1,5 +1,12 @@
+import { of } from 'rxjs';
+import { convertToParamMap } from '@angular/router';
+
 export const datosUsuario = {
   uid: 'usuarioPrueba'
+};
+
+export const datosProducto = {
+  id: 'idProductoPrueba'
 };
 
 export const mockAngularFireAuth: any = {
@@ -32,4 +39,13 @@ export const mockDatabase: any = {
       };
     }
   }
+};
+
+export const mockParam = {
+  paramMap: of(
+    convertToParamMap({
+      onwerName: 'propietario',
+      productId: 'idProduct'
+    })
+  )
 };

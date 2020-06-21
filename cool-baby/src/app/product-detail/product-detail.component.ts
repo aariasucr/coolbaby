@@ -85,7 +85,7 @@ export class ProductDetailComponent implements OnInit {
             .then(results => {
               this.notificationService.showSuccessMessage(
                 'Transacción exitosa',
-                'El artîculo se ha actualizado'
+                'El artículo se ha actualizado'
               );
             })
             .catch(error => {

@@ -4,8 +4,6 @@ import {ProductDetailComponent} from './product-detail.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {routes} from '../app-routing.module';
 import {FormsModule, NgForm} from '@angular/forms';
-import {AngularFireModule} from '@angular/fire';
-import {environment} from 'src/environments/environment';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
@@ -19,44 +17,14 @@ import {NavegacionComponent} from '../navegacion/navegacion.component';
 import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
 import {ToastrModule} from 'ngx-toastr';
 import {RouteGuard} from '../shared/route-guard';
-import {ActivatedRoute, convertToParamMap} from '@angular/router';
-import {of} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../shared/product.service';
+
+import * as Mock from '../shared/mocks';
 
 describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
   let fixture: ComponentFixture<ProductDetailComponent>;
-
-  const datosUsuario = {
-    uid: 'usuarioPrueba'
-  };
-
-  const datosProducto = {
-    id: 'idPrueba'
-  };
-
-  const mockParam = {
-    paramMap: of(
-      convertToParamMap({
-        onwerName: 'propietario',
-        productId: 'idProduct'
-      })
-    )
-  };
-
-  // Mock del objeto AngularFireAuth
-  const mockAngularFireAuth: any = {
-    currentUser: Promise.resolve(datosUsuario)
-  };
-
-  let mockCategoria = {
-    val() {
-      return {
-        key: 0,
-        name: 'CategoriaTest'
-      };
-    }
-  };
 
   // Mock de la base de datos
   const mockDatabase: any = {
@@ -71,7 +39,7 @@ describe('ProductDetailComponent', () => {
       ref() {
         return {
           once() {
-            return Promise.resolve(mockCategoria);
+            return Promise.resolve(Mock.mockCategoria);
           }
         };
       }
@@ -94,10 +62,10 @@ describe('ProductDetailComponent', () => {
         FileUploaderComponent
       ],
       providers: [
-        {provide: AngularFireAuth, useValue: mockAngularFireAuth},
+        {provide: AngularFireAuth, useValue: Mock.mockAngularFireAuth},
         {provide: AngularFireDatabase, useValue: mockDatabase},
         {provide: AngularFireStorage, useValue: null},
-        {provide: ActivatedRoute, useValue: mockParam},
+        {provide: ActivatedRoute, useValue: Mock.mockParam},
         RouteGuard,
         ProductService
       ]
@@ -168,7 +136,7 @@ describe('ProductDetailComponent', () => {
       routerSpy,
       productServiceSpy,
       userServiceSpy,
-      mockAngularFireAuth,
+      Mock.mockAngularFireAuth,
       mockDatabase,
       notificacionServiceSpy
     );
