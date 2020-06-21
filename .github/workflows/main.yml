@@ -54,17 +54,3 @@ jobs:
           SLACK_COLOR: danger
           SLACK_TITLE: Error en el build
 
-  pruebas-cypress:
-    needs: construir
-    name: Ejecutar Cypress
-    runs-on: ubuntu-16.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Ejecutar Pruebas de aceptacion
-        uses: cypress-io/github-action@v1
-        with:
-          record: true
-          working-directory: pruebas-aceptacion
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
