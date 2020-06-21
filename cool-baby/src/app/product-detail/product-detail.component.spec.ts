@@ -1,27 +1,27 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/testing';
 
-import { ProductDetailComponent } from './product-detail.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { routes } from '../app-routing.module';
-import { FormsModule, NgForm } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { HomeComponent } from '../home/home.component';
-import { SalesComponent } from '../sales/sales.component';
-import { ProductsComponent } from '../products/products.component';
-import { LoginComponent } from '../login/login.component';
-import { RegistroComponent } from '../registro/registro.component';
-import { CatalogoComponent } from '../catalogo/catalogo.component';
-import { NavegacionComponent } from '../navegacion/navegacion.component';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
-import { ToastrModule } from 'ngx-toastr';
-import { RouteGuard } from '../shared/route-guard';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { of } from 'rxjs';
-import { ProductService } from '../shared/product.service';
+import {ProductDetailComponent} from './product-detail.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {routes} from '../app-routing.module';
+import {FormsModule, NgForm} from '@angular/forms';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from 'src/environments/environment';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {HomeComponent} from '../home/home.component';
+import {SalesComponent} from '../sales/sales.component';
+import {ProductsComponent} from '../products/products.component';
+import {LoginComponent} from '../login/login.component';
+import {RegistroComponent} from '../registro/registro.component';
+import {CatalogoComponent} from '../catalogo/catalogo.component';
+import {NavegacionComponent} from '../navegacion/navegacion.component';
+import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
+import {ToastrModule} from 'ngx-toastr';
+import {RouteGuard} from '../shared/route-guard';
+import {ActivatedRoute, convertToParamMap} from '@angular/router';
+import {of} from 'rxjs';
+import {ProductService} from '../shared/product.service';
 
 describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
@@ -33,20 +33,29 @@ describe('ProductDetailComponent', () => {
 
   const datosProducto = {
     id: 'idPrueba'
-  }
+  };
 
   const mockParam = {
     paramMap: of(
       convertToParamMap({
         onwerName: 'propietario',
-        productId: 'idProduct',
+        productId: 'idProduct'
       })
     )
-  }
+  };
 
   // Mock del objeto AngularFireAuth
   const mockAngularFireAuth: any = {
     currentUser: Promise.resolve(datosUsuario)
+  };
+
+  let mockCategoria = {
+    val() {
+      return {
+        key: 0,
+        name: 'CategoriaTest'
+      };
+    }
   };
 
   // Mock de la base de datos
@@ -56,17 +65,22 @@ describe('ProductDetailComponent', () => {
         snapshotChanges() {
           return {subscribe() {}};
         }
+      };
+    },
+    database: {
+      ref() {
+        return {
+          once() {
+            return Promise.resolve(mockCategoria);
+          }
+        };
       }
     }
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule.withRoutes(routes),
-        FormsModule,
-        ToastrModule.forRoot()
-      ],
+      imports: [RouterTestingModule.withRoutes(routes), FormsModule, ToastrModule.forRoot()],
       declarations: [
         ProductDetailComponent,
         HomeComponent,
@@ -87,8 +101,7 @@ describe('ProductDetailComponent', () => {
         RouteGuard,
         ProductService
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -121,7 +134,7 @@ describe('ProductDetailComponent', () => {
     expect(component.uploadedFileUrl).toBe(dummyUrl);
   });
 
-  it('should submit form', async() => {
+  it('should submit form', async () => {
     const testForm = {
       reset() {},
       value: {
@@ -157,7 +170,7 @@ describe('ProductDetailComponent', () => {
       userServiceSpy,
       mockAngularFireAuth,
       mockDatabase,
-      notificacionServiceSpy,
+      notificacionServiceSpy
     );
 
     component.onSubmit(testForm);

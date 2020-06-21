@@ -1,54 +1,32 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/testing';
 
-import { ProductsComponent } from './products.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { routes } from '../app-routing.module';
-import { FormsModule, NgForm } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
-import { HomeComponent } from '../home/home.component';
-import { NavegacionComponent } from '../navegacion/navegacion.component';
-import { SalesComponent } from '../sales/sales.component';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
-import { LoginComponent } from '../login/login.component';
-import { RegistroComponent } from '../registro/registro.component';
-import { CatalogoComponent } from '../catalogo/catalogo.component';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
-import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
-import { RouteGuard } from '../shared/route-guard';
+import {ProductsComponent} from './products.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {routes} from '../app-routing.module';
+import {FormsModule, NgForm} from '@angular/forms';
+import {ToastrModule} from 'ngx-toastr';
+import {HomeComponent} from '../home/home.component';
+import {NavegacionComponent} from '../navegacion/navegacion.component';
+import {SalesComponent} from '../sales/sales.component';
+import {ProductDetailComponent} from '../product-detail/product-detail.component';
+import {LoginComponent} from '../login/login.component';
+import {RegistroComponent} from '../registro/registro.component';
+import {CatalogoComponent} from '../catalogo/catalogo.component';
+import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
+import {AngularFireAuthModule, AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireDatabaseModule, AngularFireDatabase} from '@angular/fire/database';
+import {AngularFireStorageModule, AngularFireStorage} from '@angular/fire/storage';
+import {RouteGuard} from '../shared/route-guard';
+
+import * as Mocks from '../shared/mocks';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
   let fixture: ComponentFixture<ProductsComponent>;
 
-  const datosUsuario = {
-    uid: 'usuarioPrueba'
-  };
-
-  // Mock del objeto AngularFireAuth
-  const mockAngularFireAuth: any = {
-    currentUser: Promise.resolve(datosUsuario)
-  };
-
-  // Mock de la base de datos
-  const mockDatabase: any = {
-    list() {
-      return {
-        snapshotChanges() {
-          return {subscribe() {}};
-        }
-      };
-    }
-  };
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule.withRoutes(routes),
-        FormsModule,
-        ToastrModule.forRoot()
-      ],
+      imports: [RouterTestingModule.withRoutes(routes), FormsModule, ToastrModule.forRoot()],
       declarations: [
         ProductsComponent,
         HomeComponent,
@@ -61,13 +39,12 @@ describe('ProductsComponent', () => {
         FileUploaderComponent
       ],
       providers: [
-        {provide: AngularFireAuth, useValue: mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: mockDatabase},
+        {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},
+        {provide: AngularFireDatabase, useValue: Mocks.mockDatabase},
         {provide: AngularFireStorage, useValue: null},
         RouteGuard
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -117,8 +94,8 @@ describe('ProductsComponent', () => {
 
     let serv = new ProductsComponent(
       userServiceSpy,
-      mockAngularFireAuth,
-      mockDatabase,
+      Mocks.mockAngularFireAuth,
+      Mocks.mockDatabase,
       notificacionServiceSpy,
       productServiceSpy
     );

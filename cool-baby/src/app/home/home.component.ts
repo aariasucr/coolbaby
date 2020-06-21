@@ -3,9 +3,9 @@ import {UserService} from '../shared/user.service';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {NotificationService} from '../shared/notification.service';
-import { ProductService } from '../shared/product.service';
-import { ProductData } from '../shared/models';
-import { element } from 'protractor';
+import {ProductService} from '../shared/product.service';
+import {ProductData} from '../shared/models';
+import {element} from 'protractor';
 //import { UserData, ProductData } from '../shared/models';
 //import {UserData} from '../shared/models';
 
@@ -30,23 +30,7 @@ export class HomeComponent implements OnInit {
     private productService: ProductService
   ) {}
 
-  ngOnInit() {
-    /*this.firebaseAuth.currentUser.then(userData => {
-      // console.log('userData en el componente', userData);
-      if (!!userData && 'uid' in userData && !!userData.uid) {
-        //this.userID = userData.uid;
-        console.log('userID: ' + this.userID);
-        this.productService.getProducts(userData.uid)
-          .then(result => {
-            const productos: ProductData[] = Object.values(result.val());
-            console.log(productos);
-            productos.forEach(element => {
-              //this.ventasTotales += element.totalVentas;
-            });
-          });
-      }
-    });*/
-  }
+  ngOnInit() {}
 
   logout() {
     this.userService.performLogout();

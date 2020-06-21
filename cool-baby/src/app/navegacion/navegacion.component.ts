@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../shared/user.service';
+import {AngularFireDatabase} from '@angular/fire/database';
 
 @Component({
   selector: 'app-navegacion',
@@ -7,15 +8,30 @@ import {UserService} from '../shared/user.service';
   styleUrls: ['./navegacion.component.css']
 })
 export class NavegacionComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private firebaseDB: AngularFireDatabase) {}
 
-  ngOnInit() {}
+  categorias: string;
+  mostrarOpcionesCatalogo = false;
+  categoriaSeleccionada: string;
+
+  ngOnInit() {
+    this.cargarCategorias();
+  }
 
   logout() {
     this.userService.performLogout();
   }
 
-  irCatalogo() {
-    //this.router.navigate(['/catalogo']);
+  cargarCategorias() {
+    this.firebaseDB.database
+      .ref('categories')
+      .once('value')
+      .then(result => {
+        this.categorias = result.val();
+      });
+  }
+
+  toggleCatalogoNav() {
+    this.mostrarOpcionesCatalogo = !this.mostrarOpcionesCatalogo;
   }
 }

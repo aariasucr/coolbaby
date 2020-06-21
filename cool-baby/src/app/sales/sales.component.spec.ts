@@ -1,53 +1,32 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/testing';
 
-import { SalesComponent } from './sales.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { routes } from '../app-routing.module';
-import { ToastrModule } from 'ngx-toastr';
-import { HomeComponent } from '../home/home.component';
-import { NavegacionComponent } from '../navegacion/navegacion.component';
-import { HeaderComponent } from '../header/header.component';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { LoginComponent } from '../login/login.component';
-import { RegistroComponent } from '../registro/registro.component';
-import { CatalogoComponent } from '../catalogo/catalogo.component';
-import { ProductsComponent } from '../products/products.component';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
-import { FormsModule } from '@angular/forms';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import {SalesComponent} from './sales.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {routes} from '../app-routing.module';
+import {ToastrModule} from 'ngx-toastr';
+import {HomeComponent} from '../home/home.component';
+import {NavegacionComponent} from '../navegacion/navegacion.component';
+import {HeaderComponent} from '../header/header.component';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {LoginComponent} from '../login/login.component';
+import {RegistroComponent} from '../registro/registro.component';
+import {CatalogoComponent} from '../catalogo/catalogo.component';
+import {ProductsComponent} from '../products/products.component';
+import {ProductDetailComponent} from '../product-detail/product-detail.component';
+import {FormsModule} from '@angular/forms';
+import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
 
+import * as Mocks from '../shared/mocks';
 
 describe('SalesComponent', () => {
   let component: SalesComponent;
   let fixture: ComponentFixture<SalesComponent>;
 
-  const datosUsuario = {
-    uid: 'usuarioPrueba'
-  };
-
-  const mockAngularFireAuth: any = {
-    currentUser: Promise.resolve(datosUsuario)
-  };
-
-  const mockDatabase: any = {
-    list() {
-      return {
-        snapshotChanges() {
-          return {subscribe() {}};
-        }
-      };
-    }
-  };
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule.withRoutes(routes),
-        FormsModule,
-        ToastrModule.forRoot()
-      ],
+      imports: [RouterTestingModule.withRoutes(routes), FormsModule, ToastrModule.forRoot()],
       declarations: [
         SalesComponent,
         HomeComponent,
@@ -61,12 +40,11 @@ describe('SalesComponent', () => {
         FileUploaderComponent
       ],
       providers: [
-        {provide: AngularFireAuth, useValue: mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: mockDatabase},
+        {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},
+        {provide: AngularFireDatabase, useValue: Mocks.mockDatabase},
         {provide: AngularFireStorage, useValue: null}
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
