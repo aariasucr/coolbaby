@@ -19,7 +19,7 @@ export class CatalogoComponent implements OnInit {
   public indiceProducto: number;
   public productoActual: ProductData;
   public productosActuales: ProductData[] = [];
-  public;
+
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
       if (!params.has('categoria')) {
@@ -77,5 +77,21 @@ export class CatalogoComponent implements OnInit {
       this.indiceProducto++;
     }
     this.productoActual = this.productosActuales[this.indiceProducto];
+  }
+
+  getCategoria(categoria: number) {
+    switch (categoria) {
+      case 0:
+        return 'Pantalones';
+      case 1:
+        return 'Jackets';
+      case 2:
+        return 'Pijamas';
+      case 3:
+        return 'Todo';
+      default:
+        //this.notificationService.showErrorMessage("Error al mostrar la categoría", "No existe una categoría asociada a este artículo");
+        return 'Sin categoría';
+    }
   }
 }

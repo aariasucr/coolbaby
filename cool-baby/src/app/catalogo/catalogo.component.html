@@ -2,6 +2,7 @@
   <app-navegacion></app-navegacion>
   <div class="main-panel">
     <div class="content-wrapper">
+      <h1 *ngIf="this.productoActual">{{ this.getCategoria(this.productoActual.categoria) }}</h1>
       <div class="row">
         <div class="col-lg-6 grid-margin stretch-card">
           <div class="card">
@@ -30,6 +31,23 @@
                   <div class="owl-dot"><span></span></div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 stretch-card grid-margin">
+          <div class="card bg-gradient-info card-img-holder text-white">
+            <div class="card-body" *ngIf="this.productoActual">
+              <img
+                src="../assets/images/dashboard/circle.svg"
+                class="card-img-absolute"
+                alt="circle-image"
+              />
+              <h2 class="font-weight-normal mb-3">
+                {{ this.productoActual.nombre }}
+              </h2>
+              <h4 class="mb-5">Precio: {{ this.productoActual.precio }}</h4>
+              <h4 class="mb-5">Talla: {{ this.productoActual.talla }}</h4>
+              <h4 class="mb-5">Vendedor: {{ this.productoActual.owner }}</h4>
             </div>
           </div>
         </div>
