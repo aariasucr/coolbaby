@@ -3,12 +3,12 @@
 import Chance from 'chance'
 const chance = new Chance()
 
-context('Crear publicacion', () => {
+context('Agregar producto', () => {
   beforeEach(() => {
     cy.visit('')
   })
 
-  it('Hacer login y crear publicacion', () => {
+  it('Hacer login y agregar un nuevo producto', () => {
     cy.get('#email').should('be.visible')
     cy.get('#email').should('be.enabled')
 

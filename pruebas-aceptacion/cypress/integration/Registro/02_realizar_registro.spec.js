@@ -1,11 +1,11 @@
 /// <reference types="Cypress" />
 
-context('Formulario de Login', () => {
+context('Formulario de Registro', () => {
   beforeEach(() => {
     cy.visit('')
   })
 
-  it('Revisar validaciones formulario login', () => {
+  it('Realizar registro de un usuario', () => {
     cy.title().should('eq', 'CoolBaby')
 
     cy.get('a.text-primary').should('be.visible')

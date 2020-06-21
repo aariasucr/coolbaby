@@ -7,12 +7,12 @@ const resetearInputs = function (cy) {
   cy.get('#fullName').clear()
 }
 
-context('Formulario de Login', () => {
+context('Formulario de Registro', () => {
   beforeEach(() => {
     cy.visit('')
   })
 
-  it('Revisar validaciones formulario login', () => {
+  it('Revisar validaciones formulario registro', () => {
     cy.title().should('eq', 'CoolBaby')
 
     cy.get('a.text-primary').should('be.visible')

@@ -1,11 +1,11 @@
 /// <reference types="Cypress" />
 
-context('Login y Logout', () => {
+context('Login y Logout anonimo', () => {
   beforeEach(() => {
     cy.visit('')
   })
 
-  it('Hacer login', () => {
+  it('Hacer login anonimo', () => {
     cy.title().should('eq', 'CoolBaby')
 
     cy.get('#botonAnonimo').click()
