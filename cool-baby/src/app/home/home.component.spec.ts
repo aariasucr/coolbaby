@@ -32,9 +32,13 @@ describe('HomeComponent', () => {
   const mockAngularFireAuth: any = {
     currentUser: Promise.resolve(datosUsuario)
   };
-  let mockCategoria: Categoria = {
-    key: 0,
-    name: 'CategoriaTest'
+  let mockCategoria = {
+    val() {
+      return {
+        key: 0,
+        name: 'CategoriaTest'
+      };
+    }
   };
 
   const mockDatabase: any = {

@@ -6,15 +6,18 @@ import {HomeComponent} from '../home/home.component';
 import {LoginComponent} from '../login/login.component';
 import {RegistroComponent} from '../registro/registro.component';
 import {NavegacionComponent} from '../navegacion/navegacion.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {routes} from '../app-routing.module';
+import {ToastrModule} from 'ngx-toastr';
 
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../../environments/environment';
-import { SalesComponent } from '../sales/sales.component';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
-import { ProductsComponent } from '../products/products.component';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import {SalesComponent} from '../sales/sales.component';
+import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
+import {ProductsComponent} from '../products/products.component';
+import {ProductDetailComponent} from '../product-detail/product-detail.component';
 
 describe('CatalogoComponent', () => {
   let component: CatalogoComponent;
@@ -38,7 +41,9 @@ describe('CatalogoComponent', () => {
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
-        AngularFireDatabaseModule
+        AngularFireDatabaseModule,
+        RouterTestingModule.withRoutes(routes),
+        ToastrModule.forRoot()
       ]
     }).compileComponents();
   }));

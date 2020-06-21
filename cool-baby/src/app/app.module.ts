@@ -1,6 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
+// import { HttpModule,http } from '@angular/common';
+//import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
+//import { HttpModule } from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -21,11 +24,11 @@ import {NavegacionComponent} from './navegacion/navegacion.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {NotificationService} from './shared/notification.service';
-import { CatalogoComponent } from './catalogo/catalogo.component';
-import { SalesComponent } from './sales/sales.component';
-import { FileUploaderComponent } from './file-uploader/file-uploader.component';
-import { ProductsComponent } from './products/products.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import {CatalogoComponent} from './catalogo/catalogo.component';
+import {SalesComponent} from './sales/sales.component';
+import {FileUploaderComponent} from './file-uploader/file-uploader.component';
+import {ProductsComponent} from './products/products.component';
+import {ProductDetailComponent} from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     AngularFireStorageModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    HttpClientModule
   ],
   providers: [UserService, RouteGuard, NotificationService],
   bootstrap: [AppComponent]

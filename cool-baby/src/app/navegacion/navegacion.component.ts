@@ -1,8 +1,9 @@
-import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+//import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../shared/user.service';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {Categoria} from '../shared/models';
-
+import {RouteGuard} from '../shared/route-guard';
 @Component({
   selector: 'app-navegacion',
   templateUrl: './navegacion.component.html',
@@ -12,7 +13,7 @@ export class NavegacionComponent implements OnInit {
   constructor(
     private userService: UserService,
     private firebaseDB: AngularFireDatabase,
-    private changeDetector: ChangeDetectorRef
+    private routeGuard: RouteGuard //private changeDetector: ChangeDetectorRef
   ) {}
   categorias: Categoria;
   mostrarOpcionesCatalogo = false;
@@ -34,7 +35,7 @@ export class NavegacionComponent implements OnInit {
         console.log('Que hay en result:', result);
         this.categorias = result.val();
         console.log('Categorias:', this.categorias);
-        this.changeDetector.detectChanges();
+        //this.changeDetector.detectChanges();
       });
   }
 
