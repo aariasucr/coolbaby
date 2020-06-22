@@ -103,7 +103,7 @@ export class ProductsComponent implements OnInit {
   }
 
   selectChangeHandlerCategoria(event: any) {
-    this.categoria = event.target.value;
+    this.categoria = parseInt(event.target.value);
   }
 
   getCategoria(categoria: number) {
