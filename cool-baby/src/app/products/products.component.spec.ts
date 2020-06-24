@@ -7,7 +7,6 @@ import {FormsModule, NgForm} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 import {HomeComponent} from '../home/home.component';
 import {NavegacionComponent} from '../navegacion/navegacion.component';
-import {SalesComponent} from '../sales/sales.component';
 import {ProductDetailComponent} from '../product-detail/product-detail.component';
 import {LoginComponent} from '../login/login.component';
 import {RegistroComponent} from '../registro/registro.component';
@@ -31,7 +30,6 @@ describe('ProductsComponent', () => {
         ProductsComponent,
         HomeComponent,
         NavegacionComponent,
-        SalesComponent,
         ProductDetailComponent,
         LoginComponent,
         RegistroComponent,

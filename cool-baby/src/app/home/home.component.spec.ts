@@ -13,7 +13,6 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrModule} from 'ngx-toastr';
-import {SalesComponent} from '../sales/sales.component';
 import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
 import {ProductsComponent} from '../products/products.component';
 import {ProductDetailComponent} from '../product-detail/product-detail.component';
@@ -32,7 +31,6 @@ describe('HomeComponent', () => {
         RegistroComponent,
         NavegacionComponent,
         CatalogoComponent,
-        SalesComponent,
         FileUploaderComponent,
         ProductsComponent,
         ProductDetailComponent

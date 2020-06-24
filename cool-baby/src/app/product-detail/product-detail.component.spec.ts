@@ -8,7 +8,6 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {HomeComponent} from '../home/home.component';
-import {SalesComponent} from '../sales/sales.component';
 import {ProductsComponent} from '../products/products.component';
 import {LoginComponent} from '../login/login.component';
 import {RegistroComponent} from '../registro/registro.component';
@@ -52,7 +51,6 @@ describe('ProductDetailComponent', () => {
       declarations: [
         ProductDetailComponent,
         HomeComponent,
-        SalesComponent,
         ProductsComponent,
         LoginComponent,
         RegistroComponent,

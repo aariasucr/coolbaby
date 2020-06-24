@@ -32,7 +32,6 @@
 }
 
 .btn {
-  margin-left: 1rem;
   background-color: #808080;
 }
 
@@ -58,4 +57,10 @@
 
 .img-articulo {
   margin-bottom: 1rem !important;
+}
+
+@media screen and (max-width: 1717px) and (min-width: 992px){
+  .col-lg-6 {
+    max-width: 100% !important;
+  }
 }

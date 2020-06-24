@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+table {
+  display: table !important;
+}
+
+@media screen and (max-width: 1028px){
+  table {
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .responsive-hide {
+    display: none;
+  }
+}
