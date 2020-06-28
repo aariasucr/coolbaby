@@ -74,4 +74,8 @@ export class UserService {
   getCurrentUser() {
     return this.firebaseAuth.currentUser;
   }
+
+  getAllUsers() {
+    return this.firebaseDB.database.ref('users').once('value');
+  }
 }

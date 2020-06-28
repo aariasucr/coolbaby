@@ -99,4 +99,20 @@ export class ProductService {
       .child(productUid)
       .once('value');
   }
+
+  getTentativesByProductId(productUid: string) {
+    let snapshot = this.firebaseDatabase.database
+      .ref('tentatives')
+      .child(productUid)
+      .once('value');
+    return snapshot;
+  }
+
+  getTentativesByUserId(userId: string) {
+    let snapshot = this.firebaseDatabase.database
+      .ref('tentatives')
+      .child(userId)
+      .once('value');
+    return snapshot;
+  }
 }
