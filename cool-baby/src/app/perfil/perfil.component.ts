@@ -71,8 +71,10 @@ export class PerfilComponent implements OnInit {
           userName: (newUserName == '' ? this.userName : newUserName),
           fullName: (newFullName === '' ? this.fullName : newFullName)
         };
+        result.updateEmail(datosUsuario.email).then(() => {
+          this.notificationService.showSuccessMessage('Actualización de datos', `Se ha enviado un correo a ${this.email} para confirmar el cambio de correo electrónico de su cuenta`);
+        });
         this.firebaseDatabase.object(`users/${this.userId}`).update(datosUsuario);
-        result.updateEmail(datosUsuario.email);
         this.userService.statusChange.emit(datosUsuario);
         this.camposHabilitados = false;
         this.notificationService.showSuccessMessage('Actualización de datos', 'Se ha actualizado la información de usuario');
