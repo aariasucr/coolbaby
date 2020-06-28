@@ -32,4 +32,7 @@ export interface TentativeProduct {
   uidComprador: string;
   nombreProducto: string;
   uidProducto: string;
+  uidVendedor: string;
+  emailVendedor: string;
+  img: string;
 }

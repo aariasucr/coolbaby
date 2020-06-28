@@ -98,29 +98,36 @@ export class CatalogoComponent implements OnInit {
       .then(authData => {
         this.userService.getUserDataFromFirebase(authData.uid).then(userData => {
           let userDataVal = userData.val();
-          let tentativeBuy = {
-            nombreComprador: userDataVal.userName,
-            uidComprador: userData.key,
-            nombreProducto: this.productoActual.nombre,
-            uidProducto: this.productoActual.key
-          } as TentativeProduct;
           this.productService.getProductByProductId(this.productoActual.key).then(product => {
-            this.productService
-              .addTentativeBuy(tentativeBuy, this.productoActual.ownerId)
-              .then(results => {
-                this.notificationService.showSuccessMessage(
-                  'Transacción exitosa',
-                  'Producto expuesto a venta'
-                );
-                // this.posts = this.postService.getAllPosts();
-              })
-              .catch(error => {
-                this.notificationService.showErrorMessage(
-                  'Error!!!',
-                  'Se ha producido el siguiente error al exponer producto a venta: ' + error.message
-                );
-                console.log(error.message);
-              });
+            this.userService.getUserDataFromFirebase(product.val().ownerId).then(owner => {
+              let tentativeBuy = {
+                nombreComprador: userDataVal.userName,
+                uidComprador: userData.key,
+                nombreProducto: this.productoActual.nombre,
+                uidProducto: this.productoActual.key,
+                uidVendedor: owner.key,
+                emailVendedor: owner.val().email,
+                img: this.productoActual.img,
+                nombreVendedor: owner.val().userName
+              } as TentativeProduct;
+              this.productService
+                .addTentativeBuy(tentativeBuy, this.productoActual.ownerId)
+                .then(results => {
+                  this.notificationService.showSuccessMessage(
+                    'Transacción exitosa',
+                    'Producto expuesto a venta'
+                  );
+                  // this.posts = this.postService.getAllPosts();
+                })
+                .catch(error => {
+                  this.notificationService.showErrorMessage(
+                    'Error!!!',
+                    'Se ha producido el siguiente error al exponer producto a venta: ' +
+                      error.message
+                  );
+                  console.log(error.message);
+                });
+            });
           });
         });
       })
