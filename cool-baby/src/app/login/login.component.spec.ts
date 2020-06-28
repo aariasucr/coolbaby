@@ -20,6 +20,7 @@ import { SalesComponent } from '../sales/sales.component';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 import { ProductsComponent } from '../products/products.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { PerfilComponent } from '../perfil/perfil.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -67,7 +68,8 @@ describe('LoginComponent', () => {
         SalesComponent,
         FileUploaderComponent,
         ProductsComponent,
-        ProductDetailComponent
+        ProductDetailComponent,
+        PerfilComponent
       ]
     }).compileComponents();
   }));

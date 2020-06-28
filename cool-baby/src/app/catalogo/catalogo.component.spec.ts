@@ -19,6 +19,7 @@ import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
 import {ProductsComponent} from '../products/products.component';
 import {ProductDetailComponent} from '../product-detail/product-detail.component';
 import {RouteGuard} from '../shared/route-guard';
+import { PerfilComponent } from '../perfil/perfil.component';
 
 describe('CatalogoComponent', () => {
   let component: CatalogoComponent;
@@ -35,7 +36,8 @@ describe('CatalogoComponent', () => {
         SalesComponent,
         FileUploaderComponent,
         ProductsComponent,
-        ProductDetailComponent
+        ProductDetailComponent,
+        PerfilComponent
       ],
       imports: [
         RouterTestingModule.withRoutes(routes),

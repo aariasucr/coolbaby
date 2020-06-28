@@ -1,7 +1,7 @@
-import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, Renderer2, Inject} from '@angular/core';
 import {UserService} from '../shared/user.service';
 import {UserData} from '../shared/models';
-import {AngularFireAuth} from '@angular/fire/auth';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +12,12 @@ export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   showUserName = false;
   userData: UserData;
+  hideMenu = true;
   constructor(
     private userService: UserService,
-    private firebaseAuth: AngularFireAuth,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    private rend: Renderer2,
+    @Inject(DOCUMENT) private document
   ) {}
 
   ngOnInit() {
@@ -36,5 +38,17 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.performLogout();
+  }
+
+  toggleMenu(){
+    if(!this.hideMenu) {
+      this.rend.removeClass(document.body, 'sidebar-icon-only');
+      this.rend.removeClass(document.getElementById('sidebar'), 'active');
+      this.hideMenu = true;
+    } else {
+      this.rend.addClass(document.body, 'sidebar-icon-only');
+      this.rend.addClass(document.getElementById('sidebar'), 'active');
+      this.hideMenu = false;
+    }
   }
 }

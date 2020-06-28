@@ -15,6 +15,7 @@ import { SalesComponent } from '../sales/sales.component';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 import { ProductsComponent } from '../products/products.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { PerfilComponent } from '../perfil/perfil.component';
 
 describe('NavegacionComponent', () => {
   let component: NavegacionComponent;
@@ -31,7 +32,8 @@ describe('NavegacionComponent', () => {
         SalesComponent,
         FileUploaderComponent,
         ProductsComponent,
-        ProductDetailComponent
+        ProductDetailComponent,
+        PerfilComponent
       ],
       imports: [
         FormsModule,

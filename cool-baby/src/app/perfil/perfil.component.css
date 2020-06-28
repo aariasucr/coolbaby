@@ -35,32 +35,12 @@
   background-color: #808080;
 }
 
-.btn i {
-  padding-right: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .button-save {
+  display: inline-block;
   margin-left: 0 !important;
   padding-left: 0 !important;
 }
 
 .button-save button {
   margin-left: 0 !important;
-}
-
-.product-img {
-  padding-left: 0 !important;
-}
-
-.img-articulo {
-  margin-bottom: 1rem !important;
-}
-
-@media screen and (max-width: 1717px) and (min-width: 992px){
-  .col-lg-6 {
-    max-width: 100% !important;
-  }
 }

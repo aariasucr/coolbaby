@@ -1,0 +1,107 @@
+<div class="container-fluid page-body-wrapper body-background">
+  <app-navegacion></app-navegacion>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title">
+          <span class="page-title-icon bg-gradient-primary text-white mr-2">
+            <i class="mdi mdi-cash-multiple"></i>
+          </span> Información del usuario </h3>
+      </div>
+      <div class="row grid-margin stretch-card">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Información del usuario</h4>
+              <div class="col-lg-8 div-form">
+                <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="pt-3">
+                  <label for="fullName">Nombre completo</label>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control col-sm-9 input-detail"
+                      id="fullName"
+                      name="fullName"
+                      [value]="this.fullName"
+                      [disabled]="!this.camposHabilitados"
+                      ngModel
+                    />
+                  </div>
+                  <label for="email">Correo electrónico</label>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      class="form-control col-sm-9 input-detail"
+                      id="email"
+                      name="email"
+                      [value]="this.email"
+                      [disabled]="!this.camposHabilitados"
+                      ngModel
+                    />
+                  </div>
+                  <label for="userName">Nombre de usuario</label>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control col-sm-9 input-detail"
+                      id="userName"
+                      name="userName"
+                      [value]="this.userName"
+                      [disabled]="!this.camposHabilitados"
+                      ngModel
+                    />
+                  </div>
+                  <div class="mb-2 col-lg-3 button-save">
+                    <button
+                      type="button"
+                      class="btn btn-block btn-gradient-info btn-lg font-weight-medium auth-form-btn text-light"
+                      (click)="this.camposHabilitados = true"
+                    >
+                      Editar
+                    </button>
+                  </div>
+                  <div class="mb-2 col-lg-3 button-save">
+                    <button
+                      type="submit"
+                      class="btn btn-block btn-gradient-success btn-lg font-weight-medium auth-form-btn text-light"
+                      [disabled]="!this.camposHabilitados"
+                    >
+                      Guardar
+                    </button>
+                  </div>
+                  <div class="mb-2 col-lg-3 button-save">
+                    <button
+                      type="button"
+                      class="btn btn-block btn-gradient-light btn-lg font-weight-medium auth-form-btn"
+                      [disabled]="!this.camposHabilitados"
+                      (click)="this.camposHabilitados = false"
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row grid-margin stretch-card">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Resetear contraseña</h4>
+              <div class="mb-2 col-lg-3 button-save">
+                <button
+                  type="button"
+                  class="btn btn-block btn-gradient-success btn-lg font-weight-medium auth-form-btn text-light"
+                  (click)="this.enviarCorreoPassword()"
+                >
+                  Enviar correo
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -50,7 +50,7 @@ export class ProductDetailComponent implements OnInit {
           this.ownerName = params.get('ownerName');
           this.productId = params.get('productId');
           this.firebaseDatabase
-            .object(`products/${this.ownerId}/${this.productId}`)
+            .object(`products/${this.productId}`)
             .snapshotChanges()
             .subscribe(data => {
               this.product = data.payload.val() as ProductData;
@@ -80,13 +80,17 @@ export class ProductDetailComponent implements OnInit {
               this.categoria < -1 ? this.product.categoria : this.categoria,
               precio === undefined || precio < 0 || isNaN(precio) ? this.product.precio : precio,
               this.uploadedFileUrl === '' ? this.product.img : this.uploadedFileUrl,
-              userData.val().userName
+              userData.val().userName,
+              authData.uid
             )
             .then(results => {
               this.notificationService.showSuccessMessage(
                 'Transacción exitosa',
                 'El artículo se ha actualizado'
               );
+              this.camposForm.forEach((e, indice) => {
+                this.camposForm[indice] = true;
+              })
             })
             .catch(error => {
               this.notificationService.showErrorMessage(

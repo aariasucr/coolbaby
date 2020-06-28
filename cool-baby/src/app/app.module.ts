@@ -27,6 +27,7 @@ import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import {AngularFirePerformanceModule} from '@angular/fire/performance';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {AngularFirePerformanceModule} from '@angular/fire/performance';
     SalesComponent,
     FileUploaderComponent,
     ProductsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

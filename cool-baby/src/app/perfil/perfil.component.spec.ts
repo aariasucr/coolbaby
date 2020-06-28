@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
-import {ProductsComponent} from './products.component';
+import { PerfilComponent } from './perfil.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {routes} from '../app-routing.module';
 import {FormsModule, NgForm} from '@angular/forms';
@@ -19,17 +19,43 @@ import {AngularFireStorageModule, AngularFireStorage} from '@angular/fire/storag
 import {RouteGuard} from '../shared/route-guard';
 
 import * as Mocks from '../shared/mocks';
-import { PerfilComponent } from '../perfil/perfil.component';
+import { ProductsComponent } from '../products/products.component';
 
-describe('ProductsComponent', () => {
-  let component: ProductsComponent;
-  let fixture: ComponentFixture<ProductsComponent>;
+describe('PerfilComponent', () => {
+  let component: PerfilComponent;
+  let fixture: ComponentFixture<PerfilComponent>;
+
+  const mockDatabase: any = {
+    object() {
+      return {
+        snapshotChanges() {
+          return {subscribe() {}};
+        }
+      };
+    },
+    list() {
+      return {
+        snapshotChanges() {
+          return {subscribe() {}};
+        }
+      }
+    },
+    database: {
+      ref() {
+        return {
+          once() {
+            return Promise.resolve(Mocks.mockCategoria);
+          }
+        };
+      }
+    }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes), FormsModule, ToastrModule.forRoot()],
       declarations: [
-        ProductsComponent,
+        PerfilComponent,
         HomeComponent,
         NavegacionComponent,
         SalesComponent,
@@ -38,19 +64,20 @@ describe('ProductsComponent', () => {
         RegistroComponent,
         CatalogoComponent,
         FileUploaderComponent,
-        PerfilComponent
+        ProductsComponent
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: Mocks.mockDatabase},
+        {provide: AngularFireDatabase, useValue: mockDatabase},
         {provide: AngularFireStorage, useValue: null},
         RouteGuard
       ]
-    }).compileComponents();
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductsComponent);
+    fixture = TestBed.createComponent(PerfilComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -62,54 +89,41 @@ describe('ProductsComponent', () => {
   it('should initialize', fakeAsync(() => {
     component.ngOnInit();
     tick(100);
-    expect(component.ownerId).toBeTruthy();
-    expect(component.products).toBeTruthy();
-    expect(component.ownerId.length).toBeGreaterThan(0);
-    expect(component.ownerId).not.toBe('');
-    expect(component.products).not.toBe(null);
+    expect(component.userId).toBeTruthy();
+    expect(component.users).toBeTruthy();
+    expect(component.userId.length).toBeGreaterThan(0);
+    expect(component.userId).not.toBe('');
+    expect(component.users).not.toBe(null);
   }));
-
-  it('should upload', () => {
-    const dummyUrl = 'url de prueba';
-    component.onImagePicked(dummyUrl);
-    expect(component.uploadedFileUrl).toBe(dummyUrl);
-  });
 
   it('should submit form', () => {
     const testForm = {
       reset() {},
       value: {
-        nombreProducto: 'blah',
-        precioProducto: 1,
-        tallaProducto: 'XS',
-        categoriaProducto: 1
+        fullName: 'Nombre Completo Prueba',
+        email: 'correoPrueba@prueba.com',
+        userName: 'usuarioPrueba'
       }
     } as NgForm;
 
-    const resetSpy: jasmine.Spy = spyOn(testForm, 'reset');
     let userServiceSpy = jasmine.createSpyObj('UserService', ['getUserDataFromFirebase']);
     let notificacionServiceSpy = jasmine.createSpyObj('NotificacionServcie', [
       'showSuccessMessage',
       'showErrorMessage'
     ]);
-    let productServiceSpy = jasmine.createSpyObj('ProductService', ['addNewProduct']);
 
-    let serv = new ProductsComponent(
+    let serv = new PerfilComponent(
       userServiceSpy,
       Mocks.mockAngularFireAuth,
-      Mocks.mockDatabase,
-      notificacionServiceSpy,
-      productServiceSpy
+      mockDatabase,
+      notificacionServiceSpy
     );
 
     component.onSubmit(testForm);
-
-    expect(resetSpy).toHaveBeenCalled();
-    expect(resetSpy.calls.all().length).toEqual(1);
   });
 
   it('should render app-navegacion tag', () => {
-    const fixture = TestBed.createComponent(ProductsComponent);
+    const fixture = TestBed.createComponent(PerfilComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-navegacion').textContent).toBeDefined();

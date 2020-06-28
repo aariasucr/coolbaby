@@ -18,7 +18,8 @@ export class ProductService {
     categoria: number,
     precio: number,
     imgUrl: string,
-    owner: string
+    owner: string,
+    ownerId: string
   ) {
     return this.firebaseAuth.currentUser.then(userData => {
       const firebaseUserId = userData.uid;
@@ -39,11 +40,12 @@ export class ProductService {
         categoria: categoria,
         precio: precio,
         img: imgUrl,
-        owner: owner
+        owner: owner,
+        ownerId: ownerId
       };
 
       const updates = {};
-      updates[`products/${firebaseUserId}/${newProductKey}`] = newProduct;
+      updates[`products/${newProductKey}`] = newProduct;
 
       return this.firebaseDatabase.database.ref().update(updates);
       //return this.firebaseDatabase.database.ref(`products/${firebaseUserId}/${newProductKey}`).update(newProduct);
@@ -67,7 +69,8 @@ export class ProductService {
     categoria: number,
     precio: number,
     imgUrl: string,
-    owner: string
+    owner: string,
+    ownerId: string
   ) {
     return this.firebaseAuth.currentUser.then(userData => {
       const firebaseUserId = userData.uid;
@@ -79,11 +82,12 @@ export class ProductService {
         categoria: categoria,
         precio: precio,
         img: imgUrl,
-        owner: owner
+        owner: owner,
+        ownerId: ownerId
       };
 
       const updates = {};
-      updates[`products/${firebaseUserId}/${productID}`] = product;
+      updates[`products/${productID}`] = product;
 
       return this.firebaseDatabase.database.ref().update(updates);
     });

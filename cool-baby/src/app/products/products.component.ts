@@ -15,7 +15,7 @@ import {NgForm} from '@angular/forms';
 export class ProductsComponent implements OnInit {
   public products: ProductData[] = [];
   uploadedFileUrl = '';
-  talla = '';
+  talla = 'XS';
   categoria = 0;
   ownerId = '';
 
@@ -33,7 +33,7 @@ export class ProductsComponent implements OnInit {
         this.ownerId = userData.uid;
 
         this.firebaseDatabase
-          .list(`products/${this.ownerId}`, ref => ref.limitToLast(100).orderByChild('nombre'))
+          .list('products/', ref =>  ref.limitToLast(100).orderByChild('ownerId').equalTo(this.ownerId))
           .snapshotChanges()
           .subscribe(data => {
             this.products = data.map(e => {
@@ -45,6 +45,8 @@ export class ProductsComponent implements OnInit {
             data.forEach((element, contador) => {
               this.products[contador].key = element.key;
             });
+
+            this.products.sort((producto1, producto2) => producto1.nombre.localeCompare(producto2.nombre));
           });
       }
     });
@@ -64,7 +66,8 @@ export class ProductsComponent implements OnInit {
                 this.categoria,
                 precio,
                 this.uploadedFileUrl,
-                userData.val().userName
+                userData.val().userName,
+                authData.uid
               )
               .then(results => {
                 this.notificationService.showSuccessMessage(

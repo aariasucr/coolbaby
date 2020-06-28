@@ -21,6 +21,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../shared/product.service';
 
 import * as Mock from '../shared/mocks';
+import { PerfilComponent } from '../perfil/perfil.component';
 
 describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
@@ -59,7 +60,8 @@ describe('ProductDetailComponent', () => {
         HomeComponent,
         CatalogoComponent,
         NavegacionComponent,
-        FileUploaderComponent
+        FileUploaderComponent,
+        PerfilComponent
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mock.mockAngularFireAuth},
@@ -113,11 +115,8 @@ describe('ProductDetailComponent', () => {
       }
     } as NgForm;
 
-    //const resetSpy: jasmine.Spy = spyOn(testForm, 'reset');
-
     let routerSpy = jasmine.createSpyObj('Router', ['navigate']);
     let activatedRouterSpy = TestBed.get(ActivatedRoute);
-    //let activatedRouterSpy = jasmine.createSpyObj('ActivatedRoute', ['navigate']);
     let userServiceSpy = jasmine.createSpyObj('UserService', ['getUserDataFromFirebase']);
     let notificacionServiceSpy = jasmine.createSpyObj('NotificacionServcie', [
       'showSuccessMessage',
@@ -127,9 +126,6 @@ describe('ProductDetailComponent', () => {
       'getProductById',
       'updateProduct'
     ]);
-    //let productServiceSpy = TestBed.get(ProductService);
-    //productServiceSpy.getProductById(mockProducto.propietario, mockProducto.id);
-    //let databaseSpy = TestBed.get(AngularFireDatabaseModule);
 
     let serv = new ProductDetailComponent(
       activatedRouterSpy,
@@ -142,9 +138,6 @@ describe('ProductDetailComponent', () => {
     );
 
     component.onSubmit(testForm);
-
-    //expect(resetSpy).toHaveBeenCalled();
-    //expect(resetSpy.calls.all().length).toEqual(1);
   });
 
   it('should render app-navegacion tag', () => {
