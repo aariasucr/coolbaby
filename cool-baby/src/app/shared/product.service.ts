@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {TentativeProduct} from './models';
+import {TentativeProduct, ProductData} from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +60,16 @@ export class ProductService {
     return this.firebaseDatabase.database
       .ref(`tentatives/${ownerUid}/${newTentativeKey}`)
       .set(tentativeBuy);
+  }
+
+  addSale(productoVendido: ProductData, buyerUid: string) {
+    const newSalesKey = this.firebaseDatabase.database
+      .ref()
+      .child(`sales/${buyerUid}`)
+      .push().key;
+    return this.firebaseDatabase.database
+      .ref(`sales/${buyerUid}/${newSalesKey}`)
+      .set(productoVendido);
   }
 
   updateProduct(

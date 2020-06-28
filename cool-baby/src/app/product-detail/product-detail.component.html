@@ -29,34 +29,54 @@
                   (imagePick)="onImagePicked($event)"
                 ></app-file-uploader>
               </div>
+
+              <br /><br />
               <div class="col-lg-4">
-                <div class="dropdown show">
+                <div
+                  class="dropdown"
+                  [ngClass]="{
+                    show: this.mostrarDrowdown
+                  }"
+                >
                   <button
                     class="btn btn-outline-primary dropdown-toggle"
                     type="button"
-                    id="dropdownMenuOutlineButton1"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="true"
+                    (click)="this.dropdownSelectShow()"
                   >
                     Compradores
                   </button>
                   <div
                     class="dropdown-menu"
-                    aria-labelledby="dropdownMenuOutlineButton1"
+                    [ngClass]="{
+                      show: this.mostrarDrowdown
+                    }"
                     x-placement="bottom-start"
                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);"
                   >
                     <h6 class="dropdown-header">Usuarios</h6>
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
+                    <div *ngFor="let buyer of this.possibleBuyers">
+                      <a
+                        (click)="this.setBuyer(buyer.uidComprador, buyer.userNameComprador)"
+                        class="dropdown-item"
+                        >{{ buyer.userNameComprador }}</a
+                      >
+                    </div>
+
+                    <!-- <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a> -->
                   </div>
                 </div>
+                <button
+                  class="btn btn-info"
+                  *ngIf="this.currentBuyer"
+                  (click)="this.venderProducto()"
+                >
+                  Vender a {{ this.currentBuyer.userNameComprador }}
+                </button>
               </div>
-              <br /><br />
               <h4 class="card-title">Detalles del artículo</h4>
               <div class="col-lg-6 div-form">
                 <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="pt-3">

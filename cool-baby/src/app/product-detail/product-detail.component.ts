@@ -28,6 +28,8 @@ export class ProductDetailComponent implements OnInit {
   nombreProducto = '';
   precioProducto = 0;
   public possibleBuyers: Buyers[] = [];
+  mostrarDrowdown = false;
+  currentBuyer: Buyers;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,7 +47,7 @@ export class ProductDetailComponent implements OnInit {
         this.router.navigate(['/home']);
         return;
       }
-
+      this.currentBuyer = {uidComprador: '', userNameComprador: ''} as Buyers;
       this.firebaseAuth.currentUser.then(userData => {
         if (!!userData && 'uid' in userData && !!userData.uid) {
           this.ownerId = userData.uid;
@@ -177,5 +179,31 @@ export class ProductDetailComponent implements OnInit {
 
   seleccionarCategoria(categoria: number) {
     return this.categoria === categoria ? true : false;
+  }
+
+  dropdownSelectShow() {
+    this.mostrarDrowdown = !this.mostrarDrowdown;
+  }
+
+  setBuyer(uidComprador, nombreComprador) {
+    this.currentBuyer.uidComprador = uidComprador;
+    this.currentBuyer.userNameComprador = nombreComprador;
+  }
+
+  venderProducto() {
+    this.productService
+      .addSale(this.product, this.currentBuyer.uidComprador)
+      .then(venta => {
+        this.notificationService.showSuccessMessage(
+          'Transacción exitosa',
+          'El artículo fue vendido'
+        );
+      })
+      .catch(e => {
+        this.notificationService.showErrorMessage(
+          'Error!!!',
+          'Se ha producido el siguiente error al procesar la venta: ' + e.message
+        );
+      });
   }
 }
