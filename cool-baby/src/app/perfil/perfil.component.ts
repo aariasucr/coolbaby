@@ -57,7 +57,6 @@ export class PerfilComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.users);
     let newUserName = form.value.userName;
     let newEmail = form.value.email;
     let newFullName = form.value.fullName;

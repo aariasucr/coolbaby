@@ -20,6 +20,7 @@ import { RegistroComponent } from '../registro/registro.component';
 import { CatalogoComponent } from '../catalogo/catalogo.component';
 import { NavegacionComponent } from '../navegacion/navegacion.component';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { ViewProductComponent } from '../view-product/view-product.component';
 
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
@@ -64,7 +65,8 @@ describe('PerfilComponent', () => {
         RegistroComponent,
         CatalogoComponent,
         NavegacionComponent,
-        FileUploaderComponent
+        FileUploaderComponent,
+        ViewProductComponent
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},

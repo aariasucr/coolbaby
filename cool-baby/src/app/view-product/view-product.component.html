@@ -1,0 +1,36 @@
+<div class="container-fluid page-body-wrapper body-background">
+  <app-navegacion></app-navegacion>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-lg-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">
+                {{ this.nombreProducto }}
+              </h4>
+              <img [src]="this.productoImg" alt="Imagen artículo" class="imagen-producto" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 stretch-card grid-margin">
+          <div class="card bg-gradient-info card-img-holder text-white">
+            <div class="card-body">
+              <h2 class="font-weight-normal mb-3">
+                {{ this.nombreProducto }}
+              </h2>
+              <h4 class="mb-5">Precio: {{ this.precioProducto }}</h4>
+              <h4 class="mb-5">Talla: {{ this.talla }}</h4>
+              <h4 class="mb-5">Propietario: {{ this.propietario }}</h4>
+              <h3 class="mb-5">Likes: {{ this.likes }}</h3>
+              <div class="contenedor-botones">
+                <button type="button" class="btn btn-gradient-success like" (click)="this.agregarLike()"><i class="mdi mdi-thumb-up"></i></button>
+                <button type="button" class="btn btn-gradient-danger dislike" (click)="this.quitarLike()"><i class="mdi mdi-thumb-down"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

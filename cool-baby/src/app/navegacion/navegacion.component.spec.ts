@@ -16,6 +16,7 @@ import { FileUploaderComponent } from '../file-uploader/file-uploader.component'
 import { ProductsComponent } from '../products/products.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { PerfilComponent } from '../perfil/perfil.component';
+import { ViewProductComponent } from '../view-product/view-product.component';
 
 describe('NavegacionComponent', () => {
   let component: NavegacionComponent;
@@ -33,7 +34,8 @@ describe('NavegacionComponent', () => {
         FileUploaderComponent,
         ProductsComponent,
         ProductDetailComponent,
-        PerfilComponent
+        PerfilComponent,
+        ViewProductComponent
       ],
       imports: [
         FormsModule,
