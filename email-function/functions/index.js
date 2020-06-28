@@ -8,7 +8,7 @@ const SENDER_EMAIL = "cesquivelscursos@gmail.com";
 const SENDER_PASSWORD = "unodos3!";
 
 exports.sendMail = functions.database
-  .ref("/tentatives/{userId}")
+  .ref("/tentatives/{userId}/{generatedId}")
   .onCreate((snap, ctx) => {
     const data = snap.val();
     console.log("data:", data);
@@ -21,13 +21,24 @@ exports.sendMail = functions.database
         pass: SENDER_PASSWORD,
       },
     });
+    let htmlText = `<div>
+                  El usuario <strong>${data.nombreComprador}</strong> quiere comprar el articulo <strong>${data.nombreProducto}</strong>
+                <div>
+                <div>
+                  <img src=${data.img} alt="Imagen articulo" />
+                </div>
+                <div>
+                  <a href="https://cool-baby-d79c2.web.app/product-detail/${data.nombreVendedor}/${data.uidProducto}">${data.nombreProducto}</a>
+                </div>`;
+
+    //<img [src]="this.productoActual.img" alt="Imagen articulo" />
     authData
       .sendMail({
         from: SENDER_EMAIL,
-        to: data.email,
-        subject: "Your submission Info",
-        text: "probando",
-        html: "probando",
+        to: data.emailVendedor,
+        subject: "Cool Baby",
+        text: "test",
+        html: htmlText,
       })
       .then((res) => console.log("successfully sent that mail"))
       .catch((err) => console.log("error:", err));
