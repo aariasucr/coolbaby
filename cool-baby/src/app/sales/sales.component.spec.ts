@@ -61,7 +61,6 @@ describe('SalesComponent', () => {
     component.ngOnInit();
     tick(100);
     expect(component.products).toBeTruthy();
-    // console.log('component.author: ', component.author);
     expect(component.owner).toBeTruthy();
     expect(component.owner.length).toBeGreaterThan(0);
     expect(component.owner).not.toBe('');

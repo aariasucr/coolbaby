@@ -24,4 +24,12 @@ export interface ProductData {
   categoria: number;
   img: string;
   owner: string;
+  ownerId: string;
+}
+
+export interface TentativeProduct {
+  nombreComprador: string;
+  uidComprador: string;
+  nombreProducto: string;
+  uidProducto: string;
 }
