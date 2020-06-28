@@ -70,4 +70,8 @@ export class UserService {
   addRegisterDataToFireBase(registerData: RegisterData, uid: any) {
     return this.firebaseDB.database.ref(`users/${uid}`).update(registerData);
   }
+
+  getCurrentUser() {
+    return this.firebaseAuth.currentUser;
+  }
 }
