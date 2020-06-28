@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   userID = '';
   pageTitle = '';
   ventasTotales = 0;
-  //productos: Number[];
+  public productos: ProductData[] = [];
   //userData: UserData;
 
   constructor(
@@ -26,11 +26,29 @@ export class HomeComponent implements OnInit {
     //private firebaseAuth: AngularFireAuth,
     private userService: UserService,
     private firebaseAuth: AngularFireAuth,
+    private firebaseDatabase: AngularFireDatabase,
     private notificationService: NotificationService,
     private productService: ProductService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.firebaseDatabase
+      .list('products', ref => ref.orderByChild('likes').limitToFirst(10))
+      .snapshotChanges()
+      .subscribe(data => {
+        this.productos = data.map(e => {
+          return {
+            ...(e.payload.val() as ProductData)
+          };
+        });
+
+        data.forEach((element, contador) => {
+          this.productos[contador].key = element.key;
+        });
+
+        this.productos = this.productos.reverse();
+      });
+  }
 
   logout() {
     this.userService.performLogout();
@@ -38,5 +56,21 @@ export class HomeComponent implements OnInit {
       'Sesión finalizada',
       'La sesión se ha cerrado correctamente'
     );
+  }
+
+  getCategoria(categoria: number){
+    switch (categoria) {
+      case 0:
+        return 'Pantalones';
+      case 1:
+        return 'Jackets';
+      case 2:
+        return 'Pijamas';
+      case 3:
+        return 'Todo';
+      default:
+        //this.notificationService.showErrorMessage("Error al mostrar la categoría", "No existe una categoría asociada a este artículo");
+        return 'Sin categoría';
+    }
   }
 }

@@ -28,6 +28,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import {AngularFirePerformanceModule} from '@angular/fire/performance';
 import { PerfilComponent } from './perfil/perfil.component';
+import { ViewProductComponent } from './view-product/view-product.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     FileUploaderComponent,
     ProductsComponent,
     ProductDetailComponent,
-    PerfilComponent
+    PerfilComponent,
+    ViewProductComponent
   ],
   imports: [
     BrowserModule,

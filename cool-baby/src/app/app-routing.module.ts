@@ -9,6 +9,7 @@ import {SalesComponent} from './sales/sales.component';
 import {ProductsComponent} from './products/products.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {PerfilComponent} from './perfil/perfil.component';
+import { ViewProductComponent } from './view-product/view-product.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [RouteGuard]},
@@ -23,7 +24,12 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'catalogo/:categoria', component: CatalogoComponent, canActivate: [RouteGuard]},
-  {path: 'perfil', component: PerfilComponent, canActivate: [RouteGuard]}
+  {path: 'perfil', component: PerfilComponent, canActivate: [RouteGuard]},
+  {
+    path: 'view-product/:productId',
+    component: ViewProductComponent,
+    canActivate: [RouteGuard]
+  }
 ];
 
 @NgModule({

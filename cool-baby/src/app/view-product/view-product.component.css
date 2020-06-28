@@ -1,0 +1,27 @@
+.body-background {
+  background: url('../../assets/images/login/bg_body.gif') !important;
+}
+
+.page-body-wrapper {
+  padding-top: 70px !important;
+}
+
+.grid-margin, .div-form {
+  padding-left: 0 !important;
+}
+
+.oculto {
+  display: none;
+}
+
+.card-title {
+  text-transform: none !important;
+}
+
+.imagen-producto {
+  width: 90% !important;
+}
+
+.contenedor-botones button {
+  margin-left: 1rem !important;
+}

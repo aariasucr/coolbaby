@@ -30,7 +30,7 @@
                     <label class="badge badge-info"><a routerLink="/product-detail/{{ product.owner }}/{{ product.key }}" title="{{ product.nombre }}">{{ product.nombre }}</a></label></td>
                   <td class="responsive-hide">{{ product.talla }}</td>
                   <td class="responsive-hide"> ₡ {{ product.precio }}</td>
-                  <td class="responsive-hide">{{ getCategoria( product.categoria ) }}</td>
+                  <td class="responsive-hide">{{ this.getCategoria(product.categoria) }}</td>
                   <td><img [src]="product.img" width="90%" alt="Prevista" /></td>
                 </tr>
               </tbody>

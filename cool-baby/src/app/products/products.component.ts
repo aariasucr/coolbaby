@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
   uploadedFileUrl = '';
   talla = 'XS';
   categoria = 0;
+  //nombreCategoria = '';
   ownerId = '';
 
   constructor(
@@ -120,7 +121,6 @@ export class ProductsComponent implements OnInit {
       case 3:
         return 'Todo';
       default:
-        //this.notificationService.showErrorMessage("Error al mostrar la categoría", "No existe una categoría asociada a este artículo");
         return 'Sin categoría';
     }
   }

@@ -25,6 +25,7 @@ export class ProductDetailComponent implements OnInit {
   ownerId = '';
   nombreProducto = '';
   precioProducto = 0;
+  likes = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -59,6 +60,7 @@ export class ProductDetailComponent implements OnInit {
               this.uploadedFileUrl = this.product.img;
               this.talla = this.product.talla;
               this.categoria = this.product.categoria;
+              this.likes = this.product.likes;
             });
         }
       });
@@ -81,7 +83,8 @@ export class ProductDetailComponent implements OnInit {
               precio === undefined || precio < 0 || isNaN(precio) ? this.product.precio : precio,
               this.uploadedFileUrl === '' ? this.product.img : this.uploadedFileUrl,
               userData.val().userName,
-              authData.uid
+              authData.uid,
+              this.likes
             )
             .then(results => {
               this.notificationService.showSuccessMessage(
