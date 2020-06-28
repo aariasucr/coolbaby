@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
-import {ProductData} from '../shared/models';
+import {ProductData, TentativeProduct} from '../shared/models';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ProductService} from '../shared/product.service';
+import {UserService} from '../shared/user.service';
+import {NotificationService} from '../shared/notification.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -12,7 +15,10 @@ export class CatalogoComponent implements OnInit {
   constructor(
     private firebaseDB: AngularFireDatabase,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private productService: ProductService,
+    private userService: UserService,
+    private notificationService: NotificationService
   ) {}
   private todo = 3;
   public todosProductos: ProductData[] = [];
@@ -38,24 +44,15 @@ export class CatalogoComponent implements OnInit {
       .list(`products`)
       .snapshotChanges()
       .subscribe(productos => {
-        productos.map(usuario => {
-          this.firebaseDB
-            .list(`products/${usuario.key}`, ref => ref.limitToLast(100).orderByChild('nombre'))
-            .snapshotChanges()
-            .subscribe(prodPorUsuario => {
-              let productosPorUsuario = prodPorUsuario.map(e => {
-                return {
-                  ...(e.payload.val() as ProductData)
-                };
-              });
+        productos.map(prod => {
+          this.todosProductos.push(prod.payload.val() as ProductData);
+          this.todosProductos[this.todosProductos.length - 1].key = prod.key;
 
-              this.todosProductos.push(...productosPorUsuario);
-              prodPorUsuario.forEach((element, contador) => {
-                this.todosProductos[contador].key = element.key;
-              });
-              _this.productosPorCategoria(categoria);
-              _this.productoActual = this.productosActuales[this.indiceProducto];
-            });
+          // prodPorUsuario.forEach((element, contador) => {
+          //   this.todosProductos[contador].key = element.key;
+          // });
+          _this.productosPorCategoria(categoria);
+          _this.productoActual = this.productosActuales[this.indiceProducto];
         });
       });
   }
@@ -93,5 +90,42 @@ export class CatalogoComponent implements OnInit {
         //this.notificationService.showErrorMessage("Error al mostrar la categoría", "No existe una categoría asociada a este artículo");
         return 'Sin categoría';
     }
+  }
+
+  intentarComprar() {
+    this.userService
+      .getCurrentUser()
+      .then(authData => {
+        this.userService.getUserDataFromFirebase(authData.uid).then(userData => {
+          let userDataVal = userData.val();
+          let tentativeBuy = {
+            nombreComprador: userDataVal.userName,
+            uidComprador: userData.key,
+            nombreProducto: this.productoActual.nombre,
+            uidProducto: this.productoActual.key
+          } as TentativeProduct;
+          this.productService.getProductByProductId(this.productoActual.key).then(product => {
+            this.productService
+              .addTentativeBuy(tentativeBuy, this.productoActual.ownerId)
+              .then(results => {
+                this.notificationService.showSuccessMessage(
+                  'Transacción exitosa',
+                  'Producto expuesto a venta'
+                );
+                // this.posts = this.postService.getAllPosts();
+              })
+              .catch(error => {
+                this.notificationService.showErrorMessage(
+                  'Error!!!',
+                  'Se ha producido el siguiente error al exponer producto a venta: ' + error.message
+                );
+                console.log(error.message);
+              });
+          });
+        });
+      })
+      .catch(err => {
+        this.notificationService.showErrorMessage('Error', err.message);
+      });
   }
 }

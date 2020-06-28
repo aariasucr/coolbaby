@@ -8,6 +8,7 @@ import {HomeComponent} from '../home/home.component';
 import {LoginComponent} from '../login/login.component';
 import {RegistroComponent} from '../registro/registro.component';
 import {NavegacionComponent} from '../navegacion/navegacion.component';
+import {ToastrModule} from 'ngx-toastr';
 
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
@@ -42,7 +43,8 @@ describe('CatalogoComponent', () => {
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
-        AngularFireDatabaseModule
+        AngularFireDatabaseModule,
+        ToastrModule.forRoot()
       ],
       providers: [RouteGuard]
     }).compileComponents();

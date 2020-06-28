@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {TentativeProduct} from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,8 @@ export class ProductService {
         .push().key;
 
       if (imgUrl === '') {
-        imgUrl = 'https://naibuzz.com/wp-content/uploads/2015/06/are-you-serious-wtf-meme-baby-face.jpg';
+        imgUrl =
+          'https://naibuzz.com/wp-content/uploads/2015/06/are-you-serious-wtf-meme-baby-face.jpg';
       }
 
       const newProduct = {
@@ -46,6 +48,16 @@ export class ProductService {
       return this.firebaseDatabase.database.ref().update(updates);
       //return this.firebaseDatabase.database.ref(`products/${firebaseUserId}/${newProductKey}`).update(newProduct);
     });
+  }
+
+  addTentativeBuy(tentativeBuy: TentativeProduct, ownerUid: string) {
+    const newTentativeKey = this.firebaseDatabase.database
+      .ref()
+      .child(`products/${ownerUid}`)
+      .push().key;
+    return this.firebaseDatabase.database
+      .ref(`tentatives/${ownerUid}/${newTentativeKey}`)
+      .set(tentativeBuy);
   }
 
   updateProduct(
@@ -75,5 +87,12 @@ export class ProductService {
 
       return this.firebaseDatabase.database.ref().update(updates);
     });
+  }
+
+  getProductByProductId(productUid: string) {
+    return this.firebaseDatabase.database
+      .ref('products')
+      .child(productUid)
+      .once('value');
   }
 }
