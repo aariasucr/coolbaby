@@ -19,6 +19,7 @@ import {AngularFireStorageModule, AngularFireStorage} from '@angular/fire/storag
 import {RouteGuard} from '../shared/route-guard';
 
 import * as Mocks from '../shared/mocks';
+import { PerfilComponent } from '../perfil/perfil.component';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -36,7 +37,8 @@ describe('ProductsComponent', () => {
         LoginComponent,
         RegistroComponent,
         CatalogoComponent,
-        FileUploaderComponent
+        FileUploaderComponent,
+        PerfilComponent
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},
