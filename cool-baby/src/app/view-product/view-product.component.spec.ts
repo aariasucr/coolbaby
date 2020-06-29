@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/t
 
 import {ViewProductComponent} from './view-product.component';
 import {routes} from '../app-routing.module';
+
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
@@ -15,30 +16,27 @@ import {RegistroComponent} from '../registro/registro.component';
 import {CatalogoComponent} from '../catalogo/catalogo.component';
 import {PerfilComponent} from '../perfil/perfil.component';
 import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
-import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 
-import * as Mock from '../shared/mocks';
-import {AngularFireDatabase} from '@angular/fire/database';
-import {AngularFireStorage} from '@angular/fire/storage';
-import {ActivatedRoute} from '@angular/router';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from 'src/environments/environment';
 import {RouteGuard} from '../shared/route-guard';
 
 describe('ViewProductComponent', () => {
   let component: ViewProductComponent;
   let fixture: ComponentFixture<ViewProductComponent>;
 
-  const mockLikes: any = {
-    val() {
-      return {
-        index: 0,
-        productId: 'idP'
-      };
-    }
-  };
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes(routes), FormsModule, ToastrModule.forRoot()],
+      imports: [
+        RouterTestingModule.withRoutes(routes),
+        FormsModule,
+        ToastrModule.forRoot(),
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        AngularFireDatabaseModule,
+      ],
       declarations: [
         ViewProductComponent,
         NavegacionComponent,
@@ -52,14 +50,9 @@ describe('ViewProductComponent', () => {
         PerfilComponent,
         FileUploaderComponent
       ],
-      providers: [
-        {provide: AngularFireAuth, useValue: Mock.mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: Mock.mockDatabase},
-        {provide: AngularFireStorage, useValue: null},
-        {provide: ActivatedRoute, useValue: Mock.mockParam},
-        RouteGuard
-      ]
-    }).compileComponents();
+      providers: [RouteGuard]
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
@@ -71,18 +64,6 @@ describe('ViewProductComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should initialize', fakeAsync(() => {
-    component.ngOnInit();
-    tick(100);
-    expect(component.productId).toBeTruthy();
-    expect(component.userId).toBeTruthy();
-    expect(component.userId.length).toBeGreaterThan(0);
-    expect(component.productId.length).toBeGreaterThan(0);
-    expect(component.productId).not.toBe('');
-    expect(component.producto).not.toBe(null);
-    expect(component.userId).not.toBe('');
-  }));
 
   it('should render app-navegacion tag', () => {
     const fixture = TestBed.createComponent(ViewProductComponent);
