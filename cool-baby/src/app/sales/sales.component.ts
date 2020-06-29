@@ -29,7 +29,6 @@ export class SalesComponent implements OnInit {
 
   ngOnInit() {
     this.firebaseAuth.currentUser.then(userData => {
-      // console.log('userData en el componente', userData);
       if (!!userData && 'uid' in userData && !!userData.uid) {
         this.owner = userData.uid;
 

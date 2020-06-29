@@ -25,6 +25,7 @@ export interface ProductData {
   img: string;
   owner: string;
   ownerId: string;
+  likes: number;
 }
 
 export interface TentativeProduct {

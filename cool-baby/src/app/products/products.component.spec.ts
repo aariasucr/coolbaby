@@ -20,6 +20,7 @@ import {RouteGuard} from '../shared/route-guard';
 
 import * as Mocks from '../shared/mocks';
 import { PerfilComponent } from '../perfil/perfil.component';
+import { ViewProductComponent } from '../view-product/view-product.component';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -38,7 +39,8 @@ describe('ProductsComponent', () => {
         RegistroComponent,
         CatalogoComponent,
         FileUploaderComponent,
-        PerfilComponent
+        PerfilComponent,
+        ViewProductComponent
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},

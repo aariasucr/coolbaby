@@ -22,14 +22,17 @@
                 alt="Imagen del artículo"
                 width="100%"
               />
-              <div class="col-lg-2 product-img">
+              <div class="col-lg-12 product-img">
                 <app-file-uploader
                   [owner]="this.ownerId"
                   [hidePreview]="true"
                   (imagePick)="onImagePicked($event)"
                 ></app-file-uploader>
+                <p class="text-info">Me gusta: {{ this.likes }}</p>
               </div>
+              <!-- <div class="col-lg-4 product-likes">
 
+              </div> -->
               <br /><br />
               <div class="col-lg-4">
                 <div

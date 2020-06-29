@@ -20,6 +20,7 @@ import {ProductDetailComponent} from '../product-detail/product-detail.component
 
 import * as Mocks from '../shared/mocks';
 import { PerfilComponent } from '../perfil/perfil.component';
+import { ViewProductComponent } from '../view-product/view-product.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -37,7 +38,8 @@ describe('HomeComponent', () => {
         FileUploaderComponent,
         ProductsComponent,
         ProductDetailComponent,
-        PerfilComponent
+        PerfilComponent,
+        ViewProductComponent
       ],
       imports: [FormsModule, RouterTestingModule.withRoutes(routes), ToastrModule.forRoot()],
       providers: [

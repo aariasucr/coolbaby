@@ -25,7 +25,7 @@ export class ProductService {
       const firebaseUserId = userData.uid;
       const newProductKey = this.firebaseDatabase.database
         .ref()
-        .child(`products/${firebaseUserId}`)
+        .child(`products`)
         .push().key;
 
       if (imgUrl === '') {
@@ -41,7 +41,8 @@ export class ProductService {
         precio: precio,
         img: imgUrl,
         owner: owner,
-        ownerId: ownerId
+        ownerId: ownerId,
+        likes: 0
       };
 
       const updates = {};
@@ -80,7 +81,8 @@ export class ProductService {
     precio: number,
     imgUrl: string,
     owner: string,
-    ownerId: string
+    ownerId: string,
+    likes: number
   ) {
     return this.firebaseAuth.currentUser.then(userData => {
       const firebaseUserId = userData.uid;
@@ -93,7 +95,8 @@ export class ProductService {
         precio: precio,
         img: imgUrl,
         owner: owner,
-        ownerId: ownerId
+        ownerId: ownerId,
+        likes: likes
       };
 
       const updates = {};
@@ -124,5 +127,13 @@ export class ProductService {
       .child(userId)
       .once('value');
     return snapshot;
+  }
+
+  getCategoria(categoria: number) {
+    return this.firebaseDatabase.database
+      .ref(`categories/${categoria}`)
+      .child('/')
+      .once('value');
+    //return nombreCategoria;
   }
 }

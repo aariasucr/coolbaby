@@ -53,6 +53,13 @@
 
 .product-img {
   padding-left: 0 !important;
+  padding-right: 0 !important;
+  display: flex !important;
+}
+
+.product-img p {
+  margin: auto;
+  font-size: 1.5rem;
 }
 
 .img-articulo {

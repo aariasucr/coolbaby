@@ -21,7 +21,12 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../shared/product.service';
 
 import * as Mock from '../shared/mocks';
+<<<<<<< HEAD
 import {PerfilComponent} from '../perfil/perfil.component';
+=======
+import { PerfilComponent } from '../perfil/perfil.component';
+import { ViewProductComponent } from '../view-product/view-product.component';
+>>>>>>> master
 
 describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
@@ -61,7 +66,8 @@ describe('ProductDetailComponent', () => {
         CatalogoComponent,
         NavegacionComponent,
         FileUploaderComponent,
-        PerfilComponent
+        PerfilComponent,
+        ViewProductComponent
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mock.mockAngularFireAuth},

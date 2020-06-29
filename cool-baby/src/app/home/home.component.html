@@ -79,58 +79,6 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 grid-margin stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title">Mis artículos</h2>
-              <div class="row mt-3">
-                <!-- Los valores de href se deben cambiar por router link para ir a la pagina respectiva -->
-                <!-- Esta tabla se alimenta de la base de datos -->
-                <div class="col-6 pr-1 pl-1">
-                  <a routerLink="/home"
-                    ><img
-                      src="assets/images/dashboard/img_1.jpg"
-                      class="mb-2 mw-100 w-100 rounded"
-                      alt="image"
-                  /></a>
-                </div>
-                <div class="col-6 pr-1 pl-1">
-                  <a routerLink="/home"
-                    ><img
-                      src="assets/images/dashboard/img_4.jpg"
-                      class="mw-100 w-100 rounded"
-                      alt="image"
-                  /></a>
-                </div>
-                <div class="col-6 pr-1 pl-1">
-                  <a routerLink="/home"
-                    ><img
-                      src="assets/images/dashboard/img_2.jpg"
-                      class="mb-2 mw-100 w-100 rounded"
-                      alt="image"
-                  /></a>
-                </div>
-                <div class="col-6 pr-1 pl-1">
-                  <a routerLink="/home"
-                    ><img
-                      src="assets/images/dashboard/img_3.jpg"
-                      class="mw-100 w-100 rounded"
-                      alt="image"
-                  /></a>
-                </div>
-              </div>
-              <div class="d-flex mt-5 align-items-top">
-                <div class="mb-0 flex-grow">
-                  <h5 class="mr-2 mb-2">
-                    Para ver el detalle de cada producto, dele clic sobre la imagen
-                  </h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
@@ -139,60 +87,33 @@
                 <!-- El valor de href se debe sustituir por routerLilnk hacia la pagina respectiva -->
                 <!-- Esta tabla se alimenta de la base de datos -->
                 <table class="table">
-                  <caption>
+                  <caption class="oculto">
                     Tabla del ranking de productos destacados
                   </caption>
                   <thead>
                     <tr>
-                      <th id="id-ranking">#</th>
-                      <th id="id-producto">Producto</th>
-                      <th id="id-usuario">Vendedor</th>
-                      <th id="id-cantidad">Cantidad de compras</th>
-                      <th id="id-precio">Precio</th>
+                      <th id="idProducto" class="oculto"></th>
+                      <th id="nombreProducto">Producto</th>
+                      <th id="likes">Likes</th>
+                      <th id="tallaProducto">Talla</th>
+                      <th id="precio">Precio</th>
+                      <th id="categoriaProducto">Categoría</th>
+                      <th id="propietario">Vendedor</th>
+                      <th id="imagen">Prevista</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td><a routerLink="/home">Sueta para niño</a></td>
-                      <td><a routerLink="/home">Herman Beck</a></td>
-                      <td>20</td>
-                      <td>₡ 2 000</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td><a routerLink="/home">Botitas de osito</a></td>
-                      <td><a routerLink="/home">Messsy Adam</a></td>
-                      <td>15</td>
-                      <td>₡ 5 000</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td><a routerLink="/home">Blusa frozen</a></td>
-                      <td><a routerLink="/home">John Richards</a></td>
-                      <td>12</td>
-                      <td>₡ 2 500</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td><a routerLink="/home">Gorrito de lana</a></td>
-                      <td><a routerLink="/home">Peter Meggik</a></td>
-                      <td>11</td>
-                      <td>₡ 3 500</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td><a routerLink="/home">Chupón anti quemaduras</a></td>
-                      <td><a routerLink="/home">Edward</a></td>
-                      <td>10</td>
-                      <td>₡ 10 000</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td><a routerLink="/home">Zapatos para niña</a></td>
-                      <td><a routerLink="/home">Ronald</a></td>
-                      <td>6</td>
-                      <td>₡ 8 000</td>
+                    <tr *ngFor="let producto of this.productos">
+                      <td class="oculto">{{ producto.key }}</td>
+                      <td>
+                        <label class="badge badge-info"><a routerLink="/view-product/{{ producto.key }}" title="{{ producto.nombre }}">{{ producto.nombre }}</a></label>
+                      </td>
+                      <td>{{ producto.likes }}</td>
+                      <td class="responsive-hide">{{ producto.talla }}</td>
+                      <td class="responsive-hide"> ₡ {{ producto.precio }}</td>
+                      <td class="responsive-hide">{{ this.getCategoria( producto.categoria ) }}</td>
+                      <td class="responsive-hide">{{ producto.owner }}</td>
+                      <td><img [src]="producto.img" width="90%" alt="Prevista" /></td>
                     </tr>
                   </tbody>
                 </table>

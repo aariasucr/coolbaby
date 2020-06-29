@@ -17,3 +17,17 @@
 .sidebar .nav .nav-item.active > .nav-link i {
   color: #bba8bff5 !important;
 }
+
+.oculto {
+  display: none;
+}
+
+.badge-info a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.badge-info a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}

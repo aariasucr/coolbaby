@@ -49,12 +49,9 @@ export class FileUploaderComponent implements OnInit {
         snapshot => {
           this.uploadStatus =
             ((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toString() + '%';
-            //this.notificationService.showSuccessMessage('Proceso completado', 'Se ha cargado la imagen correctamente');
         },
         error => {
-          // Error al hacer upload
           console.log(error);
-          //this.notificationService.showErrorMessage('Error al cargar la imagen', 'Ha ocurrido el siguiente error: ' + error.message);
         },
         () => {
           this.uploadTask.snapshot.ref.getDownloadURL().then(downloadUrl => {
