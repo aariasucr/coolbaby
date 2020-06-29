@@ -5,3 +5,7 @@
 .page-body-wrapper {
   padding-top: 70px;
 }
+
+.contenedor-botones button {
+  margin-left: 1rem !important;
+}

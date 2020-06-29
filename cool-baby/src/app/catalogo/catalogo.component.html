@@ -39,11 +39,11 @@
         <div class="col-md-4 stretch-card grid-margin">
           <div class="card bg-gradient-info card-img-holder text-white">
             <div class="card-body" *ngIf="this.productoActual">
-              <img
+              <!-- <img
                 src="../assets/images/dashboard/circle.svg"
                 class="card-img-absolute"
                 alt="circle-image"
-              />
+              /> -->
               <h2 class="font-weight-normal mb-3">
                 {{ this.productoActual.nombre }}
               </h2>
@@ -51,6 +51,10 @@
               <h4 class="mb-5">Talla: {{ this.productoActual.talla }}</h4>
               <h4 class="mb-5">Vendedor: {{ this.productoActual.owner }}</h4>
               <h4 class="mb-5">Likes: {{ this.productoActual.likes }}</h4>
+              <div class="contenedor-botones">
+                <button type="button" class="btn btn-gradient-success like" (click)="this.agregarLike()"><i class="mdi mdi-thumb-up"></i></button>
+                <button type="button" class="btn btn-gradient-danger dislike" (click)="this.quitarLike()"><i class="mdi mdi-thumb-down"></i></button>
+              </div>
             </div>
           </div>
         </div>

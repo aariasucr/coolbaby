@@ -22,7 +22,6 @@ export class ProductService {
     ownerId: string
   ) {
     return this.firebaseAuth.currentUser.then(userData => {
-      const firebaseUserId = userData.uid;
       const newProductKey = this.firebaseDatabase.database
         .ref()
         .child(`products`)
@@ -49,7 +48,6 @@ export class ProductService {
       updates[`products/${newProductKey}`] = newProduct;
 
       return this.firebaseDatabase.database.ref().update(updates);
-      //return this.firebaseDatabase.database.ref(`products/${firebaseUserId}/${newProductKey}`).update(newProduct);
     });
   }
 
@@ -75,7 +73,6 @@ export class ProductService {
     likes: number
   ) {
     return this.firebaseAuth.currentUser.then(userData => {
-      const firebaseUserId = userData.uid;
 
       const product = {
         created: new Date().getTime(),
@@ -107,6 +104,11 @@ export class ProductService {
     return this.firebaseDatabase.database
       .ref(`categories/${categoria}`)
       .once('value');
-    //return nombreCategoria;
+  }
+
+  modificarLikes(productId: string, likes: number){
+    this.firebaseDatabase.database
+        .ref(`products/${productId}`)
+        .update({likes: likes});
   }
 }
