@@ -74,7 +74,7 @@ export class UserService {
   getCurrentUser() {
     return this.firebaseAuth.currentUser;
   }
-
+  
   getLikesByUserId(userId: string){
     return this.firebaseDB.database
       .ref(`users/${userId}`)
@@ -86,5 +86,12 @@ export class UserService {
     this.firebaseDB.database
       .ref(`users/${userId}/`)
       .update({misLikes: likes});
+  }
+
+  getAllUsers() {
+    return this.firebaseDB.database
+      .ref('users')
+      .child('/')
+      .once('value');
   }
 }
