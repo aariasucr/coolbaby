@@ -76,6 +76,9 @@ export class UserService {
   }
 
   getAllUsers() {
-    return this.firebaseDB.database.ref('users').once('value');
+    return this.firebaseDB.database
+      .ref('users')
+      .child('/')
+      .once('value');
   }
 }
