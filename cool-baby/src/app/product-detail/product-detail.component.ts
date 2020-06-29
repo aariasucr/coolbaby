@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductData} from '../shared/models';
+import {TentativeProduct} from '../shared/models';
+import {Buyers} from '../shared/models';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../shared/product.service';
 import {NgForm} from '@angular/forms';
@@ -25,6 +27,9 @@ export class ProductDetailComponent implements OnInit {
   ownerId = '';
   nombreProducto = '';
   precioProducto = 0;
+  public possibleBuyers: Buyers[] = [];
+  mostrarDrowdown = false;
+  currentBuyer: Buyers;
   likes = 0;
 
   constructor(
@@ -43,13 +48,34 @@ export class ProductDetailComponent implements OnInit {
         this.router.navigate(['/home']);
         return;
       }
-
+      this.currentBuyer = {uidComprador: '', userNameComprador: ''} as Buyers;
       this.firebaseAuth.currentUser.then(userData => {
         if (!!userData && 'uid' in userData && !!userData.uid) {
           this.ownerId = userData.uid;
 
           this.ownerName = params.get('ownerName');
           this.productId = params.get('productId');
+          let tentativesPromise = this.productService
+            .getTentativesByUserId(this.ownerId)
+            .then(this.getTentativesValues);
+          let allUsersPromise = this.userService.getAllUsers().then(this.getUsersValues);
+          Promise.all([tentativesPromise, allUsersPromise]).then(([tentatives, allUsers]) => {
+            for (var tentativeKey in tentatives) {
+              let tentativeObj = tentatives[tentativeKey] as TentativeProduct;
+              if (tentativeObj.uidProducto === this.productId) {
+                for (var userKey in allUsers) {
+                  if (userKey === tentativeObj.uidComprador) {
+                    this.possibleBuyers.push({
+                      userNameComprador: allUsers[userKey].userName,
+                      uidComprador: userKey
+                    } as Buyers);
+                  }
+                }
+              }
+            }
+          });
+
+          // console.log(`tentatives para ${this.productId}:`, tentativesPromise);
           this.firebaseDatabase
             .object(`products/${this.productId}`)
             .snapshotChanges()
@@ -65,6 +91,29 @@ export class ProductDetailComponent implements OnInit {
         }
       });
     });
+  }
+
+  getTentativesValues(tentatives) {
+    console.log('Que hay aca:', tentatives);
+    return tentatives.val();
+  }
+
+  getUsersValues(users) {
+    return users.val();
+  }
+
+  subscribeToProduct(productId: string) {
+    this.firebaseDatabase
+      .object(`products/${this.productId}`)
+      .snapshotChanges()
+      .subscribe(data => {
+        this.product = data.payload.val() as ProductData;
+        this.nombreProducto = this.product.nombre;
+        this.precioProducto = this.product.precio;
+        this.uploadedFileUrl = this.product.img;
+        this.talla = this.product.talla;
+        this.categoria = this.product.categoria;
+      });
   }
 
   onSubmit(form: NgForm) {
@@ -93,7 +142,7 @@ export class ProductDetailComponent implements OnInit {
               );
               this.camposForm.forEach((e, indice) => {
                 this.camposForm[indice] = true;
-              })
+              });
             })
             .catch(error => {
               this.notificationService.showErrorMessage(
@@ -133,5 +182,31 @@ export class ProductDetailComponent implements OnInit {
 
   seleccionarCategoria(categoria: number) {
     return this.categoria === categoria ? true : false;
+  }
+
+  dropdownSelectShow() {
+    this.mostrarDrowdown = !this.mostrarDrowdown;
+  }
+
+  setBuyer(uidComprador, nombreComprador) {
+    this.currentBuyer.uidComprador = uidComprador;
+    this.currentBuyer.userNameComprador = nombreComprador;
+  }
+
+  venderProducto() {
+    this.productService
+      .addSale(this.product, this.currentBuyer.uidComprador)
+      .then(venta => {
+        this.notificationService.showSuccessMessage(
+          'Transacción exitosa',
+          'El artículo fue vendido'
+        );
+      })
+      .catch(e => {
+        this.notificationService.showErrorMessage(
+          'Error!!!',
+          'Se ha producido el siguiente error al procesar la venta: ' + e.message
+        );
+      });
   }
 }

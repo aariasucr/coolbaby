@@ -1,5 +1,5 @@
-import { of } from 'rxjs';
-import { convertToParamMap } from '@angular/router';
+import {of} from 'rxjs';
+import {convertToParamMap} from '@angular/router';
 
 export const datosUsuario = {
   uid: 'usuarioPrueba'
@@ -22,7 +22,41 @@ export const mockCategoria = {
   }
 };
 
+export const mockDatosUsuario = {
+  val() {
+    return {
+      created: 'number',
+      lastUpdate: 'number',
+      email: 'string',
+      userName: 'string',
+      fullName: 'string',
+      img: 'string'
+    };
+  }
+};
+
+export const mockTentatives = {
+  val() {
+    return {
+      nombreComprador: 'string',
+      uidComprador: 'string',
+      nombreProducto: 'string',
+      uidProducto: 'string',
+      uidVendedor: 'string',
+      emailVendedor: 'string',
+      img: 'string'
+    };
+  }
+};
+
 export const mockDatabase: any = {
+  object() {
+    return {
+      snapshotChanges() {
+        return {subscribe() {}};
+      }
+    };
+  },
   list() {
     return {
       snapshotChanges() {
@@ -33,8 +67,12 @@ export const mockDatabase: any = {
   database: {
     ref() {
       return {
-        once() {
-          return Promise.resolve(mockCategoria);
+        child() {
+          return {
+            once() {
+              return Promise.resolve(mockCategoria);
+            }
+          };
         }
       };
     }

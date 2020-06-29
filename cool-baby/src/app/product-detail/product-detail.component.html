@@ -6,7 +6,9 @@
         <h3 class="page-title">
           <span class="page-title-icon bg-gradient-primary text-white mr-2">
             <i class="mdi mdi-cash-multiple"></i>
-          </span> Detalle del artículo </h3>
+          </span>
+          Detalle del artículo
+        </h3>
       </div>
       <div class="row grid-margin stretch-card">
         <div class="col-lg-2"></div>
@@ -14,19 +16,70 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Imagen del artículo</h4>
-              <img [src]="this.uploadedFileUrl" class="img-articulo" alt="Imagen del artículo" width="100%"/>
+              <img
+                [src]="this.uploadedFileUrl"
+                class="img-articulo"
+                alt="Imagen del artículo"
+                width="100%"
+              />
               <div class="col-lg-12 product-img">
-                  <app-file-uploader
-                    [owner]="this.ownerId"
-                    [hidePreview]="true"
-                    (imagePick)="onImagePicked($event)"
-                  ></app-file-uploader>
-                  <p class="text-info">Me gusta: {{this.likes}}</p>
+                <app-file-uploader
+                  [owner]="this.ownerId"
+                  [hidePreview]="true"
+                  (imagePick)="onImagePicked($event)"
+                ></app-file-uploader>
+                <p class="text-info">Me gusta: {{ this.likes }}</p>
               </div>
               <!-- <div class="col-lg-4 product-likes">
 
               </div> -->
               <br /><br />
+              <div class="col-lg-4">
+                <div
+                  class="dropdown"
+                  [ngClass]="{
+                    show: this.mostrarDrowdown
+                  }"
+                >
+                  <button
+                    class="btn btn-outline-primary dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                    (click)="this.dropdownSelectShow()"
+                  >
+                    Compradores
+                  </button>
+                  <div
+                    class="dropdown-menu"
+                    [ngClass]="{
+                      show: this.mostrarDrowdown
+                    }"
+                    x-placement="bottom-start"
+                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);"
+                  >
+                    <h6 class="dropdown-header">Usuarios</h6>
+                    <div *ngFor="let buyer of this.possibleBuyers">
+                      <a
+                        (click)="this.setBuyer(buyer.uidComprador, buyer.userNameComprador)"
+                        class="dropdown-item"
+                        >{{ buyer.userNameComprador }}</a
+                      >
+                    </div>
+
+                    <!-- <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a> -->
+                  </div>
+                </div>
+                <button
+                  class="btn btn-info"
+                  *ngIf="this.currentBuyer"
+                  (click)="this.venderProducto()"
+                >
+                  Vender a {{ this.currentBuyer.userNameComprador }}
+                </button>
+              </div>
               <h4 class="card-title">Detalles del artículo</h4>
               <div class="col-lg-6 div-form">
                 <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="pt-3">
@@ -40,7 +93,9 @@
                       [disabled]="this.camposForm[0]"
                       ngModel
                     />
-                    <button type="button" (click)="this.habilitarCampo(0)" class="btn col-sm-1"><i class="mdi mdi-pencil"></i></button>
+                    <button type="button" (click)="this.habilitarCampo(0)" class="btn col-sm-1">
+                      <i class="mdi mdi-pencil"></i>
+                    </button>
                   </div>
                   <div class="form-group">
                     <input
@@ -52,7 +107,9 @@
                       [disabled]="this.camposForm[1]"
                       ngModel
                     />
-                    <button type="button" (click)="this.habilitarCampo(1)" class="btn col-sm-1"><i class="mdi mdi-pencil"></i></button>
+                    <button type="button" (click)="this.habilitarCampo(1)" class="btn col-sm-1">
+                      <i class="mdi mdi-pencil"></i>
+                    </button>
                   </div>
                   <div class="form-group">
                     <label for="tallaProducto" class="text">Talla:</label><br />
@@ -61,14 +118,21 @@
                       id="tallaProducto"
                       name="tallaProducto"
                       (change)="selectChangeHandlerTalla($event)"
-                      [disabled]="this.camposForm[2]">
-                      <option value="XS" [selected]="this.seleccionarTalla('XS')">Muy pequeño</option>
+                      [disabled]="this.camposForm[2]"
+                    >
+                      <option value="XS" [selected]="this.seleccionarTalla('XS')"
+                        >Muy pequeño</option
+                      >
                       <option value="S" [selected]="this.seleccionarTalla('S')">Pequeño</option>
                       <option value="M" [selected]="this.seleccionarTalla('M')">Mediano</option>
                       <option value="L" [selected]="this.seleccionarTalla('L')">Grande</option>
-                      <option value="XL" [selected]="this.seleccionarTalla('XL')">Muy Grande</option>
+                      <option value="XL" [selected]="this.seleccionarTalla('XL')"
+                        >Muy Grande</option
+                      >
                     </select>
-                    <button type="button" (click)="this.habilitarCampo(2)" class="btn col-sm-1"><i class="mdi mdi-pencil"></i></button>
+                    <button type="button" (click)="this.habilitarCampo(2)" class="btn col-sm-1">
+                      <i class="mdi mdi-pencil"></i>
+                    </button>
                   </div>
                   <div class="form-group">
                     <label for="categoriaProducto" class="text">Categoría:</label><br />
@@ -77,13 +141,18 @@
                       id="categoriaProducto"
                       name="categoriaProducto"
                       (change)="selectChangeHandlerCategoria($event)"
-                      [disabled]="this.camposForm[3]">
-                      <option value="0" [selected]="this.seleccionarCategoria(0)">Pantalones</option>
+                      [disabled]="this.camposForm[3]"
+                    >
+                      <option value="0" [selected]="this.seleccionarCategoria(0)"
+                        >Pantalones</option
+                      >
                       <option value="1" [selected]="this.seleccionarCategoria(1)">Jackets</option>
                       <option value="2" [selected]="this.seleccionarCategoria(2)">Pijamas</option>
                       <option value="3" [selected]="this.seleccionarCategoria(3)">Todo</option>
                     </select>
-                    <button type="button" (click)="this.habilitarCampo(3)" class="btn col-sm-1"><i class="mdi mdi-pencil"></i></button>
+                    <button type="button" (click)="this.habilitarCampo(3)" class="btn col-sm-1">
+                      <i class="mdi mdi-pencil"></i>
+                    </button>
                   </div>
                   <div class="mb-2 col-lg-6 button-save">
                     <button
