@@ -21,24 +21,11 @@
     </button>
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item nav-profile">
-        <!--<a
-          class="nav-link"
-          id="profileDropdown"
-          routerLink="/perfil"
-          data-toggle="dropdown"
-          aria-expanded="false"
-        >-->
-          <!--<div class="nav-profile-img">
-            <img src="assets/images/faces/face27.jpg" alt="image" />-->
-            <!--<img [src]="this.userData.img" alt="Avatar"> -->
-            <!--<span class="availability-status online"></span>
-          </div>-->
           <div class="nav-profile-text" *ngIf="this.showUserName">
             <a routerLink="/perfil"
               ><p class="mb-1 text-black">{{ this.userData.userName }}</p></a
             >
           </div>
-        <!-- </a> -->
       </li>
       <li class="nav-item nav-logout d-none d-lg-block">
         <a class="nav-link" (click)="logout()">

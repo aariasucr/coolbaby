@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../shared/product.service';
 import { UserService } from '../shared/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { NotificationService } from '../shared/notification.service';
 import { ProductData } from '../shared/models';
 
 @Component({
@@ -30,9 +28,7 @@ export class ViewProductComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private userService: UserService,
-    private firebaseAuth: AngularFireAuth,
-    private firebaseDatabase: AngularFireDatabase,
-    private notificationService: NotificationService) { }
+    private firebaseAuth: AngularFireAuth,) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -41,7 +37,7 @@ export class ViewProductComponent implements OnInit {
         return;
       }
 
-      this.firebaseAuth.currentUser.then(userData => {
+      this.userService.getCurrentUser().then(userData => {
         if (!!userData && 'uid' in userData && !!userData.uid) {
           this.userId = userData.uid;
 

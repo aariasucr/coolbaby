@@ -5,9 +5,6 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {NotificationService} from '../shared/notification.service';
 import {ProductService} from '../shared/product.service';
 import {ProductData} from '../shared/models';
-import {element} from 'protractor';
-//import { UserData, ProductData } from '../shared/models';
-//import {UserData} from '../shared/models';
 
 @Component({
   selector: 'app-home',
@@ -21,13 +18,9 @@ export class HomeComponent implements OnInit {
   public productos: ProductData[] = [];
   comprasTotales = 0;
   articulosTotales = 0;
-  //userData: UserData;
 
   constructor(
-    //private firebaseDatabase: AngularFireDatabase,
-    //private firebaseAuth: AngularFireAuth,
     private userService: UserService,
-    private firebaseAuth: AngularFireAuth,
     private firebaseDatabase: AngularFireDatabase,
     private notificationService: NotificationService,
     private productService: ProductService

@@ -28,31 +28,32 @@ export class PerfilComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.firebaseAuth.currentUser.then(userData => {
-      if (!!userData && 'uid' in userData && !!userData.uid) {
-        this.userId = userData.uid;
+    this.userService.getCurrentUser()
+      .then(userData => {
+        if (!!userData && 'uid' in userData && !!userData.uid) {
+          this.userId = userData.uid;
 
-        this.firebaseDatabase
-          .object(`users/${this.userId}`)
-          .snapshotChanges()
-          .subscribe(data => {
-            this.user = data.payload.val() as UserData;
-            this.userName = this.user.userName;
-            this.email = this.user.email;
-            this.fullName = this.user.fullName;
-          });
-
-        this.firebaseDatabase
-          .list('users')
-          .snapshotChanges()
-          .subscribe(data => {
-            this.users = data.map(e => {
-              return {
-                ...(e.payload.val() as UserData)
-              };
+          this.firebaseDatabase
+            .object(`users/${this.userId}`)
+            .snapshotChanges()
+            .subscribe(data => {
+              this.user = data.payload.val() as UserData;
+              this.userName = this.user.userName;
+              this.email = this.user.email;
+              this.fullName = this.user.fullName;
             });
-          });
-      }
+
+          this.firebaseDatabase
+            .list('users')
+            .snapshotChanges()
+            .subscribe(data => {
+              this.users = data.map(e => {
+                return {
+                  ...(e.payload.val() as UserData)
+                };
+              });
+            });
+        }
     });
   }
 

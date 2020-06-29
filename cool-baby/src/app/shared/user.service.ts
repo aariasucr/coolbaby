@@ -25,8 +25,7 @@ export class UserService {
       });
   }
 
-  //Hay una buena probabilidad de que necesitemos ese uid en el futuro
-  performAnonimousLogin(/*uid: string*/) {
+  performAnonimousLogin() {
     this.isLoggedIn = true;
     const userData: UserData = {
       created: null,
@@ -74,7 +73,7 @@ export class UserService {
   getCurrentUser() {
     return this.firebaseAuth.currentUser;
   }
-  
+
   getLikesByUserId(userId: string){
     return this.firebaseDB.database
       .ref(`users/${userId}`)

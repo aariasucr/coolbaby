@@ -34,10 +34,7 @@ export class FileUploaderComponent implements OnInit {
 
     if (fileList.length > 0) {
       const file: File = fileList[0];
-      // Por si nos interesa el tipo de archivo (e.g. image/jpeg)
-      // const fileType = file.type;
 
-      // const author = firebase.auth().currentUser.uid;
       this.tipoArchivo = fileList[0].type.split('/').pop();
       const fileName = `products/${this.owner}/${this.generateRandomName()}.${this.tipoArchivo}`;
 
