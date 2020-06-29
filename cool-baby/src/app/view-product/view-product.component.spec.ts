@@ -15,12 +15,9 @@ import { RegistroComponent } from '../registro/registro.component';
 import { CatalogoComponent } from '../catalogo/catalogo.component';
 import { PerfilComponent } from '../perfil/perfil.component';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import * as Mock from '../shared/mocks';
-import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { ActivatedRoute } from '@angular/router';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { RouteGuard } from '../shared/route-guard';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
@@ -28,34 +25,6 @@ import { environment } from 'src/environments/environment';
 describe('ViewProductComponent', () => {
   let component: ViewProductComponent;
   let fixture: ComponentFixture<ViewProductComponent>;
-
-  /*const mockLikes: any = {
-    val() {
-      return {
-        index: 0,
-        productId: 'idP'
-      };
-    }
-  }
-
-  const mockDatabase: any = {
-    object() {
-      return {
-        snapshotChanges() {
-          return {subscribe() {}};
-        }
-      };
-    },
-    database: {
-      ref() {
-        return {
-          once() {
-            return Promise.resolve(mockLikes);
-          }
-        };
-      }
-    }
-  };*/
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
