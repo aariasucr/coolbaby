@@ -25,6 +25,7 @@ export class NavegacionComponent implements OnInit {
   cargarCategorias() {
     this.firebaseDB.database
       .ref('categories')
+      .child('/')
       .once('value')
       .then(result => {
         this.categorias = result.val();

@@ -37,3 +37,8 @@ export interface TentativeProduct {
   emailVendedor: string;
   img: string;
 }
+
+export interface Buyers {
+  uidComprador: string;
+  userNameComprador: string;
+}

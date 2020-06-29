@@ -21,32 +21,12 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../shared/product.service';
 
 import * as Mock from '../shared/mocks';
-import { PerfilComponent } from '../perfil/perfil.component';
-import { ViewProductComponent } from '../view-product/view-product.component';
+import {PerfilComponent} from '../perfil/perfil.component';
+import {ViewProductComponent} from '../view-product/view-product.component';
 
 describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
   let fixture: ComponentFixture<ProductDetailComponent>;
-
-  // Mock de la base de datos
-  const mockDatabase: any = {
-    object() {
-      return {
-        snapshotChanges() {
-          return {subscribe() {}};
-        }
-      };
-    },
-    database: {
-      ref() {
-        return {
-          once() {
-            return Promise.resolve(Mock.mockCategoria);
-          }
-        };
-      }
-    }
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -67,7 +47,7 @@ describe('ProductDetailComponent', () => {
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mock.mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: mockDatabase},
+        {provide: AngularFireDatabase, useValue: Mock.mockDatabase},
         {provide: AngularFireStorage, useValue: null},
         {provide: ActivatedRoute, useValue: Mock.mockParam},
         RouteGuard,
@@ -135,7 +115,7 @@ describe('ProductDetailComponent', () => {
       productServiceSpy,
       userServiceSpy,
       Mock.mockAngularFireAuth,
-      mockDatabase,
+      Mock.mockDatabase,
       notificacionServiceSpy
     );
 

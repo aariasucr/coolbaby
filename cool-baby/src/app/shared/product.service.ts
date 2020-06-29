@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {TentativeProduct} from './models';
+import {TentativeProduct, ProductData} from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +61,16 @@ export class ProductService {
       .set(tentativeBuy);
   }
 
+  addSale(productoVendido: ProductData, buyerUid: string) {
+    const newSalesKey = this.firebaseDatabase.database
+      .ref()
+      .child(`sales/${buyerUid}`)
+      .push().key;
+    return this.firebaseDatabase.database
+      .ref(`sales/${buyerUid}/${newSalesKey}`)
+      .set(productoVendido);
+  }
+
   updateProduct(
     productID: string,
     nombre: string,
@@ -100,9 +110,26 @@ export class ProductService {
       .once('value');
   }
 
-  getCategoria(categoria: number){
+  getTentativesByProductId(productUid: string) {
+    let snapshot = this.firebaseDatabase.database
+      .ref('tentatives')
+      .child(productUid)
+      .once('value');
+    return snapshot;
+  }
+
+  getTentativesByUserId(userId: string) {
+    let snapshot = this.firebaseDatabase.database
+      .ref('tentatives')
+      .child(userId)
+      .once('value');
+    return snapshot;
+  }
+
+  getCategoria(categoria: number) {
     return this.firebaseDatabase.database
       .ref(`categories/${categoria}`)
+      .child('/')
       .once('value');
   }
 
