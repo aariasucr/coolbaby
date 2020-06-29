@@ -21,36 +21,12 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../shared/product.service';
 
 import * as Mock from '../shared/mocks';
-<<<<<<< HEAD
 import {PerfilComponent} from '../perfil/perfil.component';
-=======
-import { PerfilComponent } from '../perfil/perfil.component';
-import { ViewProductComponent } from '../view-product/view-product.component';
->>>>>>> master
+import {ViewProductComponent} from '../view-product/view-product.component';
 
 describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
   let fixture: ComponentFixture<ProductDetailComponent>;
-
-  // Mock de la base de datos
-  const mockDatabase: any = {
-    object() {
-      return {
-        snapshotChanges() {
-          return {subscribe() {}};
-        }
-      };
-    },
-    database: {
-      ref() {
-        return {
-          once() {
-            return Promise.resolve(Mock.mockCategoria);
-          }
-        };
-      }
-    }
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
