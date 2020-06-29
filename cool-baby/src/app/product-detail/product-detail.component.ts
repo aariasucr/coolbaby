@@ -49,7 +49,7 @@ export class ProductDetailComponent implements OnInit {
         return;
       }
       this.currentBuyer = {uidComprador: '', userNameComprador: ''} as Buyers;
-      this.firebaseAuth.currentUser.then(userData => {
+      this.userService.getCurrentUser().then(userData => {
         if (!!userData && 'uid' in userData && !!userData.uid) {
           this.ownerId = userData.uid;
 
@@ -75,7 +75,6 @@ export class ProductDetailComponent implements OnInit {
             }
           });
 
-          // console.log(`tentatives para ${this.productId}:`, tentativesPromise);
           this.firebaseDatabase
             .object(`products/${this.productId}`)
             .snapshotChanges()

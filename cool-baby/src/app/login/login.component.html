@@ -1,7 +1,3 @@
-<!-- Para pruebas. Esto se borra -->
-<!-- <div *ngIf="this.isLoggedIn">{{ this.userData.fullName }}</div>
-<div *ngIf="!this.isLoggedIn">No estoy loggeado</div> -->
-
 <div class="container-fluid page-body-wrapper full-page-wrapper">
   <div class="content-wrapper d-flex align-items-center auth login-body">
     <div class="row flex-grow">
@@ -30,7 +26,6 @@
               />
             </div>
             <div class="mb-2">
-              <!--En este anchor hay que movernos hacia la pagina de inicio-->
               <button
                 type="submit"
                 class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn text-light"
@@ -39,9 +34,6 @@
                 Ingresar
               </button>
             </div>
-            <!-- <div class="my-2 d-flex justify-content-between align-items-center float-right">
-              <a href="#" class="auth-link text-black">Forgot password?</a>
-            </div> Estaria interesante implementar esto -->
             <div class="mb-2">
               <button
                 (click)="AnonimousLogin()"
@@ -60,5 +52,4 @@
       </div>
     </div>
   </div>
-  <!-- content-wrapper ends -->
 </div>

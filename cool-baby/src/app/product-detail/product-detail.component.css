@@ -6,10 +6,22 @@
   padding-top: 70px !important;
 }
 
-.grid-margin, .div-form {
+.grid-margin, .div-form, .div-comprador, .dropdown, .div-button-vender {
   padding-left: 0 !important;
 }
 
+.div-comprador, .div-form, .dropdown, .div-button-vender {
+  display: inline-block !important;
+}
+
+.div-comprador {
+  position: absolute !important;
+  margin-top: 1rem !important;
+}
+
+.div-button-vender button {
+  margin-left: 1rem;
+}
 .oculto {
   display: none;
 }
@@ -21,6 +33,10 @@
 .row {
   background-color: #ffffff !important;
   margin: auto !important;
+}
+
+.contenedor-form-botones {
+  padding: 2rem 0 !important;
 }
 
 .input-detail, .btn {
@@ -69,5 +85,17 @@
 @media screen and (max-width: 1717px) and (min-width: 992px){
   .col-lg-6 {
     max-width: 100% !important;
+  }
+
+  .div-comprador {
+    position: relative !important;
+    margin-top: 3rem !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .div-comprador {
+    position: relative !important;
+    margin-top: 3rem !important;
   }
 }

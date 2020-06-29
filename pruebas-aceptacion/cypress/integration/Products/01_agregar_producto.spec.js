@@ -47,7 +47,7 @@ context('Agregar producto', () => {
       }
     })
     cy.get('#tallaProducto').select('Mediano').should('have.value', 'M')
-    cy.get('#categoriaProducto').select('Todo').should('have.value', '3')
+    cy.get('#categoriaProducto').select('Pijamas').should('have.value', '2')
     cy.get('#botonAgregarProducto').click()
     cy.checkToastr({
       title: {

@@ -17,7 +17,6 @@ export class ProductsComponent implements OnInit {
   uploadedFileUrl = '';
   talla = 'XS';
   categoria = 0;
-  //nombreCategoria = '';
   ownerId = '';
 
   constructor(
@@ -75,7 +74,6 @@ export class ProductsComponent implements OnInit {
                   'Transacción exitosa',
                   'El producto se ha agregado exitosamente'
                 );
-                // this.posts = this.postService.getAllPosts();
               })
               .catch(error => {
                 this.notificationService.showErrorMessage(

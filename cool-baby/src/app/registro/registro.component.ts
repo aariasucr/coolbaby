@@ -21,17 +21,7 @@ export class RegistroComponent implements OnInit {
     private notificationService: NotificationService
   ) {}
 
-  ngOnInit() {
-    //Esto probablemente se va despues de que tengamos la pagina de inicio
-    // this.userService.statusChange.subscribe(userData => {
-    //   if (userData) {
-    //     // this.userData = userData;
-    //     // this.isLoggedIn = true;
-    //   } else {
-    //     // this.isLoggedIn = false;
-    //   }
-    // });
-  }
+  ngOnInit() {}
 
   onSubmit(form: NgForm) {
     const email = form.value.email;
@@ -55,8 +45,6 @@ export class RegistroComponent implements OnInit {
           fullName: fullName
         };
         this.userService.addRegisterData(datosDeRegistro, result.user.uid);
-        //Este navigate debe ir a la pagina de inicio
-        /*this.router.navigate(['/login']);*/
         this.router.navigate(['./home']);
         this.notificationService.showSuccessMessage(
           'Registro completo',

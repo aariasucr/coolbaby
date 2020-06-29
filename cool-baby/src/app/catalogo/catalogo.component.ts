@@ -40,16 +40,14 @@ export class CatalogoComponent implements OnInit {
       this.userService.getCurrentUser()
         .then(result => {
           this.userId = result.uid;
-          this.userService.getLikesByUserId(this.userId)
-          .then(result => {
-            this.likesUsuario = result.val() as any;
-            if(this.likesUsuario){
-              this.likesUsuario = Object.values(this.likesUsuario);
-            }
-          });
         });
-
-      //this.likes = this.productoActual.likes;
+      this.userService.getLikesByUserId(this.userId)
+        .then(result => {
+          this.likesUsuario = result.val() as any;
+          if(this.likesUsuario){
+            this.likesUsuario = Object.values(this.likesUsuario);
+          }
+        });
     });
   }
 
@@ -68,7 +66,6 @@ export class CatalogoComponent implements OnInit {
           // });
           _this.productosPorCategoria(categoria);
           _this.productoActual = this.productosActuales[this.indiceProducto];
-          //_this.likes = this.productoActual.likes;
         });
       });
   }
@@ -133,7 +130,6 @@ export class CatalogoComponent implements OnInit {
                     'Transacción exitosa',
                     'Producto expuesto a venta'
                   );
-                  // this.posts = this.postService.getAllPosts();
                 })
                 .catch(error => {
                   this.notificationService.showErrorMessage(
@@ -153,7 +149,6 @@ export class CatalogoComponent implements OnInit {
   }
 
   agregarLike(){
-    console.log('likes en producto: ' + this.productoActual.likes);
     if(!this.likesUsuario){
       this.likesUsuario = [];
       this.likesUsuario.push(this.productoActual.key);
@@ -168,17 +163,14 @@ export class CatalogoComponent implements OnInit {
         this.productoActual.likes++;
       }
     }
-    console.log('likes en producto: ' + this.productoActual.likes);
   }
 
   quitarLike(){
-    console.log('likes en producto: ' + this.productoActual.likes);
     if(this.likesUsuario.indexOf(this.productoActual.key) > -1){
       this.likesUsuario.splice(this.likesUsuario.indexOf(this.productoActual.key), 1);
       this.userService.cambiarLike(this.userId, this.likesUsuario);
       this.productService.modificarLikes(this.productoActual.key, this.productoActual.likes - 1);
       this.productoActual.likes--;
     }
-    console.log('likes en producto: ' + this.productoActual.likes);
   }
 }
