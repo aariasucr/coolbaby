@@ -10,16 +10,16 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {RouteGuard} from '../shared/route-guard';
 
 import * as Mocks from '../shared/mocks';
-import { ProductsComponent } from '../products/products.component';
-import { ToastrModule } from 'ngx-toastr';
-import { HomeComponent } from '../home/home.component';
-import { SalesComponent } from '../sales/sales.component';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
-import { LoginComponent } from '../login/login.component';
-import { RegistroComponent } from '../registro/registro.component';
-import { CatalogoComponent } from '../catalogo/catalogo.component';
-import { NavegacionComponent } from '../navegacion/navegacion.component';
-import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import {ProductsComponent} from '../products/products.component';
+import {ToastrModule} from 'ngx-toastr';
+import {HomeComponent} from '../home/home.component';
+import {SalesComponent} from '../sales/sales.component';
+import {ProductDetailComponent} from '../product-detail/product-detail.component';
+import {LoginComponent} from '../login/login.component';
+import {RegistroComponent} from '../registro/registro.component';
+import {CatalogoComponent} from '../catalogo/catalogo.component';
+import {NavegacionComponent} from '../navegacion/navegacion.component';
+import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
 
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
@@ -38,7 +38,7 @@ describe('PerfilComponent', () => {
         snapshotChanges() {
           return {subscribe() {}};
         }
-      }
+      };
     },
     database: {
       ref() {
@@ -68,12 +68,11 @@ describe('PerfilComponent', () => {
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: mockDatabase},
+        {provide: AngularFireDatabase, useValue: Mocks.mockDatabase},
         {provide: AngularFireStorage, useValue: null},
         RouteGuard
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

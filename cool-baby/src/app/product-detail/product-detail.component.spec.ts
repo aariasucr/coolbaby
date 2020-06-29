@@ -21,7 +21,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../shared/product.service';
 
 import * as Mock from '../shared/mocks';
-import { PerfilComponent } from '../perfil/perfil.component';
+import {PerfilComponent} from '../perfil/perfil.component';
 
 describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
@@ -65,7 +65,7 @@ describe('ProductDetailComponent', () => {
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mock.mockAngularFireAuth},
-        {provide: AngularFireDatabase, useValue: mockDatabase},
+        {provide: AngularFireDatabase, useValue: Mock.mockDatabase},
         {provide: AngularFireStorage, useValue: null},
         {provide: ActivatedRoute, useValue: Mock.mockParam},
         RouteGuard,
@@ -85,23 +85,82 @@ describe('ProductDetailComponent', () => {
   });
 
   it('should initialize', fakeAsync(() => {
-    component.ngOnInit();
+    let routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+    let activatedRouterSpy = TestBed.get(ActivatedRoute);
+    let userServiceSpy = jasmine.createSpyObj('UserService', [
+      'getUserDataFromFirebase',
+      'getAllUsers'
+    ]);
+    let notificacionServiceSpy = jasmine.createSpyObj('NotificacionServcie', [
+      'showSuccessMessage',
+      'showErrorMessage'
+    ]);
+    let productServiceSpy = jasmine.createSpyObj('ProductService', [
+      'getProductById',
+      'updateProduct',
+      'getTentativesByUserId'
+    ]);
+
+    productServiceSpy.getTentativesByUserId.and.returnValue(Promise.resolve(Mock.mockTentatives));
+
+    userServiceSpy.getAllUsers.and.returnValue(Promise.resolve(Mock.mockDatosUsuario));
+
+    let serv = new ProductDetailComponent(
+      activatedRouterSpy,
+      routerSpy,
+      productServiceSpy,
+      userServiceSpy,
+      Mock.mockAngularFireAuth,
+      Mock.mockDatabase,
+      notificacionServiceSpy
+    );
+
+    serv.ngOnInit();
     tick(100);
-    expect(component.productId).toBeTruthy();
-    expect(component.camposForm).toBeTruthy();
-    expect(component.ownerId).toBeTruthy();
-    expect(component.ownerId.length).toBeGreaterThan(0);
-    expect(component.productId.length).toBeGreaterThan(0);
-    expect(component.camposForm.length).toBeGreaterThan(0);
-    expect(component.productId).not.toBe('');
-    expect(component.camposForm).not.toBe(null);
-    expect(component.ownerId).not.toBe('');
+    expect(serv.productId).toBeTruthy();
+    expect(serv.camposForm).toBeTruthy();
+    expect(serv.ownerId).toBeTruthy();
+    expect(serv.ownerId.length).toBeGreaterThan(0);
+    expect(serv.productId.length).toBeGreaterThan(0);
+    expect(serv.camposForm.length).toBeGreaterThan(0);
+    expect(serv.productId).not.toBe('');
+    expect(serv.camposForm).not.toBe(null);
+    expect(serv.ownerId).not.toBe('');
   }));
 
   it('should upload', () => {
+    let routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+    let activatedRouterSpy = TestBed.get(ActivatedRoute);
+    let userServiceSpy = jasmine.createSpyObj('UserService', [
+      'getUserDataFromFirebase',
+      'getAllUsers'
+    ]);
+    let notificacionServiceSpy = jasmine.createSpyObj('NotificacionServcie', [
+      'showSuccessMessage',
+      'showErrorMessage'
+    ]);
+    let productServiceSpy = jasmine.createSpyObj('ProductService', [
+      'getProductById',
+      'updateProduct',
+      'getTentativesByUserId'
+    ]);
+
+    productServiceSpy.getTentativesByUserId.and.returnValue(Promise.resolve(Mock.mockTentatives));
+
+    userServiceSpy.getAllUsers.and.returnValue(Promise.resolve(Mock.mockDatosUsuario));
+
+    let serv = new ProductDetailComponent(
+      activatedRouterSpy,
+      routerSpy,
+      productServiceSpy,
+      userServiceSpy,
+      Mock.mockAngularFireAuth,
+      Mock.mockDatabase,
+      notificacionServiceSpy
+    );
     const dummyUrl = 'url de prueba';
-    component.onImagePicked(dummyUrl);
-    expect(component.uploadedFileUrl).toBe(dummyUrl);
+    serv.onImagePicked(dummyUrl);
+    expect(serv.uploadedFileUrl).toBe(dummyUrl);
   });
 
   it('should submit form', async () => {
@@ -133,7 +192,7 @@ describe('ProductDetailComponent', () => {
       productServiceSpy,
       userServiceSpy,
       Mock.mockAngularFireAuth,
-      mockDatabase,
+      Mock.mockDatabase,
       notificacionServiceSpy
     );
 
