@@ -25,6 +25,8 @@ export class CatalogoComponent implements OnInit {
   public indiceProducto: number;
   public productoActual: ProductData;
   public productosActuales: ProductData[] = [];
+  likesUsuario = [];
+  userId: string;
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -35,6 +37,19 @@ export class CatalogoComponent implements OnInit {
       let paramCat = parseInt(params.get('categoria'));
       this.indiceProducto = 0;
       this.cargarProductos(paramCat);
+      this.userService.getCurrentUser()
+        .then(result => {
+          this.userId = result.uid;
+          this.userService.getLikesByUserId(this.userId)
+          .then(result => {
+            this.likesUsuario = result.val() as any;
+            if(this.likesUsuario){
+              this.likesUsuario = Object.values(this.likesUsuario);
+            }
+          });
+        });
+
+      //this.likes = this.productoActual.likes;
     });
   }
 
@@ -53,6 +68,7 @@ export class CatalogoComponent implements OnInit {
           // });
           _this.productosPorCategoria(categoria);
           _this.productoActual = this.productosActuales[this.indiceProducto];
+          //_this.likes = this.productoActual.likes;
         });
       });
   }
@@ -134,5 +150,35 @@ export class CatalogoComponent implements OnInit {
       .catch(err => {
         this.notificationService.showErrorMessage('Error', err.message);
       });
+  }
+
+  agregarLike(){
+    console.log('likes en producto: ' + this.productoActual.likes);
+    if(!this.likesUsuario){
+      this.likesUsuario = [];
+      this.likesUsuario.push(this.productoActual.key);
+      this.userService.cambiarLike(this.userId, this.likesUsuario);
+      this.productService.modificarLikes(this.productoActual.key, this.productoActual.likes + 1);
+      this.productoActual.likes++;
+    } else {
+      if(this.likesUsuario.indexOf(this.productoActual.key) <= -1){
+        this.likesUsuario.push(this.productoActual.key);
+        this.userService.cambiarLike(this.userId, this.likesUsuario);
+        this.productService.modificarLikes(this.productoActual.key, this.productoActual.likes + 1);
+        this.productoActual.likes++;
+      }
+    }
+    console.log('likes en producto: ' + this.productoActual.likes);
+  }
+
+  quitarLike(){
+    console.log('likes en producto: ' + this.productoActual.likes);
+    if(this.likesUsuario.indexOf(this.productoActual.key) > -1){
+      this.likesUsuario.splice(this.likesUsuario.indexOf(this.productoActual.key), 1);
+      this.userService.cambiarLike(this.userId, this.likesUsuario);
+      this.productService.modificarLikes(this.productoActual.key, this.productoActual.likes - 1);
+      this.productoActual.likes--;
+    }
+    console.log('likes en producto: ' + this.productoActual.likes);
   }
 }

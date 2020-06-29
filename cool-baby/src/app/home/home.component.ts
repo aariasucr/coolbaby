@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.firebaseDatabase
-      .list('products', ref => ref.orderByChild('likes').limitToFirst(10))
+      .list('products', ref => ref.orderByChild('likes').limitToLast(5))
       .snapshotChanges()
       .subscribe(data => {
         this.productos = data.map(e => {

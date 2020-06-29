@@ -46,11 +46,9 @@ export class ViewProductComponent implements OnInit {
           this.userId = userData.uid;
 
           this.productId = params.get('productId');
-          this.firebaseDatabase
-            .object(`products/${this.productId}`)
-            .snapshotChanges()
-            .subscribe(data => {
-              this.producto = data.payload.val() as ProductData;
+          this.productService.getProductByProductId(this.productId)
+            .then(result => {
+              this.producto = result.val() as ProductData;
               this.nombreProducto = this.producto.nombre;
               this.precioProducto = this.producto.precio;
               this.productoImg = this.producto.img;
@@ -59,56 +57,38 @@ export class ViewProductComponent implements OnInit {
               this.propietario = this.producto.owner;
               this.likes = this.producto.likes;
             });
-            this.firebaseDatabase
-              .object(`users/${this.userId}/misLikes`)
-              .snapshotChanges()
-              .subscribe(data => {
-                this.likesUsuario = data.payload.val() as any;
-                if(this.likesUsuario){
-                  this.likesUsuario = Object.values(this.likesUsuario);
-                }
-              });
+          this.userService.getLikesByUserId(this.userId)
+            .then(result => {
+              this.likesUsuario = result.val() as any;
+              if(this.likesUsuario){
+                this.likesUsuario = Object.values(this.likesUsuario);
+              }
+            });
         }
       });
     });
   }
 
   agregarLike(){
-    let index = 0;
     if(!this.likesUsuario){
       this.likesUsuario = [];
       this.likesUsuario.push(this.productId);
-      index = this.likesUsuario.indexOf(this.productId);
-      this.firebaseDatabase.database
-        .ref(`users/${this.userId}`)
-        .update({misLikes: this.likesUsuario});
-      this.firebaseDatabase.database
-        .ref(`products/${this.productId}`)
-        .update({likes: this.likes + 1});
+      this.userService.cambiarLike(this.userId, this.likesUsuario);
+      this.productService.modificarLikes(this.productId, ++this.likes);
     } else {
       if(this.likesUsuario.indexOf(this.productId) <= -1){
         this.likesUsuario.push(this.productId);
-        index = this.likesUsuario.indexOf(this.productId);
-        this.firebaseDatabase.database
-          .ref(`users/${this.userId}`)
-          .update({misLikes: this.likesUsuario});
-        this.firebaseDatabase.database
-          .ref(`products/${this.productId}`)
-          .update({likes: this.likes + 1});
+        this.userService.cambiarLike(this.userId, this.likesUsuario);
+        this.productService.modificarLikes(this.productId, ++this.likes);
       }
     }
   }
 
   quitarLike(){
-    let removido;
     if(this.likesUsuario.indexOf(this.productId) > -1){
-      removido = this.likesUsuario.splice(this.likesUsuario.indexOf(this.productId), 1);
-      this.firebaseDatabase.database
-        .ref(`users/${this.userId}/`)
-        .update({misLikes: this.likesUsuario});
-      this.firebaseDatabase.database
-        .ref(`products/${this.productId}`)
-        .update({likes: this.likes - 1});
+      this.likesUsuario.splice(this.likesUsuario.indexOf(this.productId), 1);
+      this.userService.cambiarLike(this.userId, this.likesUsuario);
+      this.productService.modificarLikes(this.productId, --this.likes);
     }
   }
 
