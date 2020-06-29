@@ -19,8 +19,9 @@ import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
 import {ProductsComponent} from '../products/products.component';
 import {ProductDetailComponent} from '../product-detail/product-detail.component';
 import {RouteGuard} from '../shared/route-guard';
-import { PerfilComponent } from '../perfil/perfil.component';
-import { ViewProductComponent } from '../view-product/view-product.component';
+import {PerfilComponent} from '../perfil/perfil.component';
+import {ViewProductComponent} from '../view-product/view-product.component';
+import {ComprasComponent} from '../compras/compras.component';
 
 describe('CatalogoComponent', () => {
   let component: CatalogoComponent;
@@ -39,7 +40,8 @@ describe('CatalogoComponent', () => {
         ProductsComponent,
         ProductDetailComponent,
         PerfilComponent,
-        ViewProductComponent
+        ViewProductComponent,
+        ComprasComponent
       ],
       imports: [
         RouterTestingModule.withRoutes(routes),

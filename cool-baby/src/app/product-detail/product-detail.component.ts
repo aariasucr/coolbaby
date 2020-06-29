@@ -195,7 +195,7 @@ export class ProductDetailComponent implements OnInit {
 
   venderProducto() {
     this.productService
-      .addSale(this.product, this.currentBuyer.uidComprador)
+      .addSale(this.product, this.currentBuyer.uidComprador, this.productId)
       .then(venta => {
         this.notificationService.showSuccessMessage(
           'Transacción exitosa',

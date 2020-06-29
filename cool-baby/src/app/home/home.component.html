@@ -13,7 +13,7 @@
       </div>
       <!-- Los valores de href se deben cambiar por router link para ir a la pagina respectiva -->
       <div class="row">
-        <div class="col-md-4 stretch-card grid-margin">
+        <div class="col-md-6 stretch-card grid-margin">
           <div class="card bg-gradient-success card-img-holder text-white">
             <div class="card-body">
               <img
@@ -24,7 +24,7 @@
               <h4 class="font-weight-normal mb-3">
                 Mis artículos<em class="mdi mdi-cash-multiple mdi-24px float-right"></em>
               </h4>
-              <h2 class="mb-5">&nbsp;</h2>
+              <h2 class="mb-5">{{ this.articulosTotales }}</h2>
               <button
                 class="btn btn-block btn-lg btn-gradient-light mt-3 btn-main-panel"
                 routerLink="/products"
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 stretch-card grid-margin">
+        <div class="col-md-6 stretch-card grid-margin">
           <div class="card bg-gradient-info card-img-holder text-white">
             <div class="card-body">
               <img
@@ -46,33 +46,12 @@
               <h4 class="font-weight-normal mb-3">
                 Artículos comprados <em class="mdi mdi-point-of-sale mdi-24px float-right"></em>
               </h4>
-              <h2 class="mb-5">10</h2>
+              <h2 class="mb-5">{{ this.comprasTotales }}</h2>
               <button
                 class="btn btn-block btn-lg btn-gradient-light mt-3 btn-main-panel"
-                routerLink="/home"
+                routerLink="/compras"
               >
                 Ir a mi carrito
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 stretch-card grid-margin">
-          <div class="card bg-gradient-danger card-img-holder text-white">
-            <div class="card-body">
-              <img
-                src="assets/images/dashboard/circle.svg"
-                class="card-img-absolute"
-                alt="circle-image"
-              />
-              <h4 class="font-weight-normal mb-3">
-                Mensajes recibidos<em class="mdi mdi-message-text mdi-24px float-right"></em>
-              </h4>
-              <h2 class="mb-5">20</h2>
-              <button
-                class="btn btn-block btn-lg btn-gradient-light mt-3 btn-main-panel"
-                routerLink="/home"
-              >
-                Ir a mis mensajes
               </button>
             </div>
           </div>
@@ -106,12 +85,18 @@
                     <tr *ngFor="let producto of this.productos">
                       <td class="oculto">{{ producto.key }}</td>
                       <td>
-                        <label class="badge badge-info"><a routerLink="/view-product/{{ producto.key }}" title="{{ producto.nombre }}">{{ producto.nombre }}</a></label>
+                        <label class="badge badge-info"
+                          ><a
+                            routerLink="/view-product/{{ producto.key }}"
+                            title="{{ producto.nombre }}"
+                            >{{ producto.nombre }}</a
+                          ></label
+                        >
                       </td>
                       <td>{{ producto.likes }}</td>
                       <td class="responsive-hide">{{ producto.talla }}</td>
-                      <td class="responsive-hide"> ₡ {{ producto.precio }}</td>
-                      <td class="responsive-hide">{{ this.getCategoria( producto.categoria ) }}</td>
+                      <td class="responsive-hide">₡ {{ producto.precio }}</td>
+                      <td class="responsive-hide">{{ this.getCategoria(producto.categoria) }}</td>
                       <td class="responsive-hide">{{ producto.owner }}</td>
                       <td><img [src]="producto.img" width="90%" alt="Prevista" /></td>
                     </tr>

@@ -22,6 +22,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from 'src/environments/environment';
 import {RouteGuard} from '../shared/route-guard';
+import {ComprasComponent} from '../compras/compras.component';
 
 describe('ViewProductComponent', () => {
   let component: ViewProductComponent;
@@ -48,7 +49,8 @@ describe('ViewProductComponent', () => {
         RegistroComponent,
         CatalogoComponent,
         PerfilComponent,
-        FileUploaderComponent
+        FileUploaderComponent,
+        ComprasComponent
       ],
       providers: [RouteGuard]
     })

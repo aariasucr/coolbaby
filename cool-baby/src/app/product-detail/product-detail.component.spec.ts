@@ -23,6 +23,7 @@ import {ProductService} from '../shared/product.service';
 import * as Mock from '../shared/mocks';
 import {PerfilComponent} from '../perfil/perfil.component';
 import {ViewProductComponent} from '../view-product/view-product.component';
+import {ComprasComponent} from '../compras/compras.component';
 
 describe('ProductDetailComponent', () => {
   let component: ProductDetailComponent;
@@ -43,7 +44,8 @@ describe('ProductDetailComponent', () => {
         NavegacionComponent,
         FileUploaderComponent,
         PerfilComponent,
-        ViewProductComponent
+        ViewProductComponent,
+        ComprasComponent
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mock.mockAngularFireAuth},
