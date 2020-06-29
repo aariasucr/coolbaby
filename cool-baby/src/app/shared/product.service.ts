@@ -136,4 +136,18 @@ export class ProductService {
       .once('value');
     //return nombreCategoria;
   }
+
+  getSalesByBuyerId(buyerId: string) {
+    return this.firebaseDatabase.database
+      .ref(`sales/${buyerId}`)
+      .child('/')
+      .once('value');
+  }
+
+  getProducts() {
+    return this.firebaseDatabase.database
+      .ref(`products`)
+      .child('/')
+      .once('value');
+  }
 }

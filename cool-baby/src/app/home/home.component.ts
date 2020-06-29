@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
   pageTitle = '';
   ventasTotales = 0;
   public productos: ProductData[] = [];
+  comprasTotales = 0;
+  articulosTotales = 0;
   //userData: UserData;
 
   constructor(
@@ -48,6 +50,24 @@ export class HomeComponent implements OnInit {
 
         this.productos = this.productos.reverse();
       });
+    this.userService.getCurrentUser().then(user => {
+      this.productService.getSalesByBuyerId(user.uid).then(compras => {
+        let comprasVal = compras.val();
+        for (let compra in comprasVal) {
+          this.comprasTotales++;
+        }
+        console.log(this.comprasTotales);
+      });
+      this.productService.getProducts().then(products => {
+        let allProducts = products.val();
+        for (let productoKey in allProducts) {
+          let productoObj = allProducts[productoKey] as ProductData;
+          if (productoObj.ownerId === user.uid) {
+            this.articulosTotales++;
+          }
+        }
+      });
+    });
   }
 
   logout() {
@@ -58,7 +78,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  getCategoria(categoria: number){
+  getCategoria(categoria: number) {
     switch (categoria) {
       case 0:
         return 'Pantalones';
