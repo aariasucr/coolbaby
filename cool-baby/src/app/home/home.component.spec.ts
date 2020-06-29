@@ -19,8 +19,9 @@ import {ProductsComponent} from '../products/products.component';
 import {ProductDetailComponent} from '../product-detail/product-detail.component';
 
 import * as Mocks from '../shared/mocks';
-import { PerfilComponent } from '../perfil/perfil.component';
-import { ViewProductComponent } from '../view-product/view-product.component';
+import {PerfilComponent} from '../perfil/perfil.component';
+import {ViewProductComponent} from '../view-product/view-product.component';
+import {ComprasComponent} from '../compras/compras.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -39,7 +40,8 @@ describe('HomeComponent', () => {
         ProductsComponent,
         ProductDetailComponent,
         PerfilComponent,
-        ViewProductComponent
+        ViewProductComponent,
+        ComprasComponent
       ],
       imports: [FormsModule, RouterTestingModule.withRoutes(routes), ToastrModule.forRoot()],
       providers: [

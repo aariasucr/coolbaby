@@ -63,13 +63,13 @@ export class ProductService {
       .set(tentativeBuy);
   }
 
-  addSale(productoVendido: ProductData, buyerUid: string) {
+  addSale(productoVendido: ProductData, buyerUid: string, productUid: string) {
     const newSalesKey = this.firebaseDatabase.database
       .ref()
       .child(`sales/${buyerUid}`)
       .push().key;
     return this.firebaseDatabase.database
-      .ref(`sales/${buyerUid}/${newSalesKey}`)
+      .ref(`sales/${buyerUid}/${productUid}`)
       .set(productoVendido);
   }
 

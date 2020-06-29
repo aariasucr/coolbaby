@@ -22,6 +22,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ActivatedRoute} from '@angular/router';
 import {RouteGuard} from '../shared/route-guard';
+import {ComprasComponent} from '../compras/compras.component';
 
 describe('ViewProductComponent', () => {
   let component: ViewProductComponent;
@@ -50,7 +51,8 @@ describe('ViewProductComponent', () => {
         RegistroComponent,
         CatalogoComponent,
         PerfilComponent,
-        FileUploaderComponent
+        FileUploaderComponent,
+        ComprasComponent
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mock.mockAngularFireAuth},

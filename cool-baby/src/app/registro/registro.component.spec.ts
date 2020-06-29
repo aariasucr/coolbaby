@@ -20,8 +20,9 @@ import {SalesComponent} from '../sales/sales.component';
 import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
 import {ProductsComponent} from '../products/products.component';
 import {ProductDetailComponent} from '../product-detail/product-detail.component';
-import { PerfilComponent } from '../perfil/perfil.component';
-import { ViewProductComponent } from '../view-product/view-product.component';
+import {PerfilComponent} from '../perfil/perfil.component';
+import {ViewProductComponent} from '../view-product/view-product.component';
+import {ComprasComponent} from '../compras/compras.component';
 
 describe('RegistroComponent', () => {
   let component: RegistroComponent;
@@ -67,7 +68,8 @@ describe('RegistroComponent', () => {
         ProductsComponent,
         ProductDetailComponent,
         PerfilComponent,
-        ViewProductComponent
+        ViewProductComponent,
+        ComprasComponent
       ]
     }).compileComponents();
   }));

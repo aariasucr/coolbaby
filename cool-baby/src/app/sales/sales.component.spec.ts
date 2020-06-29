@@ -19,8 +19,9 @@ import {FormsModule} from '@angular/forms';
 import {FileUploaderComponent} from '../file-uploader/file-uploader.component';
 
 import * as Mocks from '../shared/mocks';
-import { PerfilComponent } from '../perfil/perfil.component';
-import { ViewProductComponent } from '../view-product/view-product.component';
+import {PerfilComponent} from '../perfil/perfil.component';
+import {ViewProductComponent} from '../view-product/view-product.component';
+import {ComprasComponent} from '../compras/compras.component';
 
 describe('SalesComponent', () => {
   let component: SalesComponent;
@@ -41,7 +42,8 @@ describe('SalesComponent', () => {
         ProductDetailComponent,
         FileUploaderComponent,
         PerfilComponent,
-        ViewProductComponent
+        ViewProductComponent,
+        ComprasComponent
       ],
       providers: [
         {provide: AngularFireAuth, useValue: Mocks.mockAngularFireAuth},
